@@ -4,7 +4,7 @@ This is the experimental issue tracker for the development of NethServer 7.
 
 Bookmarks:
 
-* [v7-alpha3](https://github.com/pulls?q=is%3Aopen+user%3ANethServer+milestone%3Av7-alpha3+sort%3Aupdated-desc)
+* [v7-alpha4](https://github.com/pulls?q=is%3Aopen+user%3ANethServer+milestone%3Av7-alpha4+sort%3Aupdated-desc)
 * [Issues](https://github.com/NethServer/dev/issues)
 * [Pull requests](https://github.com/pulls?user=NethServer)
 
