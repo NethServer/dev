@@ -1,6 +1,16 @@
-We will adopt the GitHub issue tracker instead of [dev.nethserver.org](http://dev.nethserver.org)
-for the *initial work* on NethServer 7.
+# NethServer issue tracker
 
-Please, join the discussion here
+Thank you for contributing to the NethServer project!
 
-http://community.nethserver.org/t/moving-from-redmine-to-github/1530/48
+This GitHub repository serves on the NethServer project as official
+issue-tracker.  Before opening a new issue here, we suggest to discuss it on
+http://community.nethserver.org.
+
+**You are welcome!**
+
+Further references:
+
+* [Development process](http://docs.nethserver.org/projects/nethserver-devel/en/v7b/development_process.html)
+* [Administrator manual](http://docs.nethserver.org/en/latest/)
+* Old [NethServer 6 issue tracker](http://dev.nethserver.org)
+
