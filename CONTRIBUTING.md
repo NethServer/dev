@@ -13,4 +13,5 @@ Further references:
 * [Development process](http://docs.nethserver.org/projects/nethserver-devel/en/v7b/development_process.html)
 * [Administrator manual](http://docs.nethserver.org/en/latest/)
 * Old [NethServer 6 issue tracker](http://dev.nethserver.org)
+* List of [NethServer 7 releases](releases.md)
 
