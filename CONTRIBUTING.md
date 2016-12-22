@@ -11,8 +11,14 @@ issue-tracker.  Before opening a [new issue here](https://github.com/NethServer/
 Further references:
 
 * [Development process](http://docs.nethserver.org/projects/nethserver-devel/en/v7rc/development_process.html)
-* [Administrator manual](http://docs.nethserver.org/en/latest/)
-* Old [NethServer 6 issue tracker](http://dev.nethserver.org)
-* List of [NethServer 7 releases](releases.md)
-* [NethServer 7 roadmap](https://github.com/NethServer/dev/projects/2)
+* [Administrator manual](http://docs.nethserver.org/en/v7rc/)
 
+## NethServer 7
+
+* [issues](https://github.com/NethServer/dev/milestone/7)
+* [releases](releases.md)
+* [roadmap](https://github.com/NethServer/dev/projects/2)
+
+## NethServer 6
+
+* [ns6 issue tracker](http://dev.nethserver.org)
