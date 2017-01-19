@@ -17,7 +17,7 @@ Further references:
 
 * [issues](https://github.com/NethServer/dev/milestone/7)
 * [releases](releases.md)
-* [roadmap](https://github.com/NethServer/dev/projects/2)
+* [roadmap](https://github.com/orgs/NethServer/projects/1)
 
 ## NethServer 6
 
