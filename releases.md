@@ -1,4 +1,4 @@
-# List of NethServer 7 releases
+# List of NethServer 7 ISO releases
 
 * 2017-01-30 [final](https://github.com/NethServer/dev/issues?utf8=%E2%9C%93&q=is%3Aissue%20is%3Aclosed%20milestone%3Av7%20closed%3A2017-01-17T00%3A00%3A00Z..2017-01-30%20) - GA 2017-02-08
 
@@ -17,3 +17,5 @@
 * 2016-05-23 [alpha3](https://github.com/NethServer/dev/issues?utf8=%E2%9C%93&q=is%3Aissue%20is%3Aclosed%20milestone%3Av7-alpha3)
 
 * 2016-02-12 [alpha2](https://github.com/NethServer/dev/issues?utf8=%E2%9C%93&q=is%3Aissue%20is%3Aclosed%20milestone%3Av7-alpha2)
+
+See also the [ISO releases](http://docs.nethserver.org/projects/nethserver-devel/en/v7/development_process.html#iso-releases-section) on Developer's manual.

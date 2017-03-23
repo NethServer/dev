@@ -10,13 +10,13 @@ issue-tracker.  Before opening a [new issue here](https://github.com/NethServer/
 
 Further references:
 
-* [Development process](http://docs.nethserver.org/projects/nethserver-devel/en/v7rc/development_process.html)
-* [Administrator manual](http://docs.nethserver.org/en/v7rc/)
+* [Development process](http://docs.nethserver.org/projects/nethserver-devel/en/v7/development_process.html)
+* [Administrator manual](http://docs.nethserver.org/en/v7/)
 
 ## NethServer 7
 
 * [issues](https://github.com/NethServer/dev/milestone/7)
-* [releases](releases.md)
+* [ISO releases](releases.md)
 * [roadmap](https://github.com/orgs/NethServer/projects/1)
 
 ## NethServer 6
