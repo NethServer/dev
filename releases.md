@@ -1,5 +1,13 @@
 # List of NethServer 7 ISO releases
 
+Each subsection corresponds to an upstream ISO release. See also the [ISO releases](http://docs.nethserver.org/projects/nethserver-devel/en/v7/development_process.html#iso-releases-section) on Developer's manual.
+
+## 7.4.1708
+
+* 2017-10-23 [final](https://github.com/NethServer/dev/issues?utf8=%E2%9C%93&q=is%3Aissue%20is%3Aclosed%20milestone%3Av7%20closed%3A2017-07-31..2017-10-23)
+
+## 7.3.1611
+
 * 2017-07-31 [update 1](https://github.com/NethServer/dev/issues?utf8=%E2%9C%93&q=is%3Aissue%20is%3Aclosed%20milestone%3Av7%20closed%3A2017-01-30..2017-07-31)
 
 * 2017-01-30 [final](https://github.com/NethServer/dev/issues?utf8=%E2%9C%93&q=is%3Aissue%20is%3Aclosed%20milestone%3Av7%20closed%3A2017-01-17T00%3A00%3A00Z..2017-01-30%20) - GA 2017-02-08
@@ -7,6 +15,8 @@
 * 2017-01-18 [rc4](https://github.com/NethServer/dev/issues?utf8=%E2%9C%93&q=is%3Aissue%20is%3Aclosed%20milestone%3Av7%20closed%3A2016-12-16T10%3A40%3A00Z..2017-01-18T11%3A40%3A00Z)
 
 * 2016-12-16 [rc3](https://github.com/NethServer/dev/issues?utf8=%E2%9C%93&q=is%3Aissue%20is%3Aclosed%20milestone%3Av7%20closed%3A2016-11-10T14%3A40%3A00Z..2016-12-16T10%3A40%3A00Z%20)
+
+## 7.2.1511
 
 * 2016-11-09 [rc2](https://github.com/NethServer/dev/issues?utf8=%E2%9C%93&q=is%3Aissue%20is%3Aclosed%20milestone%3Av7%20closed%3A2016-10-18T13%3A22%3A00Z..2016-11-09T14%3A40%3A00Z)
 
@@ -20,4 +30,3 @@
 
 * 2016-02-12 [alpha2](https://github.com/NethServer/dev/issues?utf8=%E2%9C%93&q=is%3Aissue%20is%3Aclosed%20milestone%3Av7-alpha2)
 
-See also the [ISO releases](http://docs.nethserver.org/projects/nethserver-devel/en/v7/development_process.html#iso-releases-section) on Developer's manual.
