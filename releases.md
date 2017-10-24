@@ -4,7 +4,7 @@ Each subsection corresponds to an upstream ISO release. See also the [ISO releas
 
 ## 7.4.1708
 
-* 2017-10-23 [final](https://github.com/NethServer/dev/issues?utf8=%E2%9C%93&q=is%3Aissue%20is%3Aclosed%20milestone%3Av7%20closed%3A2017-09-21..2017-10-23)
+* 2017-10-23 [final](https://github.com/NethServer/dev/issues?utf8=%E2%9C%93&q=is%3Aissue%20is%3Aclosed%20milestone%3Av7%20closed%3A2017-09-21..2017-10-23) - preview only
 
 * 2017-09-21 [beta1](https://github.com/NethServer/dev/issues?utf8=%E2%9C%93&q=is%3Aissue%20is%3Aclosed%20milestone%3Av7%20closed%3A2017-07-31..2017-09-21)
 
