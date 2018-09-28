@@ -1,0 +1,110 @@
+.. index:: Internationalization, i18n
+
+.. _section-i18n:
+
+====================
+Internationalization
+====================
+
+These are the coding conventions for NethServer i18n. Each package
+repository should respect them.
+
+* The developer prepares the translation source strings when he writes
+  the code.
+
+* Each translation catalog must be mapped to a resource on Transifex_.
+
+* Whenever new strings are added or existing ones are changed, source
+  catalogs must be pushed into Transifex with `Transifex client`_: ::
+
+    tx push -s
+
+.. _Transifex: https://www.transifex.com/projects/p/nethserver
+.. _Transifex client: http://docs.transifex.com/developer/client/
+
+To configure the Transifex client execute the `txinit.sh`_ script on the
+repository root.  The script can be executed multiple times, if new
+catalogs are added to the repository.
+
+.. _`txinit.sh`: https://gist.github.com/DavidePrincipi/8e4d4e97831d0850f01a
+
+Currently both gettext and Server Manager specific format is supported
+for language catalogs.
+
+
+gettext
+=======
+
+The ``xgettext`` command can be used to extract strings from the
+source code. The resulting ``.pot`` file must be named
+:file:`locale/<rpmname>.pot`.
+
+
+gettext example
+---------------
+
+In this example we will translate a new TODO message for the web interface.
+
+Steps to setup translation for a new todo:
+
+1. Be sure gettext is installed in your system
+
+2. Add the todo script to the git repository
+
+3. Create locale directory inside the git repository root:
+
+::
+
+  mkdir locale/
+
+4. Extract the strings (from a Python source code): 
+
+::
+
+  PACKAGE=$(basename `pwd`)
+  xgettext --msgid-bugs-address "translations@nethserver.org" --package-version "1.0.0"  \
+  --package-name "$PACKAGE" --foreign-user -d "$PACKAGE" -o "locale/${PACKAGE}.pot" \
+  -L Python root/etc/nethserver/todos.d/*
+
+5. Run the txinit.sh script and commit newly created files into git.
+
+6. Upload the new ``.pot`` resource to Transifex (special permissions are needed): ::
+
+  tx push -s
+
+
+
+Server Manager
+==============
+
+All source language catalog files are placed in
+:file:`root/usr/share/nethesis/NethServer/Language/en`. We assume
+``en`` is ``en-US``.
+
+The catalog format is a common PHP file where the array variable
+:samp:`$L` is assigned some keys: ::
+
+  <?php
+
+  $L['string_id_1'] = 'This is an example';
+  $L['string_id_2'] = 'What is a PHP array catalog?';
+
+1. Omit ending sequence :samp:`?>`.
+
+2. Use UTF-8 encoding.
+      
+Given a module with name "Test", the source language file will be
+:file:`root/usr/share/nethesis/NethServer/Language/en/NethServer_Module_Test.php`.
+
+When the Server Manager is running in debug mode, missing translation
+labels can be found in :file:`/var/log/messages`.  To enable the
+debug,
+
+* Unlock ``index_dev.php`` controller: ::
+    
+    touch /usr/share/nethesis/nethserver-manager/debug
+    
+* Prepend ``index_dev.php`` on URLs path, eg:
+  :file:`https://<ipaddress>/index_dev.php/en/<module>`.
+
+
