@@ -16,7 +16,7 @@ Further references:
 ## NethServer 7
 
 * [issues](https://github.com/NethServer/dev/milestone/7)
-* [ISO releases](releases.md)
+* [ISO releases](http://docs.nethserver.org/en/v7/nscom_releases.html)
 * [roadmap](https://github.com/orgs/NethServer/projects/1)
 
 ## NethServer 6
