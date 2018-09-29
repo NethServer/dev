@@ -22,3 +22,4 @@ Further references:
 ## NethServer 6
 
 * [ns6 issue tracker](http://dev.nethserver.org)
+
