@@ -5,9 +5,6 @@ nethserver-backup-config
 nethserver-lightsquid
 nethserver-webtop4
 nethserver-avahi
-nethserver-mail-common
-nethserver-mail-server
-nethserver-mail-filter
 nethserver-mail
 nethserver-directory
 nethserver-dc
@@ -19,7 +16,6 @@ nethserver-ejabberd
 nethserver-httpd
 nethserver-firewall-base
 nethserver-httpd-admin
-nethserver-getmail
 nethserver-nextcloud
 nethserver-samba
 nethserver-squid
