@@ -253,6 +253,7 @@ interface-update                                                              Ca
 logrotate-update                                                              Change default log retention and rotation policies
 trusted-networks-update                                                       The set of trusted networks is changed
 migration-import                       Path to migration directory            Import migration data from the given directory
+notifications-save                                                            Set notification configuration (root forward, mail sender address)
 password-expired                       Username, expire date                  The given username password will expire on expiredate
 password-modify                        User key                               Called when a user password is modified
 password-policy-update                 User key                               Called when the system password policy has been changed
