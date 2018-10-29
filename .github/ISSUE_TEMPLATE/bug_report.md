@@ -1,3 +1,9 @@
+---
+name: Bug report
+about: Create a report to help us improve
+
+---
+
 // REMOVE LINES WITH SLASHES, LIKE THIS
 
 **Steps to reproduce**
