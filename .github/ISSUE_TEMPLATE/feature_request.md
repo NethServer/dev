@@ -1,6 +1,6 @@
 ---
 name: Feature request
-about: Suggest an idea NethServer project
+about: We encourage the discussion of new features on community.nethserver.org. After coming to a consensus, please fill in this form
 
 ---
 
