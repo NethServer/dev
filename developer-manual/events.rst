@@ -269,6 +269,7 @@ pseudonym-create                       Pseudonym key                          Ca
 pseudonym-delete                       Pseudonym key                          Called when a pseudonym is deleted
 pseudonym-modify                       Pseudonym key                          Called when a pseudonym is modified
 user-create                            User key                               Called when a user is created
+user-cleanup                           User key                               Remove all user data
 user-delete                            User key                               Called when a user is deleted
 user-modify                            User key                               Called when a user is modified
 user-create-pseudonyms                 User key                               Called when the automatic creation of user's email address(es) is required
