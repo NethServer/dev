@@ -29,7 +29,7 @@ Each package MAY contain:
   interface to adjust the package configuration after some DB value has
   changed;
 * ``<packagename>-conf`` action, to execute package-specific
-  configuration commands. This action MUST be invoked during the ``<packagename>-update`` event.
+  configuration commands. This action should be invoked during the ``<packagename>-update`` event.
 
 For example, given a package named **nethserver-dnsmasq**:
 
