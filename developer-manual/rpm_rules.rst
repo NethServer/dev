@@ -10,32 +10,25 @@ Each package name MUST be composed of
 * a prefix, corresponding to the product name: *nethserver-*, *neth-*, ....
 * the feature/function/daemon/software: *base*, *directory*, *httpd-admin* ...
 
-Each package **MUST** contain:
-
-* ``<packagename>-update`` event, raised each time the package is installed/updated
-   and when the system is re-configured (for instance, after another package has been uninstalled)
-
-The update event should:
+Each package **MUST** contain a ``<packagename>-update`` event, raised each time 
+the package is installed/updated and when the system is re-configured (for instance,
+after another package has been uninstalled). The update event should
 
 * configure the package on first install
 * take care of upgrading current installation in case of package update
 
-.. note:: You should not add code in %post and %pre sections of the spec file.
+.. note:: 
+
+   You should not add code in ``%post`` and ``%pre`` sections of the spec file.
    All the logic must be inside the ``-update`` event.
 
-Each package MAY contain:
-
-* ``<packagename>-save`` event, raised by the console or the web
-  interface to adjust the package configuration after some DB value has
-  changed;
-* ``<packagename>-conf`` action, to execute package-specific
-  configuration commands. This action should be invoked during the ``<packagename>-update`` event.
+Each package **MAY** contain a ``<packagename>-save`` event, raised by the console 
+or the web interface to adjust the package configuration after some DB value has changed.
 
 For example, given a package named **nethserver-dnsmasq**:
 
 * update event: ``nethserver-dnmasq-update``
 * save event: ``nethserver-dnmasq-save``
-* configuration action: ``nethserver-dnmasq-conf``
 
 Install/Update process
 ======================
