@@ -50,3 +50,5 @@ nethserver-net-snmp
 nethserver-duc
 nethserver-mysql
 nethserver-dnsmasq
+nethserver-cockpit
+nethserver-netdata
