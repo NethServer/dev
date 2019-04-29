@@ -52,3 +52,5 @@ nethserver-mysql
 nethserver-dnsmasq
 nethserver-cockpit
 nethserver-netdata
+nethserver-makerpms
+nethserver-mock
