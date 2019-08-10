@@ -94,14 +94,14 @@ Template (`/usr/share/nethesis/NethServer/Template/Ejabber.php`):
 
 .. code-block:: php
 
-    header()->setAttribute('template', $T('Ejabber_Title'));
+    echo $view->header()->setAttribute('template', $T('Ejabber_Title'));
 
     // add simple panel
     echo $view->panel()
         //add 'status' parameter checkbox with value when checked and unchecked
-        ->insert($view->checkbox('status', 'enabled')->setAttribute('uncheckedValue', 'disabled'))
+        ->insert($view->checkbox('status', 'enabled')->setAttribute('uncheckedValue', 'disabled'));
         //add 'WelcomeText' text input field
-        ->insert($view->textInput('WelcomeText'))
+    echo $view->panel()->insert($view->textInput('WelcomeText'));
     ;
 
     // show submit and help buttons
