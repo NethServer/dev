@@ -70,8 +70,7 @@ Here is the controller
          }
               // Declare all parameters
          public function initialize(){
-             parent::initialize();
-              declareParameter('status', Validate::SERVICESTATUS, array('configuration', 'ejabberd', 'status'));
+                  parent::initialize();
                  // Bind 'WelcomeText' view parameter to 'WelcomeText' prop in ejabberd key of configuration db
                  $this->declareParameter('WelcomeText', Validate::ANYTHING, array('configuration', 'ejabberd', 'WelcomeText'));
          }
@@ -79,7 +78,7 @@ Here is the controller
              // Execute actions when saving parameters
          protected function onParametersSaved($changes) {
              // Signal nethserver-ejabberd-save event after saving props to db
-             $this->getPlatform()->signalEvent('nethserver-ejabberd-save@post-process')
+             $this->getPlatform()->signalEvent('nethserver-ejabberd-save@post-process');
          }
       }
 
