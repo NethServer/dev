@@ -62,19 +62,25 @@ Here is the controller
 
 .. code-block:: php
 
-    declareParameter('status', Validate::SERVICESTATUS, array('configuration', 'ejabberd', 'status'));
-            // Bind 'WelcomeText' view parameter to 'WelcomeText' prop in ejabberd key of configuration db
-            $this->declareParameter('WelcomeText', Validate::ANYTHING, array('configuration', 'ejabberd', 'WelcomeText'));
-        }
+     class Ejabber extends \Nethgui\Controller\AbstractController   
+     {
+          // Add the module under the 'Configuration' section, 
+          protected function initializeAttributes(\Nethgui\Module\ModuleAttributesInterface $base){
+             return \Nethgui\Module\SimpleModuleAttributesProvider::extendModuleAttributes($base, 'Configuration', 30);
+         }
+              // Declare all parameters
+         public function initialize(){
+                  parent::initialize();
+                 // Bind 'WelcomeText' view parameter to 'WelcomeText' prop in ejabberd key of configuration db
+                 $this->declareParameter('WelcomeText', Validate::ANYTHING, array('configuration', 'ejabberd', 'WelcomeText'));
+         }
 
-        // Execute actions when saving parameters
-        protected function onParametersSaved($changes)
-        {
-            // Signal nethserver-ejabberd-save event after saving props to db
-            $this->getPlatform()->signalEvent('nethserver-ejabberd-save@post-process');
-        }
-
-    }
+             // Execute actions when saving parameters
+         protected function onParametersSaved($changes) {
+             // Signal nethserver-ejabberd-save event after saving props to db
+             $this->getPlatform()->signalEvent('nethserver-ejabberd-save@post-process');
+         }
+      }
 
 
 View
@@ -88,14 +94,14 @@ Template (`/usr/share/nethesis/NethServer/Template/Ejabber.php`):
 
 .. code-block:: php
 
-    header()->setAttribute('template', $T('Ejabber_Title'));
+    echo $view->header()->setAttribute('template', $T('Ejabber_Title'));
 
     // add simple panel
     echo $view->panel()
         //add 'status' parameter checkbox with value when checked and unchecked
-        ->insert($view->checkbox('status', 'enabled')->setAttribute('uncheckedValue', 'disabled'))
+        ->insert($view->checkbox('status', 'enabled')->setAttribute('uncheckedValue', 'disabled'));
         //add 'WelcomeText' text input field
-        ->insert($view->textInput('WelcomeText'))
+    echo $view->panel()->insert($view->textInput('WelcomeText'));
     ;
 
     // show submit and help buttons
