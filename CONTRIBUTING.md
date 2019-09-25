@@ -3,7 +3,7 @@
 Thank you for contributing to the NethServer project!
 
 This GitHub repository serves on the NethServer project as official
-issue-tracker.  Before opening a [new issue here](https://github.com/NethServer/dev/issues/new), we suggest to discuss it on
+issue-tracker.  Before opening a [new issue here](https://github.com/NethServer/dev/issues/new/choose), we suggest to discuss it on
 [community.nethserver.org](http://community.nethserver.org).
 
 **You are welcome!**
