@@ -58,11 +58,11 @@ First, we create the controller which has 3 main functions:
 * **onParametersSaved**: apply the configuration
 
 Here is the controller
-(``/usr/share/nethesis/NethServer/Module/Ejabber.php``):
+(``/usr/share/nethesis/NethServer/Module/Ejabberd.php``):
 
 .. code-block:: php
 
-     class Ejabber extends \Nethgui\Controller\AbstractController   
+     class Ejabberd extends \Nethgui\Controller\AbstractController   
      {
           // Add the module under the 'Configuration' section, 
           protected function initializeAttributes(\Nethgui\Module\ModuleAttributesInterface $base){
@@ -90,11 +90,11 @@ Show all fields using built-in functions.
 If needed, you can add extra HTML markup but remember that the output
 must be functional on any device (desktop, mobile, text browser, etc).
 
-Template (`/usr/share/nethesis/NethServer/Template/Ejabber.php`):
+Template (`/usr/share/nethesis/NethServer/Template/Ejabberd.php`):
 
 .. code-block:: php
 
-    echo $view->header()->setAttribute('template', $T('Ejabber_Title'));
+    echo $view->header()->setAttribute('template', $T('Ejabberd_Title'));
 
     // add simple panel
     echo $view->panel()
@@ -119,14 +119,14 @@ Warning messages about missing translations can be found in ``/var/log/messages`
 To enable the debug, use index_dev.php on urls, eg: ``https://<ipaddress>/index_dev.php/en/<module>``.
 
 English translation
-(`/usr/share/nethesis/NethServer/Language/en/NethServer_Module_Ejabber.php)`:
+(`/usr/share/nethesis/NethServer/Language/en/NethServer_Module_Ejabberd.php)`:
 
 ::
 
   <?php
 
-  $L['Ejabber_Title'] = 'Chat server';
-  $L['status_label'] = 'Enable Ejabber chat server';
+  $L['Ejabberd_Title'] = 'ejabberd (XMPP)';
+  $L['status_label'] = 'Enable Ejabberd';
   $L['WelcomeText'] = 'Welcome!';
 
 Inline help
@@ -136,15 +136,15 @@ Help pages are RST documents compiled into xHTML pages at package build time.
 
 ::
 
- ===========
- Chat server
- ===========
+ ================
+ ejabberd (XMPP)
+ ================
 
- Ejabber is a chat server that implements the Jabber/XMPP protocol Jabber / XMPP, it support TLS on standard XMPP ports (5222 or 5223).
+ Ejabberd is a chat server that implements the XMPP protocol, it supports TLS on standard XMPP ports (5222 or 5223).
 
  The chat server uses system users to login.
-            
-        
+
+
 
 More examples
 =============
