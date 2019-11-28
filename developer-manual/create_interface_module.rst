@@ -126,7 +126,7 @@ English translation
   <?php
 
   $L['Ejabberd_Title'] = 'ejabberd (XMPP)';
-  $L['status_label'] = 'Enable Ejabberd';
+  $L['status_label'] = 'Enable ejabberd';
   $L['WelcomeText'] = 'Welcome!';
 
 Inline help
@@ -140,10 +140,16 @@ Help pages are RST documents compiled into xHTML pages at package build time.
  ejabberd (XMPP)
  ================
 
- Ejabberd is a chat server that implements the XMPP protocol, it supports TLS on standard XMPP ports (5222 or 5223).
+ ejabberd is an instant messaging server that implements the XMPP protocol, it uses:
 
- The chat server uses system users to login.
+  - For C2S:
+  -- STARTTLS: 5222/TCP port (by default)
+  -- TLS: 5223/TCP port (optional)
 
+  - For S2S (XMPP Federation):
+  -- STARTTLS: 5269/TCP port
+
+ This server uses system users to login.
 
 
 More examples
