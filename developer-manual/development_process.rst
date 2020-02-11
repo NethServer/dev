@@ -35,7 +35,7 @@ occasional small fixes, like typos in translations.
 When implementing small fixes, always avoid commits to the master branch.
 Open a :ref:`pull_request-section` and carefully describe the problem.
 Creation of issues can be avoided only for trivial fixes which require
-minimal QA effort.
+no QA effort.
 
 Issues are not a TODO list. Issues track the status changes of a job, the
 output of the job will be a new RPM resolving the issue itself.
@@ -450,5 +450,4 @@ supported.
 **Release candidates** (RC) can be run in production, all features are supposed
 to be complete and bug-free. The upgrade to the final release will be minor
 or less.
-
 
