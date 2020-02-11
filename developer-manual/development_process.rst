@@ -152,7 +152,7 @@ The *Developer*.
 * Finally, clears the *Assignee*.
 
 If the issue is not valid, it must be closed using the **invalid** label.
-and adding the reason inside the description like *duplicate* or *wontfix*.
+A comment must convey the reason why it is invalid, like *duplicate of (URL of issue)*, *wontfix because ...".
 
 
 .. _qa-section:
