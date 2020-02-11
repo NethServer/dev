@@ -55,3 +55,4 @@ nethserver-netdata
 nethserver-makerpms
 nethserver-mock
 nethserver-antivirus
+nethserver-openssh
