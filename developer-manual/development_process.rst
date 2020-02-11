@@ -32,6 +32,11 @@ Yes, if what you’re talking about will produce some code.
 By the way, it’s perfectly reasonable not to fill issues for
 occasional small fixes, like typos in translations.
 
+When implementing small fixes, always avoid commits to the master branch.
+Open a :ref:`pull_request-section` and carefully describe the problem.
+Creation of issues can be avoided only for trivial fixes which require
+no QA effort.
+
 Issues are not a TODO list. Issues track the status changes of a job, the
 output of the job will be a new RPM resolving the issue itself.
 If you are exploring some esoteric paths for new feature or hunting
@@ -112,6 +117,24 @@ https://github.com/NethServer/dev
 Issues created on *dev* help coordinating the development process, determining
 who is in charge of what.
 
+Issue labels and projects
+-------------------------
+
+Issues can be tagged using a set of well-known labels:
+
+- bug: a defect of the software
+- testing: packages are available from testing repositories (see :ref:`qa-section`)
+- verified: all test cases were verified successfully (see :ref:`qa-section`)
+- invalid: invalid issue, not a bug, duplicate or wontfix. Add a detailed description and link
+  to other related issue when using this tag.
+
+An issue without a label can be considered a new feature or an enhancement.
+
+Before introducing new labels, please discuss them with the development team
+and make sure to describe carefully the new label inside the `label page <https://github.com/NethServer/dev/labels>`.
+
+Issues can be categorized also using `Projects <https://github.com/orgs/NethServer/projects>`.
+
 Developer
 ^^^^^^^^^
 
@@ -128,9 +151,11 @@ The *Developer*.
 
 * Finally, clears the *Assignee*.
 
-If the issue is not valid, it can be closed adding one of the labels **invalid**,
-**duplicate**, **wontfix**.
+If the issue is not valid, it must be closed using the **invalid** label.
+A comment must convey the reason why it is invalid, like *duplicate of (URL of issue)*, *wontfix because ...".
 
+
+.. _qa-section:
 
 QA team member (testing)
 ^^^^^^^^^^^^^^^^^^^^^^^^
@@ -200,7 +225,7 @@ When submitting a PR, check that:
 
 4. PR comment describes the changes and how the feature is supposed to work
 
-5. Multiple dependant PRs in multiple repositories must include the dependencies between them in the description
+5. Multiple dependent PRs in multiple repositories must include the dependencies between them in the description
 
 6. Select at least one PR reviewer (GitHub suggestions are a usually good)
 
@@ -264,6 +289,12 @@ Example of a merged PR with squash: ::
 
     NethServer/dev#1133
 
+Draft pull requests
+-------------------
+
+The use of draft pull requests is recommended to share an on-going development.
+Draft pull requests can be used to test possible implementations of features that do not have an issue yet.
+If the draft pull request does not reference an issue it must have an assignee.
 
 RPM Version numbering rules
 ===========================
@@ -419,5 +450,3 @@ supported.
 **Release candidates** (RC) can be run in production, all features are supposed
 to be complete and bug-free. The upgrade to the final release will be minor
 or less.
-
-
