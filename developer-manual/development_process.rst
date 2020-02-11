@@ -294,7 +294,7 @@ Draft pull requests
 
 The use of draft pull requests is recommended to share an on-going development.
 Draft pull requests can be used to test possible implementations of features that do not have an issue yet.
-A draft pull request should always have an assignee.
+If the draft pull request does not reference an issue it must have an assignee.
 
 RPM Version numbering rules
 ===========================
