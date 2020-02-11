@@ -151,7 +151,7 @@ The *Developer*.
 
 * Finally, clears the *Assignee*.
 
-If the issue is not valid, it can be closed using the **invalid** label
+If the issue is not valid, it must be closed using the **invalid** label.
 and adding the reason inside the description like *duplicate* or *wontfix*.
 
 
@@ -450,4 +450,3 @@ supported.
 **Release candidates** (RC) can be run in production, all features are supposed
 to be complete and bug-free. The upgrade to the final release will be minor
 or less.
-
