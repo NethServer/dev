@@ -13,7 +13,7 @@ PHP, Javascript, CSS
 ::
 
     /*
-     * Copyright (C) 2019 Nethesis S.r.l.
+     * Copyright (C) 2020 Nethesis S.r.l.
      * http://www.nethesis.it - nethserver@nethesis.it
      * 
      * This script is part of NethServer.
@@ -38,7 +38,7 @@ Perl, Python and BASH
 ::
 
     #
-    # Copyright (C) 2019 Nethesis S.r.l.
+    # Copyright (C) 2020 Nethesis S.r.l.
     # http://www.nethesis.it - nethserver@nethesis.it
     # 
     # This script is part of NethServer.
