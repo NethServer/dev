@@ -131,9 +131,9 @@ Issues can be tagged using a set of well-known labels:
 An issue without a label can be considered a new feature or an enhancement.
 
 Before introducing new labels, please discuss them with the development team
-and make sure to describe carefully the new label inside the `label page <https://github.com/NethServer/dev/labels>`.
+and make sure to describe carefully the new label inside the `label page <https://github.com/NethServer/dev/labels>`_.
 
-Issues can be categorized also using `Projects <https://github.com/orgs/NethServer/projects>`.
+Issues can be categorized also using `Projects <https://github.com/orgs/NethServer/projects>`_.
 
 Developer
 ^^^^^^^^^
