@@ -56,3 +56,4 @@ nethserver-makerpms
 nethserver-mock
 nethserver-antivirus
 nethserver-openssh
+nethserver-blacklist
