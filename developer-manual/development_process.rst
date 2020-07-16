@@ -80,7 +80,7 @@ How to write a feature or enhancement:
 * Everybody should understand what you’re talking about: describe the
   feature with simple words using examples
 * If possible, add links to external documentation
-* Text presentation matters: it makes the whole report more readable
+* Text presentation and images matter: they make the whole report more readable
   and understandable
 
 More information:
