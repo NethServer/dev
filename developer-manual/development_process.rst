@@ -60,12 +60,6 @@ A process for a new feature should be something like this:
 
 * Open the issue on GitHub https://github.com/NethServer/dev/issues/new.
 
-Feature planning is kept inside https://github.com/orgs/NethServer/projects/.
-For any new feature, create a new card under the *Future* column.
-The card should contain a brief description of the feature, the link to the discussion
-and eventually links to related wiki page and issue.
-
-At any point in time, make sure the card and the issue reflect the status of actual work.
 
 Writing issues
 --------------
@@ -117,8 +111,8 @@ https://github.com/NethServer/dev
 Issues created on *dev* help coordinating the development process, determining
 who is in charge of what.
 
-Issue labels and projects
--------------------------
+Issue labels
+------------
 
 Issues can be tagged using a set of well-known labels:
 
@@ -128,12 +122,11 @@ Issues can be tagged using a set of well-known labels:
 - invalid: invalid issue, not a bug, duplicate or wontfix. Add a detailed description and link
   to other related issue when using this tag.
 
-An issue without a label can be considered a new feature or an enhancement.
+An issue without a label is considered a new feature or an enhancement.
 
 Before introducing new labels, please discuss them with the development team
 and make sure to describe carefully the new label inside the `label page <https://github.com/NethServer/dev/labels>`_.
 
-Issues can be categorized also using `Projects <https://github.com/orgs/NethServer/projects>`_.
 
 Developer
 ^^^^^^^^^
