@@ -57,3 +57,6 @@ nethserver-mock
 nethserver-antivirus
 nethserver-openssh
 nethserver-blacklist
+sofia-sip
+janus-gateway
+nethserver-janus
