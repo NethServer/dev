@@ -53,7 +53,7 @@ Publishing RPMs
 ===============
 
 Once RPMs are built, they can be uploaded to ``packages.nethserver.org`` with ``sftp``.
-Ask on community.nethserver.org to obtain the SFTP account required for this purpose.
+Ask on `community.nethserver.org <https://community.nethserver.org>`_ to obtain the SFTP account required for this purpose.
 
 Use the :ref:`uploadrpms-section` command to publish the RPMs
 in the current working directory. The command looks like the following ::
