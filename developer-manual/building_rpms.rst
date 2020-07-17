@@ -41,8 +41,10 @@ number of commits in the git log history since the last **tagged release commit*
 followed by ``.g``, followed by a short git commit hash reference.
 If the last commit in the repo has a release tag, the ``dist`` macro is set to ``.ns7`` instead.
 
-A **tagged release commit** is a git commit with a tag, starting with a digit.
-For instance ``0.1.2`` and ``0ok`` are valid release tags, whilst ``v0.1.2`` is not.
+A **tagged release commit** is a git commit with a tag, starting with a digit
+and not containing any "-" (minus) symbol.
+For instance ``0.1.2r1`` and ``0ok`` are valid release tags, whilst ``v0.1.2``
+and ``0.1.2-1`` are not.
 
 The :ref:`releasetag-section` command helps to create a properly tagged
 release commit in the RPM source code repository.
