@@ -1,5 +1,6 @@
 nethserver-release
 nethserver-base
+nethserver-lang
 nethserver-backup-data
 nethserver-backup-config
 nethserver-lightsquid
