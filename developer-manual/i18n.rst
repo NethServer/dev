@@ -45,7 +45,7 @@ To configure the Transifex client and find the string catalog files
 execute the `txinit.sh`_ script on the repository root.
 The script can run multiple times, when new catalogs are added to the repository.
 
-.. _`txinit.sh`: https://gist.github.com/DavidePrincipi/8e4d4e97831d0850f01a
+.. _`txinit.sh`: https://raw.githubusercontent.com/NethServer/nethserver-lang/master/txinit.sh
 
 
 PHP files
@@ -86,7 +86,7 @@ debug,
 gettext files
 -------------
 
-The gettext format is used by the TODO scripts in the old server manager.
+The gettext format is used by the TODO scripts in the old Server Manager.
 
 The ``xgettext`` command can be used to extract strings from the
 source code. The resulting ``.pot`` file must be named
@@ -116,5 +116,4 @@ Steps to setup translation for a new todo:
 6. Upload the new ``.pot`` resource to Transifex (special permissions are needed): ::
 
     tx push -s
-
 
