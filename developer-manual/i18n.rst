@@ -9,8 +9,8 @@ Internationalization
 These are the coding conventions for NethServer i18n. Each package
 repository should respect them.
 
-* The developer prepares the translation source strings when he writes
-  the code.
+* The developer prepares the translation source strings when the code
+  has been written.
 
 * Each translation catalog must be mapped to a resource on Transifex_.
 
@@ -19,63 +19,37 @@ repository should respect them.
 
     tx push -s
 
+* Once translators complete their work a new release of
+  :ref:`nethserver-lang-module` can occur.
+
 .. _Transifex: https://www.transifex.com/projects/p/nethserver
 .. _Transifex client: http://docs.transifex.com/developer/client/
 
-To configure the Transifex client execute the `txinit.sh`_ script on the
-repository root.  The script can be executed multiple times, if new
-catalogs are added to the repository.
-
-.. _`txinit.sh`: https://gist.github.com/DavidePrincipi/8e4d4e97831d0850f01a
-
-Currently both gettext and Server Manager specific format is supported
+Currently both gettext and Server Manager specific formats are supported
 for language catalogs.
 
 
-gettext
-=======
+Server Manager (Cockpit)
+========================
 
-The ``xgettext`` command can be used to extract strings from the
-source code. The resulting ``.pot`` file must be named
-:file:`locale/<rpmname>.pot`.
+Packages providing an application for the Cockpit Server Manager must adhere to
+the guidelines documented here:
 
-
-gettext example
----------------
-
-In this example we will translate a new TODO message for the web interface.
-
-Steps to setup translation for a new todo:
-
-1. Be sure gettext is installed in your system
-
-2. Add the todo script to the git repository
-
-3. Create locale directory inside the git repository root:
-
-::
-
-  mkdir locale/
-
-4. Extract the strings (from a Python source code): 
-
-::
-
-  PACKAGE=$(basename `pwd`)
-  xgettext --msgid-bugs-address "translations@nethserver.org" --package-version "1.0.0"  \
-  --package-name "$PACKAGE" --foreign-user -d "$PACKAGE" -o "locale/${PACKAGE}.pot" \
-  -L Python root/etc/nethserver/todos.d/*
-
-5. Run the txinit.sh script and commit newly created files into git.
-
-6. Upload the new ``.pot`` resource to Transifex (special permissions are needed): ::
-
-  tx push -s
+https://nethserver.github.io/nethserver-cockpit/i18n/#translations
 
 
+Server Manager (Nethgui)
+========================
 
-Server Manager
-==============
+To configure the Transifex client and find the string catalog files
+execute the `txinit.sh`_ script on the repository root.
+The script can run multiple times, when new catalogs are added to the repository.
+
+.. _`txinit.sh`: https://raw.githubusercontent.com/NethServer/nethserver-lang/master/txinit.sh
+
+
+PHP files
+---------
 
 All source language catalog files are placed in
 :file:`root/usr/share/nethesis/NethServer/Language/en`. We assume
@@ -107,4 +81,39 @@ debug,
 * Prepend ``index_dev.php`` on URLs path, eg:
   :file:`https://<ipaddress>/index_dev.php/en/<module>`.
 
+
+
+gettext files
+-------------
+
+The gettext format is used by the TODO scripts in the old Server Manager.
+
+The ``xgettext`` command can be used to extract strings from the
+source code. The resulting ``.pot`` file must be named
+:file:`locale/<rpmname>.pot`.
+
+For example we will translate a new TODO message for the web interface.
+
+Steps to setup translation for a new todo:
+
+1. Be sure gettext is installed in your system
+
+2. Add the todo script to the git repository
+
+3. Create locale directory inside the git repository root: ::
+
+    mkdir locale/
+
+4. Extract the strings (from a Python source code): ::
+
+    PACKAGE=$(basename `pwd`)
+    xgettext --msgid-bugs-address "translations@nethserver.org" --package-version "1.0.0"  \
+    --package-name "$PACKAGE" --foreign-user -d "$PACKAGE" -o "locale/${PACKAGE}.pot" \
+    -L Python root/etc/nethserver/todos.d/*
+
+5. Run the txinit.sh script and commit newly created files into git.
+
+6. Upload the new ``.pot`` resource to Transifex (special permissions are needed): ::
+
+    tx push -s
 
