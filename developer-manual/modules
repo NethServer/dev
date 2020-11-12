@@ -61,3 +61,4 @@ nethserver-blacklist
 sofia-sip
 janus-gateway
 nethserver-janus
+nethserver-cgp
