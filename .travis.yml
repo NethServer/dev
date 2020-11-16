@@ -1,0 +1,11 @@
+---
+version: ~> 1.0
+language: ruby
+
+script: |
+  if [[ ${TRAVIS_EVENT_TYPE} == cron ]]; then
+     curl -s -X POST \
+      -d "branches=${TRAVIS_BRANCH}" \
+      -d "token=${RTD_TOKEN}" \
+      https://readthedocs.org/api/v2/webhook/nethserver-devel/49560/
+  fi
