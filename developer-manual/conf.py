@@ -12,7 +12,7 @@
 # serve to show the default.
 
 import sys, os
-import urllib
+import urllib.request, urllib.parse, urllib.error
 
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
@@ -41,8 +41,8 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'NethServer'
-copyright = u'2017, Nethesis Srl'
+project = 'NethServer'
+copyright = '2017, Nethesis Srl'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -185,8 +185,8 @@ latex_elements = {
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
-  ('index', 'NethServer.tex', u'NethServer Documentation',
-   u'Nethesis', 'manual'),
+  ('index', 'NethServer.tex', 'NethServer Documentation',
+   'Nethesis', 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
@@ -215,8 +215,8 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    ('index', 'nethserver', u'NethServer Documentation',
-     [u'Nethesis'], 1)
+    ('index', 'nethserver', 'NethServer Documentation',
+     ['Nethesis'], 1)
 ]
 
 # If true, show URL addresses after external links.
@@ -229,8 +229,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-  ('index', 'NethServer', u'NethServer Documentation',
-   u'Nethesis', 'NethServer', 'One line description of project.',
+  ('index', 'NethServer', 'NethServer Documentation',
+   'Nethesis', 'NethServer', 'One line description of project.',
    'Miscellaneous'),
 ]
 
@@ -244,7 +244,7 @@ def setup(app):
         line = fp.readline().strip()
         while line:
             url = "https://raw.githubusercontent.com/NethServer/%s/master/README.rst" % line
-            urllib.urlretrieve(url, line+".rst")
-            print "Downloading %s: %s" % (line, url)
+            urllib.request.urlretrieve(url, line+".rst")
+            print("Downloading %s: %s" % (line, url))
             line = fp.readline().strip()
     fp.close()

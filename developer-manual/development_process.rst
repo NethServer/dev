@@ -145,7 +145,7 @@ The *Developer*.
 * Finally, clears the *Assignee*.
 
 If the issue is not valid, it must be closed using the **invalid** label.
-A comment must convey the reason why it is invalid, like *duplicate of (URL of issue)*, *wontfix because ...".
+A comment must convey the reason why it is invalid, like *"duplicate of (URL of issue), wontfix because ..."*.
 
 
 .. _qa-section:
@@ -184,7 +184,7 @@ After the *QA member* has completed the testing phase:
 
 * Takes an unassigned issue with label **verified**
 
-* Commits a *release tag* (see `Building RPMs`_).
+* Commits a *release tag* (see :ref:`buildrpm-section`).
 
 * Re-builds the tagged RPM.
 
