@@ -18,7 +18,7 @@ Further references:
 * [issues](https://github.com/NethServer/dev/issues)
 * [ISO releases](http://docs.nethserver.org/en/v7/nscom_releases.html)
 
-## NethServer 6
+## NethServer 6 (EOL)
 
-* [ns6 issue tracker](http://dev.nethserver.org)
+* [ns6 issue tracker archive](http://dev.nethserver.org)
 
