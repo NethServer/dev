@@ -11,7 +11,7 @@ Building RPMs
 To build RPMs for NethServer the following methods are provided:
 
 - :ref:`nethserver-makerpms-module` for local builds with Podman [#Podman]_
-  and Travis CI automated builds
+  and GitHub Actions automated builds
 
 - :ref:`nethserver-mock-module` local build with the Mock [#Mock]_ configuration
   files pointing to NethServer YUM repositories
@@ -63,7 +63,7 @@ in the current working directory. The command looks like the following ::
 Replace ``7.8.2003`` with the correct NS version number. Also replace ``nethforge-testing``
 with the target repository name.
 
-As alternative to the above manual procedure, it is possible to run the build on Travis CI:
+As alternative to the above manual procedure, it is possible to run the build on GitHub Actions:
 it automatically publishes the RPMs to ``packages.nethserver.org``, too. Refer to
 :ref:`nethserver-makerpms-module` documentation.
 
