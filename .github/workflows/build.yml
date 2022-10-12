@@ -2,7 +2,8 @@ name: Trigger docs build
 on:
   push:
   schedule:
-    - "0 0 * * 1"
+    - cron: "0 0 * * 1"
+  workflow_dispatch:
 jobs:
   trigger:
     name: Trigger webhook
