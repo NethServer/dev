@@ -10,8 +10,8 @@ issue-tracker.  Before opening a [new issue here](https://github.com/NethServer/
 
 Further references:
 
-* [Development process](http://docs.nethserver.org/projects/nethserver-devel/en/v7/development_process.html)
-* [Administrator manual](http://docs.nethserver.org/en/v7/)
+* [Development process](http://docs.nethserver.org/projects/nethserver-devel/en/latest/development_process.html)
+* [Administrator manual](http://docs.nethserver.org/en/latest/)
 
 ## NethServer 7
 
