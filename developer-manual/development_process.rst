@@ -124,7 +124,7 @@ Issues can be tagged using a set of well-known labels:
 
 An issue without a label is considered a new feature or an enhancement.
 
-Until June 2024, both NethServer 7 (NS7) and NethServer (NS8) are actively supported.
+Until June 2024, both NethServer 7 (NS7) and NethServer 8 (NS8) are actively supported.
 You can use the `ns7` label label to mark the issues for NethServer 7.
 
 Before introducing new labels, please discuss them with the development team
