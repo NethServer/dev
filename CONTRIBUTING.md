@@ -13,7 +13,7 @@ Further references:
 * [Development process](http://docs.nethserver.org/projects/nethserver-devel/en/latest/development_process.html)
 * [Administrator manual](http://docs.nethserver.org/en/latest/)
 
-## NethServer 7
+## NethServer 7 (EOL)
 
 * [issues](https://github.com/NethServer/dev/issues)
 * [ISO releases](http://docs.nethserver.org/en/latest/nscom_releases.html)
