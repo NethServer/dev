@@ -36,7 +36,6 @@ jobs:
           OWNER="NethServer"
           REPO="dev"
 
-          # Determine the new status based on the action and label
           if [ "$ACTION" == "labeled" ]; then
             if [ "$LABEL_CHANGED" == "testing" ]; then
               STATUS="testing"
@@ -47,7 +46,14 @@ jobs:
             fi
           elif [ "$ACTION" == "unlabeled" ]; then
             if [ "$LABEL_CHANGED" == "testing" ] || [ "$LABEL_CHANGED" == "verified" ]; then
-              STATUS="todo"
+              REMAINING_LABELS=$(gh issue view $ISSUE_NUMBER -R "$OWNER/$REPO" --json labels --jq '.labels[].name')
+              if echo "$REMAINING_LABELS" | grep -q "testing"; then
+                STATUS="testing"
+              elif echo "$REMAINING_LABELS" | grep -q "verified"; then
+                STATUS="verified"
+              else
+                STATUS="todo"
+              fi
             else
               exit 0
             fi
