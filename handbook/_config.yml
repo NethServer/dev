@@ -13,18 +13,16 @@
 # you will see them accessed via {{ site.title }}, {{ site.github_repo }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
-title: NS8 dev manual
-description: NS8 - Developer manual
+title: Developer handbook
+description: Nethesis developer handbook
 remote_theme: pmarsceill/just-the-docs
-
-baseurl: /ns8-core
 
 permalink: pretty
 exclude: [vendor]
 
-admin_manual: https://docs.nethserver.org/projects/ns8
 # Set a path/url to a logo that will be displayed instead of the title
-#logo: "/assets/images/just-the-docs.png"
+#logo: "/assets/images/just-the-docs.png
+favicon_ico: "/assets/favicon.png"
 
 # Enable or disable the site search
 search_enabled: true
@@ -37,8 +35,10 @@ heading_anchors: true
 
 # Aux links for the upper right navigation
 aux_links:
-  "NS8 on GitHub":
-    - "//github.com/nethserver/ns8-core"
+  "NethServer dev manual":
+    - "https://nethserver.github.io/ns8-core/"
+  "NethSecurity dev manual":
+    - "https://dev.nethsecurity.org"
 
 # Footer content appears at the bottom of every page's main content
 footer_content: ""
