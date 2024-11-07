@@ -1,0 +1,132 @@
+name: Update Project Status on Label Changes
+
+on:
+  issues:
+    types:
+      - labeled
+      - unlabeled
+
+jobs:
+  update_project_status:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up GitHub CLI
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y git jq
+          curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg
+          sudo chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg
+          echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null
+          sudo apt update
+          sudo apt install gh -y
+      - name: Authenticate GitHub CLI
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo $GITHUB_TOKEN | gh auth login --with-token
+      - name: Update status in project
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Set environment variables
+          ISSUE_NUMBER=${{ github.event.issue.number }}
+          ISSUE_NODE_ID=${{ github.event.issue.node_id }}
+          ACTION=${{ github.event.action }}
+          LABEL_CHANGED=${{ github.event.label.name }}
+          OWNER="NethServer"
+          REPO="dev"
+
+          # Determine the new status based on the action and label
+          if [ "$ACTION" == "labeled" ]; then
+            if [ "$LABEL_CHANGED" == "testing" ]; then
+              STATUS="testing"
+            elif [ "$LABEL_CHANGED" == "verified" ]; then
+              STATUS="verified"
+            else
+              exit 0
+            fi
+          elif [ "$ACTION" == "unlabeled" ]; then
+            if [ "$LABEL_CHANGED" == "testing" ] || [ "$LABEL_CHANGED" == "verified" ]; then
+              STATUS="todo"
+            else
+              exit 0
+            fi
+          else
+            exit 0
+          fi
+
+          # Get the list of projects the issue belongs to
+          PROJECTS=$(gh issue view $ISSUE_NUMBER -R "$OWNER/$REPO" --json projects --jq '.projects[]?.number')
+
+          for PROJECT_NUMBER in $PROJECTS; do
+            # Get the ID of the item in the project
+            ITEM_ID=$(gh api graphql -F owner="$OWNER" -F repo="$REPO" -F projectNumber=$PROJECT_NUMBER -F issueId="$ISSUE_NODE_ID" -f query='
+              query($owner: String!, $repo: String!, $projectNumber: Int!, $issueId: ID!) {
+                repository(owner: $owner, name: $repo) {
+                  projectV2(number: $projectNumber) {
+                    items(first: 100) {
+                      nodes {
+                        id
+                        content {
+                          ... on Issue {
+                            id
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }' --jq '.data.repository.projectV2.items.nodes[] | select(.content.id=="'$ISSUE_NODE_ID'") | .id')
+
+            # Get the ID of the "Status" field
+            STATUS_FIELD_ID=$(gh api graphql -F owner="$OWNER" -F repo="$REPO" -F projectNumber=$PROJECT_NUMBER -f query='
+              query($owner: String!, $repo: String!, $projectNumber: Int!) {
+                repository(owner: $owner, name: $repo) {
+                  projectV2(number: $projectNumber) {
+                    fields(first: 100) {
+                      nodes {
+                        id
+                        name
+                      }
+                    }
+                  }
+                }
+              }' --jq '.data.repository.projectV2.fields.nodes[] | select(.name=="Status") | .id')
+
+            # Get the ID of the desired status option
+            STATUS_OPTION_ID=$(gh api graphql -F owner="$OWNER" -F repo="$REPO" -F projectNumber=$PROJECT_NUMBER -F fieldId="$STATUS_FIELD_ID" -f query='
+              query($owner: String!, $repo: String!, $projectNumber: Int!, $fieldId: ID!) {
+                repository(owner: $owner, name: $repo) {
+                  projectV2(number: $projectNumber) {
+                    field(id: $fieldId) {
+                      ... on ProjectV2SingleSelectField {
+                        options {
+                          id
+                          name
+                        }
+                      }
+                    }
+                  }
+                }
+              }' --jq '.data.repository.projectV2.field.options[] | select(.name=="'$STATUS'") | .id')
+
+            # Get the project ID
+            PROJECT_ID=$(gh api graphql -F owner="$OWNER" -F repo="$REPO" -F projectNumber=$PROJECT_NUMBER -f query='
+              query($owner: String!, $repo: String!, $projectNumber: Int!) {
+                repository(owner: $owner, name: $repo) {
+                  projectV2(number: $projectNumber) {
+                    id
+                  }
+                }
+              }' --jq '.data.repository.projectV2.id')
+
+            # Update the status of the item in the project
+            gh api graphql -f mutation='
+              mutation($projectId: ID!, $itemId: ID!, $fieldId: ID!, $optionId: String!) {
+                updateProjectV2ItemFieldValue(input: {projectId: $projectId, itemId: $itemId, fieldId: $fieldId, value: {singleSelectOptionId: $optionId}}) {
+                  projectV2Item {
+                    id
+                  }
+                }
+              }' -F projectId="$PROJECT_ID" -F itemId="$ITEM_ID" -F fieldId="$STATUS_FIELD_ID" -F optionId="$STATUS_OPTION_ID"
+          done
