@@ -52,7 +52,7 @@ jobs:
               elif echo "$REMAINING_LABELS" | grep -q "verified"; then
                 STATUS="verified"
               else
-                STATUS="todo"
+                STATUS="In Progress"
               fi
             else
               exit 0
