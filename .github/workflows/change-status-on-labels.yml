@@ -22,7 +22,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
       - name: Determine new status on added label
-        if: ${{ github.event.action }} == 'labeled'
+        if: ${{ github.event.action == 'labeled' }}
         id: labeled
         run: |
           # Check if the label added is 'testing' or 'verified'
@@ -35,7 +35,7 @@ jobs:
             echo "status=skip" >> $GITHUB_OUTPUT
           fi
       - name: Determine new status on removed Label
-        if: ${{ github.event.action }} == 'unlabeled'
+        if: ${{ github.event.action == 'unlabeled' }}
         id: unlabeled
         run: |
           # Check if the label removed is 'testing' or 'verified'
@@ -57,7 +57,7 @@ jobs:
           fi
       - name: Set new status
         id: status
-        if: steps.labeled.outputs.status != 'skip' || steps.unlabeled.outputs.status != 'skip'
+        if: ${{ steps.labeled.outputs.status != 'skip' || steps.unlabeled.outputs.status != 'skip' }}
         run: |
           scripts/update_issue_status.sh $OWNER $REPO $ISSUE_NUMBER $NEW_STATUS
         env:
