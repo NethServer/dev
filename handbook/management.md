@@ -5,19 +5,12 @@ nav_order: 2
 ---
 
 # Project Management
+{: .no_toc }
 
 Developing an open-source project is challenging: it requires balancing user requests with the available workload. Project development is discussed and planned collaboratively.
 
-There are two communities that contribute significantly:
-
-- [NethServer Community](https://community.nethserver.org/): This community consists of users and developers who volunteer their time. The forum is in English and open to everyone. It is the primary place for feature requests, support, and bug reports. Without this community, the project would not exist.
-
-- [Nethesis Partner Community](https://partner.nethesis.it/): This community includes partners and customers. The forum is in Italian and focuses on commercial support, feature requests, and support. They provide substantial contributions to the project roadmap as they financially support the project. Access is reserved for partners.
-
-The main tool used is [GitHub](https://github.com), where the code is hosted, and the development process is managed. Repositories are organized into organizations. Nethesis has two organizations:
-
-- [NethServer](https://github.com/nethserver/): it hosts most of the Open Source code, access is open to everyone
-- [Nethesis](https://github.com/nethesis/): it hosts both Open Source and closed source code, including private repositories. The access is reserved to Nethesis members
+* TOC
+{:toc}
 
 ## Roles and responsibilities
 
@@ -66,8 +59,7 @@ Project boards are used to track the progress of issues and requests. They are d
 - [NethVoice](https://github.com/orgs/NethServer/projects/11): NethVoice is a VoIP platform, it's a module of NethServer and it contains many submodules like the PBX, a CTI and a desktop client
 - [NethSecurity](https://github.com/orgs/NethServer/projects/10): NethSecurity is an UTM firewall, based on OpenWrt
 
-
-## Project views
+### Project views
 
 All projects have some common views:
 
@@ -77,7 +69,7 @@ All projects have some common views:
 
 The team working on a project can decide to add more views if needed, for example, a view for the next milestone, or a view for the next release.
 
-### Current view
+#### Current view
 
 The project is divided into columns that represent the status of the card.
 A card can be an issue, a feature request, a bug report, or a task.
@@ -98,7 +90,7 @@ When a milestone is closed, all the cards in the "Done" column can be archived, 
 The view should list all planned (open) milestones, with the current milestone at the top.
 This view should be shared with the community to show the progress of the project.
 
-### Backlog view
+#### Backlog view
 
 The backlog view contains all the draft cards or issues that are not assigned to a milestone yet.
 Usually the backlog view can contains also draft cards the roughly describe a feature or a bug, but they are not ready to be worked on yet.
