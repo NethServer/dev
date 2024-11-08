@@ -6,27 +6,101 @@ nav_order: 2
 
 # Project Management
 
+Developing an open-source project is challenging: it requires balancing user requests with the available workload. Project development is discussed and planned collaboratively.
 
-- we are using github
+There are two communities that contribute significantly:
 
-- nethesis and nethserver organizations
+- [NethServer Community](https://community.nethserver.org/): This community consists of users and developers who volunteer their time. The forum is in English and open to everyone. It is the primary place for feature requests, support, and bug reports. Without this community, the project would not exist.
 
-- projects boards
+- [Nethesis Partner Community](https://partner.nethesis.it/): This community includes partners and customers. The forum is in Italian and focuses on commercial support, feature requests, and support. They provide substantial contributions to the project roadmap as they financially support the project. Access is reserved for partners.
 
-The project board is a tool to track the progress of the issues and requests. It is divided into columns that represent the status of the issue. The columns are:
+The main tool used is [GitHub](https://github.com), where the code is hosted, and the development process is managed. Repositories are organized into organizations. Nethesis has two organizations:
 
-- **Triage**: new issues are placed here, the team will evaluate them and assign the right labels and milestone
-- **Ready**: issues that are ready to be worked on, they have all the information needed to start the implementation.
-  When someone starts working on an issue, they move it to the **In progress** column
-- **In progress**: issues that are being worked on, they are assigned to a developer or a designer.
-  If a design is needed the card should have the Mockup field set to ``Need mockup``, a designer should be assigned to the issue.
-  When the mockup is ready the designer should set the Mockup field to ``Ready`` and the developer can start the implementation.
-  A card assigned to a developer must be converted to an issue.
-- **Backlog**: issues that are not planned for the current release
-- **Done**: issues that have been completed and closed
+- [NethServer](https://github.com/nethserver/): it hosts most of the Open Source code, access is open to everyone
+- [Nethesis](https://github.com/nethesis/): it hosts both Open Source and closed source code, including private repositories. The access is reserved to Nethesis members
 
-A task inside the `NethSecurity 8` project could also have one or more extra fields:
-- `Implementation`: it can be `Frontend`, `Backend` or `Frontend/Backend` to indicate the area of the code that will be affected by the issue
-- `Iteration`: it indicates the iteration of the issue, the iteration is a sequence of steps to reach the final goal. The iteration usually has start and end dates
-- `Mockup`: it can be empty if no mockup is needed, or `Ready` if the mockup is ready, or `Need Mockup` if the mockup is not ready yet. If an issue is marked
-   as `Not ready` the developer should wait for the mockup to be ready before starting the implementation
+## Roles and responsibilities
+
+### Product Manager
+
+The Product Manager oversees the overall development process, ensuring that the product meets the needs of users and stakeholders. They prioritize features and bug fixes, coordinate between different teams, and ensure that the project stays on track and aligns with the strategic goals.
+
+### User
+
+The User is the person who interacts with the software, uses the features, and reports issues or requests new features. They provide feedback on the usability and functionality of the software.
+
+### Developer
+
+The Developer is responsible for implementing code changes, writing test cases, and updating documentation. They ensure that issues are correctly assigned and documented, and they handle invalid issues appropriately.
+
+### QA Team Member (Testing)
+
+The QA Team Member is responsible for testing packages and documentation changes. They verify that the code works as expected and meets the required standards before it is released.
+This role is crucial for ensuring the quality of the software and preventing regressions.
+Anyone can be a QA Team Member, but usually is one of the following:
+- a support engineer
+- a developer: beware, the developer should not test their own code!
+- a user who reported bugs
+- the Product Manager who sponsored a feature
+
+### Packager
+
+The Packager is a developer that coordinates the work between developers and QA Team Members. They review and merge code changes, manage release tags, and ensure that documentation is updated and published. They also handle the final steps of closing issues and releasing modules.
+
+## Meetings
+
+A weekly meeting is recommended for each project, scheduled by the Product Manager.
+The meeting should include the following topics:
+- review of the current status of the project
+- discussion of any blockers or issues
+- planning for the next steps
+
+A good pratice is to schedule the metting on fixed day and time, so everyone can plan their work accordingly.
+If there is nothing to discuss, the team can just meet for a quick check-in.
+
+## Project boards
+
+Project boards are used to track the progress of issues and requests. They are divided into columns that represent the status of the issue. The active project boards are:
+
+- [NethServer](https://github.com/orgs/NethServer/projects/8): NethServer is container orchestration platform, it contains the core modules and many applications, including NethVoice
+- [NethVoice](https://github.com/orgs/NethServer/projects/11): NethVoice is a VoIP platform, it's a module of NethServer and it contains many submodules like the PBX, a CTI and a desktop client
+- [NethSecurity](https://github.com/orgs/NethServer/projects/10): NethSecurity is an UTM firewall, based on OpenWrt
+
+
+## Project views
+
+All projects have some common views:
+
+- **Current**: it shows the current status of the project, it contains all the issues inside the ongoing milestone; this view uses a kanban board
+
+- **Backlog**: it contains all the issues that are not assigned to a milestone yet, or that are not ready to be worked on; this view uses a list of issues
+
+The team working on a project can decide to add more views if needed, for example, a view for the next milestone, or a view for the next release.
+
+### Current view
+
+The project is divided into columns that represent the status of the card.
+A card can be an issue, a feature request, a bug report, or a task.
+The columns are:
+
+- **ToDo**: new issues are placed here, the team will evaluate them and assign the right labels and milestone.
+- **In Progress**: issues that are being worked on, they are assigned to a developer or a designer. I
+- **Testing**: issues that are ready for testing. The QA Team Member will verify that the code works as expected and meets the required standards.
+- **Verified**: issues that have passed testing and are verified to be working correctly, this issues are ready to be released by the packager.
+- **Done**: issues that have been completed and closed.
+
+When an issue gets the "testing" label, it is automatically moved to the "Testing" column.
+When an issue gets the "verified" label, it is automatically moved to the "Verified" column.
+If both labels are removed, the issue is moved back to the "In Progress" column.
+
+When a milestone is closed, all the cards in the "Done" column can be archived, and the changelog will be given by the milestone itself.
+
+The view should list all planned (open) milestones, with the current milestone at the top.
+This view should be shared with the community to show the progress of the project.
+
+### Backlog view
+
+The backlog view contains all the draft cards or issues that are not assigned to a milestone yet.
+Usually the backlog view can contains also draft cards the roughly describe a feature or a bug, but they are not ready to be worked on yet.
+
+The Product Manager, with the help of the team, will review the backlog view and assign the right milestone to the cards.

@@ -17,9 +17,17 @@ This involves collaborative development, where the source code is made available
 Contributions from the community are encouraged and managed through a transparent and inclusive process,
 typically using version control systems like Git and platforms like GitHub.
 
+The development process is heavily based on the use of Git and GitHub and follows the GitHub flow methodology.
+GitHub Flow is a lightweight, branch-based workflow for managing work on GitHub. It involves creating a branch for each 
+feature or bug fix, committing changes to that branch, opening a pull request to discuss and review the changes,
+and merging the branch into the main branch once approved. It emphasizes collaboration, continuous delivery,
+and integration. For more details, visit [GitHub Flow official documentation](https://docs.github.com/en/get-started/using-github/github-flow).
+
+
 This guide is divided into the following sections:
 
-- Project management: organization of the project, roles, responsibilities and time management
+- Project management: organization of the project, roles and responsibilities
+- Milestones: definition, management, and release process
 - Issues: definition, issue tracker, how and when to open a new issue, processing the issue
 - Pull Requests: submitting, managing, merging, draft pull requests
 - Version Numbering Rules: stable releases, pre-releases or testing releases

@@ -13,8 +13,8 @@
 # you will see them accessed via {{ site.title }}, {{ site.github_repo }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
-title: Nethesis developer manual
-description: Nethesis handbook - Developer manual
+title: Nethesis developer handbook
+description: Nethesis developer handbook
 remote_theme: pmarsceill/just-the-docs
 
 permalink: pretty
