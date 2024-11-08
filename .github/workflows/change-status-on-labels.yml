@@ -59,6 +59,6 @@ jobs:
         id: status
         if: ${{ steps.labeled.outputs.status != 'skip' || steps.unlabeled.outputs.status != 'skip' }}
         run: |
-          scripts/update_issue_status.sh $OWNER $REPO $ISSUE_NUMBER $NEW_STATUS
+          scripts/update_issue_status.sh $OWNER $REPO $ISSUE_NUMBER "$NEW_STATUS"
         env:
           NEW_STATUS: ${{ steps.labeled.outputs.status || steps.unlabeled.outputs.status }}
