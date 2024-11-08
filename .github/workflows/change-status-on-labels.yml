@@ -9,18 +9,16 @@ on:
 jobs:
   update-project-status:
     runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
+      OWNER: NethServer
+      REPO: dev
+      ISSUE_NUMBER: ${{ github.event.issue.number }}
+      ISSUE_NODE_ID: ${{ github.event.issue.node_id }}
+      ACTION: ${{ github.event.action }}
+      LABEL_CHANGED: ${{ github.event.label.name }}
 
     steps:
-      - name: Set up variables
-        env:
-          OWNER: NethServer
-          REPO: dev
-        run: |
-          echo "ISSUE_NUMBER=${{ github.event.issue.number }}" >> $GITHUB_ENV
-          echo "ISSUE_NODE_ID=${{ github.event.issue.node_id }}" >> $GITHUB_ENV
-          echo "ACTION=${{ github.event.action }}" >> $GITHUB_ENV
-          echo "LABEL_CHANGED=${{ github.event.label.name }}" >> $GITHUB_ENV
-
       - name: Determine new status
         id: status
         run: |
@@ -61,8 +59,7 @@ jobs:
         env:
           NEW_STATUS: ${{ steps.status.outputs.status }}
         run: |
-          PROJECTS=${{ steps.projects.outputs.project_numbers }}
-          for PROJECT_NUMBER in $PROJECTS; do
+          for PROJECT_NUMBER in ${{ steps.projects.outputs.project_numbers }}; do
             # Get item ID
             ITEM_ID=$(gh api graphql -F owner="$OWNER" -F repo="$REPO" -F projectNumber="$PROJECT_NUMBER" -F issueId="$ISSUE_NODE_ID" -f query='
               query($owner: String!, $repo: String!, $projectNumber: Int!, $issueId: ID!) {
