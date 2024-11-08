@@ -22,3 +22,28 @@ Further references:
 
 * [ns6 issue tracker archive](http://dev.nethserver.org)
 
+## Label Management and Issue Status
+
+When labels are added or removed from an issue, the issue's status in the projects is automatically updated:
+
+- **Adding labels:**
+  - Adding the `testing` label sets the issue status to `Testing`.
+  - Adding the `verified` label sets the issue status to `Verified`.
+  - Adding one of these labels automatically removes the other if it exists.
+
+- **Removing labels:**
+  - Removing the `testing` or `verified` label sets the issue status to `In Progress`.
+
+This behavior is managed by a GitHub Actions workflow that runs the `update_issue_status.sh` script.
+
+### Configuring the Personal Access Token (PAT)
+
+To allow the workflow to update issue statuses in organization-level projects, an additional Personal Access Token (PAT) with the following minimum permissions is required:
+
+- **`repo`**: full access to public repositories.
+- **`project`**: full access to projects.
+
+To set up the PAT correctly:
+
+1. Create a new PAT from your [GitHub account settings](https://github.com/settings/tokens), selecting the permissions listed above.
+2. Add the PAT as a secret in the repository or organization, using the name `PROJECT_STATUS_BOT_TOKEN`.
