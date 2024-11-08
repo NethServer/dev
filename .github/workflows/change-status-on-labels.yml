@@ -6,6 +6,9 @@ on:
       - labeled
       - unlabeled
 
+permissions:
+  issues: write
+
 jobs:
   update-project-status:
     runs-on: ubuntu-latest
