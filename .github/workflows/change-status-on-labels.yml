@@ -10,7 +10,7 @@ jobs:
   update-project-status:
     runs-on: ubuntu-latest
     env:
-      GH_TOKEN: ${{ secrets.PROJECT_STATUS_BOT_TOKEN }}
+      GH_TOKEN: ${{ github.token }}
       OWNER: ${{ github.repository_owner }}
       REPO: ${{ github.event.repository.name }}
       ISSUE_NUMBER: ${{ github.event.issue.number }}
@@ -61,4 +61,5 @@ jobs:
         run: |
           scripts/update_issue_status.sh $OWNER $REPO $ISSUE_NUMBER "$NEW_STATUS"
         env:
+          GH_TOKEN: ${{ secrets.PROJECT_STATUS_BOT_TOKEN }}
           NEW_STATUS: ${{ steps.labeled.outputs.status || steps.unlabeled.outputs.status }}
