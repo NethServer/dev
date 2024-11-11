@@ -17,7 +17,6 @@ jobs:
       OWNER: ${{ github.repository_owner }}
       REPO: ${{ github.event.repository.name }}
       ISSUE_NUMBER: ${{ github.event.issue.number }}
-      ISSUE_NODE_ID: ${{ github.event.issue.node_id }}
       ACTION: ${{ github.event.action }}
       LABEL_CHANGED: ${{ github.event.label.name }}
 
