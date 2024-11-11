@@ -9,18 +9,24 @@ if ! command -v gh &> /dev/null; then
     exit 1
 fi
 
-# Check for required arguments
-if [ "$#" -ne 4 ]; then
-    echo "Usage: $0 OWNER REPO ISSUE_NUMBER NEW_STATUS"
-    echo "Example: $0 NethServer dev 123 Verified"
-    exit 1
-fi
+# Parse command-line arguments
+while [[ "$#" -gt 0 ]]; do
+  case $1 in
+    --owner) OWNER="$2"; shift ;;
+    --repo) REPO="$2"; shift ;;
+    --issue-number) ISSUE_NUMBER="$2"; shift ;;
+    --new-status) NEW_STATUS="$2"; shift ;;
+    *) echo "Error: Unknown argument: $1"; exit 1 ;;
+  esac
+  shift
+done
 
-# Input arguments
-OWNER="$1"
-REPO="$2"
-ISSUE_NUMBER="$3"
-NEW_STATUS="$4"
+# Check required arguments
+if [ -z "$OWNER" ] || [ -z "$REPO" ] || [ -z "$ISSUE_NUMBER" ] || [ -z "$NEW_STATUS" ]; then
+  echo "Usage: $0 --owner OWNER --repo REPO --issue-number ISSUE_NUMBER --new-status NEW_STATUS"
+  echo "Example: $0 --owner NethServer --repo dev --issue-number 123 --new-status Verified"
+  exit 1
+fi
 
 echo "Owner: $OWNER"
 echo "Repository: $REPO"

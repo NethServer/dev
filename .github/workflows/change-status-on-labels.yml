@@ -55,7 +55,7 @@ jobs:
         id: status
         if: ${{ steps.labeled.outputs.status != 'skip' || steps.unlabeled.outputs.status != 'skip' }}
         run: |
-          scripts/update_issue_status.sh $OWNER $REPO $ISSUE_NUMBER "$NEW_STATUS"
+          scripts/update_issue_status.sh --owner "$OWNER" --repo "$REPO" --issue-number "$ISSUE_NUMBER" --new-status "$NEW_STATUS"
         env:
           GH_TOKEN: ${{ secrets.PROJECT_STATUS_BOT_TOKEN }}
           NEW_STATUS: ${{ steps.labeled.outputs.status || steps.unlabeled.outputs.status }}
