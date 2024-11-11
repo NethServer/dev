@@ -35,6 +35,7 @@ When labels are added or removed from an issue, the issue's status in the projec
   - Removing the `testing` or `verified` label sets the issue status to `In Progress`.
 
 This behavior is managed by a GitHub Actions workflow that runs the `update_issue_status.sh` script.
+If an issue belongs to multiple projects, all projects are updated.
 
 ### Configuring the Personal Access Token (PAT)
 
