@@ -40,8 +40,9 @@ This behavior is managed by a GitHub Actions workflow that runs the `update_issu
 
 To allow the workflow to update issue statuses in organization-level projects, an additional Personal Access Token (PAT) with the following minimum permissions is required:
 
-- **`repo`**: full access to public repositories.
 - **`project`**: full access to projects.
+- **`public_repo`**: full access to public repositories.
+- **`repo`**: full access to private repositories (only required for private repositories).
 
 To set up the PAT correctly:
 
