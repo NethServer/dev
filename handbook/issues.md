@@ -140,8 +140,6 @@ Issues can be tagged using a set of well-known labels:
 
 - `testing`: packages are available from testing repositories (see [QA section](#qa-team-member-testing))
 - `verified`: all test cases were verified successfully (see [QA section](#qa-team-member-testing)
-- `invalid`: invalid issue, not a bug, duplicate or wontfix. Add a detailed description and link
-  to other related issue when using this tag.
 
 Before introducing new labels, please discuss them with the development team
 and make sure to describe carefully the new label inside the [NethServer label page](https://github.com/NethServer/dev/labels) or [NethSecurity label page](https://github.com/NethServer/nethsecurity/labels).
@@ -187,7 +185,7 @@ The *Developer*.
   - Administrator Manual
   - Developer Manual, if needed
 
-If the issue is not valid, it must be closed using the **invalid** label.
+If the issue is not valid, it must be closed using ``Closed as not planned``.
 A comment must convey the reason why it is invalid, like *"duplicate of (URL of issue), wontfix because ..."*.
 
 ### QA team member (testing)
