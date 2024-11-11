@@ -27,7 +27,7 @@ the development process.
   site](https://semver.org/). Stable releases are published and deployed
   to production systems.
 
-- **Pre-releases or testing releases** include a prerelease suffix. This
+- **Pre-releases or testing releases** include a pre-release suffix. This
   consists of a `-` (minus sign), a word, a dot `.`, and a number, e.g.,
   `1.3.0-testing.3`. Testing releases are meant for development. In rare
   cases, they can be used in production, but only if they address specific

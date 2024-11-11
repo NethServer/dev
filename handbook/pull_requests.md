@@ -14,7 +14,7 @@ A pull request is a way to submit contributions to a project. It is a request to
 
 In NethServer, each repository is associated with one or more container images: changes to the code
 produce new releases of modules.
-In NethtSecurity, most of the work is done on the main repository: changes to the code produce new packages or a new image.
+In NethSecurity, most of the work is done on the main repository: changes to the code produce new packages or a new image.
 
 ## Pull requests
 
@@ -33,7 +33,7 @@ When submitting a PR, check that:
 3. PR comment contains a link to the related issue, in the form:
 
    - for NethServer and NethVoice ``NethServer/dev#<number>`` like NethServer/dev#1122
-   - for NethtSecurity ``#<number>`` when committing to the main repositority, like `#1145` or ``NethServer/nethsecurity#<number>`` like ``NethServer/nethsecurity#1155`` when committing to a module repository
+   - for NethtSecurity ``#<number>`` when committing to the main repository, like `#1145` or ``NethServer/nethsecurity#<number>`` like ``NethServer/nethsecurity#1155`` when committing to a module repository
 
 4. PR comment describes the changes and how the feature is supposed to work
 

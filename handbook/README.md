@@ -1,6 +1,6 @@
 # Build the documentation
 
-The documentation is built using Github pages on each commit to the main branch.
+The documentation is built using GitHub pages on each commit to the main branch.
 
 ## Build locally
 

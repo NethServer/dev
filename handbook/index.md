@@ -1,13 +1,13 @@
 ---
 layout: default
-title: Developer Handbook
+title: Development Handbook
 nav_order: 1
 ---
 
-# Nethesis Developer Handbook
+# Nethesis development process handbook
 {: .no_toc }
 
-[Nethesis](https://www.nethesis.it) is an Italian company specializing in the development and suppoer of Open Source software solutions. 
+[Nethesis](https://www.nethesis.it) is an Italian company specialized in the development and support of Open Source software solutions. 
 Nethesis offers a range of services including consulting, support, and training to ensure that their clients can effectively implement and benefit from their solutions.
 
 This handbook is intended to provide a comprehensive guide to the development process at Nethesis.

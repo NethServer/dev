@@ -46,7 +46,7 @@ The meeting should include the following topics:
 - discussion of any blockers or issues
 - planning for the next steps
 
-A good pratice is to schedule the metting on fixed day and time, so everyone can plan their work accordingly.
+A good practice is to schedule the meeting on fixed day and time, so everyone can plan their work accordingly.
 If there is nothing to discuss, the team can just meet for a quick check-in.
 
 ## Project boards
@@ -54,7 +54,7 @@ If there is nothing to discuss, the team can just meet for a quick check-in.
 Project boards are used to track the progress of issues and requests. They are divided into columns that represent the status of the issue. The active project boards are:
 
 - [NethServer](https://github.com/orgs/NethServer/projects/8): NethServer is container orchestration platform, it contains the core modules and many applications, including NethVoice
-- [NethVoice](https://github.com/orgs/NethServer/projects/11): NethVoice is a VoIP platform, it's a module of NethServer and it contains many submodules like the PBX, a CTI and a desktop client
+- [NethVoice](https://github.com/orgs/NethServer/projects/11): NethVoice is a VoIP platform, it's a module of NethServer and it contains many sub-modules like the PBX, a CTI and a desktop client
 - [NethSecurity](https://github.com/orgs/NethServer/projects/10): NethSecurity is an UTM firewall, based on OpenWrt
 
 ### Project views

@@ -144,7 +144,7 @@ Issues can be tagged using a set of well-known labels:
   to other related issue when using this tag.
 
 Before introducing new labels, please discuss them with the development team
-and make sure to describe carefully the new label inside the [NethServer label page](https://github.com/NethServer/dev/labels) or [NethSecurity labl page](https://github.com/NethServer/nethsecurity/labels).
+and make sure to describe carefully the new label inside the [NethServer label page](https://github.com/NethServer/dev/labels) or [NethSecurity label page](https://github.com/NethServer/nethsecurity/labels).
 
 ## Process the issue
 
@@ -155,7 +155,7 @@ If a developer assigns a draft issue to themselves, it indicates their intention
 This helps the developer keep track of pending tasks to address after completing their current task.
 
 When an issue is marked as in progress, it means that the assignee is actively working on it.
-Multiple assignees can collaborate on the same issue.
+Multiple assignee can collaborate on the same issue.
 
 Thus, the assignee not only shows who is responsible for a task but also assists in future planning and task management.
 
@@ -238,5 +238,5 @@ After the *QA member* has completed the testing phase:
 
 When the package is CLOSED, all related [documentation](#documentation) must be in place.
 
-At any time of the issue lifecycle they ensure that there are no release
+At any time of the issue life-cycle they ensure that there are no release
 conflict with other issues.
