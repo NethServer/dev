@@ -67,6 +67,12 @@ All projects have some common views:
 
 The team working on a project can decide to add more views if needed, for example, a view for the next milestone, or a view for the next release.
 
+Each column contains a set of cards, each card represents an issue or a feature request.
+
+A card can have two date fields:
+- `Start date`: the date when the task has been started or is planned to start
+- `End date`: an estimation of the date when the task will be completed or the date when the task has been completed
+
 #### Current view
 
 The project is divided into columns that represent the status of the card.
