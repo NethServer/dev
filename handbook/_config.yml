@@ -14,11 +14,15 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 title: Developer handbook
-description: Nethesis developer handbook
+description: Nethserver developer handbook
 remote_theme: pmarsceill/just-the-docs
 
 permalink: pretty
 exclude: [vendor]
+
+# Setup for GitHub pages
+domain: handbook.nethserver.org
+url: https://handbook.nethserver.org
 
 # Set a path/url to a logo that will be displayed instead of the title
 #logo: "/assets/images/just-the-docs.png
@@ -46,7 +50,7 @@ footer_content: ""
 # Footer "Edit this page on GitHub" link text
 gh_edit_link: true
 gh_edit_link_text: "Edit this page on GitHub."
-gh_edit_repository: "https://github.com/NethServer/ns8-core"
+gh_edit_repository: "https://github.com/NethServer/dev"
 gh_edit_branch: "master"
 gh_edit_source: docs
 gh_edit_view_mode: "tree"
