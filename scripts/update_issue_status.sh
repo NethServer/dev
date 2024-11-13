@@ -80,12 +80,12 @@ echo "Projects associated with the issue: $PROJECT_NUMBERS"
 for PROJECT_NUMBER in $PROJECT_NUMBERS; do
   echo "Processing Project #$PROJECT_NUMBER"
 
-  # Get item ID
-  ITEM_ID=$(gh api graphql -F org="$OWNER" -F projectNumber="$PROJECT_NUMBER" -f query='
-    query($org: String! , $projectNumber: Int!) {
+  # Get item ID with pagination
+  ITEMS_QUERY='
+    query($org: String!, $projectNumber: Int!, $cursor: String) {
       organization(login: $org) {
         projectV2(number: $projectNumber) {
-          items(first: 100) {
+          items(first: 100, after: $cursor) {
             nodes {
               id
               content {
@@ -94,10 +94,33 @@ for PROJECT_NUMBER in $PROJECT_NUMBERS; do
                 }
               }
             }
+            pageInfo {
+              hasNextPage
+              endCursor
+            }
           }
         }
       }
-    }' --jq '.data.organization.projectV2.items.nodes[] | select(.content.id=="'$ISSUE_NODE_ID'") | .id')
+    }'
+
+  ITEM_ID=""
+  CURSOR=""
+
+  while true; do
+    RESPONSE=$(gh api graphql -F org="$OWNER" -F projectNumber="$PROJECT_NUMBER" -F cursor="$CURSOR" -f query="$ITEMS_QUERY")
+    ITEM_ID=$(echo "$RESPONSE" | jq -r --arg NODE_ID "$ISSUE_NODE_ID" '.data.organization.projectV2.items.nodes[] | select(.content.id==$NODE_ID) | .id')
+
+    if [ ! -z "$ITEM_ID" ]; then
+      break
+    fi
+
+    HAS_NEXT_PAGE=$(echo "$RESPONSE" | jq -r '.data.organization.projectV2.items.pageInfo.hasNextPage')
+    if [ "$HAS_NEXT_PAGE" = "false" ]; then
+      break
+    fi
+
+    CURSOR=$(echo "$RESPONSE" | jq -r '.data.organization.projectV2.items.pageInfo.endCursor')
+  done
 
   if [ -z "$ITEM_ID" ]; then
     echo "Warning: Item ID not found in Project #$PROJECT_NUMBER."
@@ -106,23 +129,45 @@ for PROJECT_NUMBER in $PROJECT_NUMBERS; do
 
   echo "Item ID in Project: $ITEM_ID"
 
-  # Get Status field ID
-  STATUS_FIELD_ID=$(gh api graphql -F org="$OWNER" -F projectNumber="$PROJECT_NUMBER" -f query='
-    query($org: String!, $projectNumber: Int!) {
+  # Get Status field ID with pagination
+  FIELDS_QUERY='
+    query($org: String!, $projectNumber: Int!, $cursor: String) {
       organization(login: $org) {
         projectV2(number: $projectNumber) {
-          fields(first: 100) {
+          fields(first: 100, after: $cursor) {
             nodes {
               ... on ProjectV2FieldCommon {
                 id
                 name
               }
             }
+            pageInfo {
+              hasNextPage
+              endCursor
+            }
           }
         }
       }
-    }' --jq '.data.organization.projectV2.fields.nodes[] | select(.name=="Status") | .id')
+    }'
 
+  STATUS_FIELD_ID=""
+  CURSOR=""
+
+  while true; do
+    RESPONSE=$(gh api graphql -F org="$OWNER" -F projectNumber="$PROJECT_NUMBER" -F cursor="$CURSOR" -f query="$FIELDS_QUERY")
+    STATUS_FIELD_ID=$(echo "$RESPONSE" | jq -r '.data.organization.projectV2.fields.nodes[] | select(.name=="Status") | .id')
+
+    if [ ! -z "$STATUS_FIELD_ID" ]; then
+      break
+    fi
+
+    HAS_NEXT_PAGE=$(echo "$RESPONSE" | jq -r '.data.organization.projectV2.fields.pageInfo.hasNextPage')
+    if [ "$HAS_NEXT_PAGE" = "false" ]; then
+      break
+    fi
+
+    CURSOR=$(echo "$RESPONSE" | jq -r '.data.organization.projectV2.fields.pageInfo.endCursor')
+  done
 
   if [ -z "$STATUS_FIELD_ID" ]; then
     echo "Warning: 'Status' field not found in Project #$PROJECT_NUMBER."
@@ -132,25 +177,25 @@ for PROJECT_NUMBER in $PROJECT_NUMBERS; do
   echo "Status Field ID: $STATUS_FIELD_ID"
 
   # Get Status option ID
-  STATUS_OPTION_ID=$(gh api graphql -F org="$OWNER" -F projectNumber="$PROJECT_NUMBER" -F fieldId="$STATUS_FIELD_ID" -f query='
+  OPTIONS_QUERY='
     query($org: String!, $projectNumber: Int!) {
       organization(login: $org) {
         projectV2(number: $projectNumber) {
-          fields(first: 100) {
-            nodes {
-              ... on ProjectV2SingleSelectField {
+          field(name: "Status") {
+            ... on ProjectV2SingleSelectField {
+              options {
                 id
                 name
-                options {
-                  id
-                  name
-                }
               }
             }
           }
         }
       }
-    }' --jq ".data.organization.projectV2.fields.nodes[] | select(.name==\"Status\") | .options[] | select(.name==\"$NEW_STATUS\") | .id")
+    }'
+
+  STATUS_OPTION_ID=""
+  RESPONSE=$(gh api graphql -F org="$OWNER" -F projectNumber="$PROJECT_NUMBER" -f query="$OPTIONS_QUERY")
+  STATUS_OPTION_ID=$(echo "$RESPONSE" | jq -r --arg STATUS "$NEW_STATUS" '.data.organization.projectV2.field.options[] | select(.name==$STATUS) | .id')
 
   if [ -z "$STATUS_OPTION_ID" ]; then
     echo "Warning: Status option '$NEW_STATUS' not found in Project #$PROJECT_NUMBER."
@@ -163,9 +208,9 @@ for PROJECT_NUMBER in $PROJECT_NUMBERS; do
   PROJECT_ID=$(gh api graphql -F org="$OWNER" -F projectNumber="$PROJECT_NUMBER" -f query='
     query($org: String!, $projectNumber: Int!) {
       organization(login: $org) {
-	projectV2(number: $projectNumber) {
-	  id
-	}
+        projectV2(number: $projectNumber) {
+          id
+        }
       }
     }' --jq '.data.organization.projectV2.id')
 
