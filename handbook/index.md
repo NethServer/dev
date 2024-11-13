@@ -4,16 +4,23 @@ title: Development Handbook
 nav_order: 1
 ---
 
-# Nethesis development process handbook
+# NethServer development process handbook
 {: .no_toc }
-
-[Nethesis](https://www.nethesis.it) is an Italian company specialized in the development and support of Open Source software solutions. 
-Nethesis offers a range of services including consulting, support, and training to ensure that their clients can effectively implement and benefit from their solutions.
-
-This handbook is intended to provide a comprehensive guide to the development process at Nethesis.
 
 * TOC
 {:toc}
+
+## Introduction
+
+NethServer is the organization that includes all the Open Source projects of [Nethesis](https://www.nethesis.it).
+
+It serves as the hub for collaborative development and community engagement, ensuring that the projects are accessible and beneficial to a wide audience.
+For more information, visit the [NethServer organization on GitHub](https://github.com/nethserver/).
+
+This handbook is intended to provide a comprehensive guide to the development process for NethServer projects including:
+- NethServer core and its modules: the multi-node application platform for running containers
+- NethVoice: the PBX and VoIP platform for NethServer
+- NethSecurity: a UTM firewall based on OpenWrt
 
 ## Open Source development process
 
