@@ -6,7 +6,7 @@ nav_order: 6
 
 # Commit Messages Style Guide
 
-A commit message is a brief description of the changes made in a commit. It is a way to communicate the purpose of the change to other developers.
+A commit message is a brief description of the changes made in a [commit](https://git-scm.com/docs/git-commit). It is a way to communicate the purpose of the change to other developers.
 A good commit message helps to understand the changes made in the commit and why they were made.
 
 All Nethesis projects follow the [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) standard for commit messages.

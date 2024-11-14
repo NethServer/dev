@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Development Handbook
+title: Development process
 nav_order: 1
 ---
 
@@ -41,7 +41,7 @@ There are two communities that contribute significantly:
 
 - [NethServer Community](https://community.nethserver.org/): This community consists of users and developers who volunteer their time. The forum is in English and open to everyone. It is the primary place for feature requests, support, and bug reports. Without this community, the project would not exist.
 
-- [Nethesis Partner Community](https://partner.nethesis.it/): This community includes partners and customers. The forum is in Italian and focuses on commercial support, feature requests, and support. They provide substantial contributions to the project roadmap as they financially support the project. Access is reserved for partners.
+- [Nethesis Partner Community](https://partner.nethesis.it/): This community includes partners and customers. The forum is in Italian and focuses on commercial support, feature requests and support. They provide substantial contributions to the project roadmap as they financially support the project. Access is reserved for partners.
 
 The main tool used is [GitHub](https://github.com), where the code is hosted, and the development process is managed. Repositories are organized into organizations. Nethesis has two organizations:
 
@@ -50,26 +50,25 @@ The main tool used is [GitHub](https://github.com), where the code is hosted, an
 
 ## General workflow
 
-The development workflow for Nethesis projects involves several steps to ensure quality and efficiency. Here is a detailed description of the process:
-
-1. **Bug or Feature Collection**: Issues are collected from internal channels (private chats, helpdesk) or external channels such as community forums.
-2. **Issue Formalization**: The collected issues are formalized into GitHub issues. This task is usually delegated to a developer but can also be performed by other roles such as the project manager. The issue must be added to a project board and can be added to a milestone if it must be planned for a specific release.
-3. **Issue Assignment**: The issue is assigned to a developer who implements the solution in a separate branch and opens a pull request. If the issue requires changes to the user interface, the issue is assigned to a UI/UX designer before starting the development process.
-4. **Code Review**: The code is subjected to a code review by one or more developers to ensure quality and adherence to coding standards.
-5. **Pull Request Approval and Merge**: Once the pull request is approved, it is merged into the main branch.
-6. **Automated Build and Test Process**: The build and test processes are automatically executed to verify the changes.
-7. **Quality Assurance (QA)**: The output of the build process, whether a module or a package, is subjected to QA testing.
-8. **Release or Rework**:
-  - If the QA process is successful, the module or package is released, and the issue is closed.
-  - If the QA process fails, the issue is returned to the developer for correction, and the process restarts from step 3.
-  
-## Tools and methodologies
-
-The development process is heavily based on the use of Git and GitHub and follows the GitHub flow methodology.
-GitHub Flow is a lightweight, branch-based workflow for managing work on GitHub. It involves creating a branch for each 
+The development process is heavily based on the use of GitHub and follows the GitHub flow methodology.
+GitHub Flow is a lightweight, branch-based workflow for managing work. It involves creating a branch for each 
 feature or bug fix, committing changes to that branch, opening a pull request to discuss and review the changes,
 and merging the branch into the main branch once approved. It emphasizes collaboration, continuous delivery,
 and integration. For more details, visit [GitHub Flow official documentation](https://docs.github.com/en/get-started/using-github/github-flow).
+
+The development workflow for NethServer projects involves several steps to ensure quality and efficiency. Here is a detailed description of the process:
+
+1. **Bug or Feature Collection**: Issues are collected from public channels such as community forums or internal channels (private chats, helpdesk).
+   The [Product Manager (PM)](management/#product-manager) is responsible for collecting and organizing the issues.
+2. **Issue Formalization**: The collected issues are formalized into GitHub [issues](issues). This task is usually delegated to the PM or to a [developer](management/#developer) but can also be performed by other roles such as a support team member. The issue must be added to a project board and can be added to a milestone if it must be planned for a specific release.
+3. **Issue Assignment**: The issue is assigned to a developer who implements the solution in a separate branch and opens a [Pull Request (PR)](pull_requests). If the issue requires changes to the user interface, the issue is assigned to a UI/UX designer before starting the development process.
+4. **Code Review**: The code is subjected to a code review by one or more developers to ensure quality and adherence to coding standards.
+5. **Pull Request Approval and Merge**: Once the pull request is approved, it is merged into the main branch.
+6. **Automated Build and Test Process**: The build and test processes are automatically executed to verify the changes.
+7. **Quality Assurance (QA)**: The output of the build process, whether a module or a package, is subjected to [Quality Assurance (QA)](management/#qa-team-member-testing) testing.
+8. **Release or Rework**:
+  - If the QA process is successful, the [packager](management#packager) can release the module or package, and the issue is closed.
+  - If the QA process fails, the issue is returned to the developer for correction, and the process restarts from step 3.
 
 ## Handbook structure
 

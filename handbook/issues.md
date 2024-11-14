@@ -30,7 +30,10 @@ There two main type of issues:
 
 Bug and feature issues will always produce some code changes inside one or more Git repositories.
 Usually this type of issue are the parent issue for one or more sub-issues.
-The QA should always test the parent issue, not the sub-issues.
+
+The QA of the code should always test the parent issue, not the sub-issues.
+Still, sub-issues of type **Design** can pass to the testing state when the mockup needs to be reviewed. When the mockup is approved, the sub-issue can be 
+moved to verified state or directly closed.
 
 Sub-issues are tasks that are part of the parent issue. They can be of different types:
 
@@ -49,6 +52,14 @@ Sub-issues are tasks that are part of the parent issue. They can be of different
 
 An issue can track a feature, a bug, or a task.
 
+Issues are not a to-do list. Issues track the status changes of a job, the
+output of the job will be a new container image, in case of NethServer, resolving the issue itself.
+If you are exploring some esoteric paths for new feature or hunting
+something like a [heisenbug](http://en.wikipedia.org/wiki/Heisenbug>),
+please open a discussion with your thoughts.
+Then create a new issue only when you’re ready to write a formal description
+and produce some output object.
+
 ### Feature
 
 A process for a new feature should be something like this:
@@ -58,7 +69,7 @@ A process for a new feature should be something like this:
 - if a feature is planned for the future it is also recorded in a [project
   draft card](https://github.com/orgs/NethServer/projects/8)
 
-- ongoing development can be tracked inside a [draft pull request](#draft-pull-requests)
+- ongoing development can be tracked inside a [draft pull request](/pull_requests/#draft-pull-requests)
 
 - once the work on the feature starts, open the issue on GitHub:
   - for [NethServer or NethVoice](https://github.com/NethServer/dev/issues/new)
@@ -83,18 +94,9 @@ By the way, it’s perfectly reasonable not to fill issues for
 occasional small fixes, like typos in translations.
 
 When implementing small fixes, always avoid commits to the main branch.
-Open a [pull request](#pull-requests) and carefully describe the problem.
+Open a [pull request](/pull_requests) and carefully describe the problem.
 Creation of issues can be avoided only for trivial fixes which require
 no QA effort.
-
-Issues are not a to-do list. Issues track the status changes of a job, the
-output of the job will be a new container image, in case of NethServer, resolving the issue itself.
-If you are exploring some esoteric paths for new feature or hunting
-something like a [heisenbug](http://en.wikipedia.org/wiki/Heisenbug>),
-please open a discussion with your thoughts.
-Then create a new issue only when you’re ready to write a formal description
-and produce some output object.
-
 
 ## Writing issues
 
@@ -162,28 +164,20 @@ The process of handling an issue is described in the following sections.
 ### Developer
 
 The *Developer*.
-
 - Sets *Assignee* to himself.
-
-- Sets the *Project* to `NethServer 8`, `NethVoice 8`, or `NethSecurity`.
-
-- Bundle his commits as one or more GitHub [pull requests](#pull-request)
-
+- Sets the *Project* to `NethServer`, `NethVoice`, or `NethSecurity`.
+- Bundle his commits as one or more GitHub [pull requests](/pull_request). 
 - For *features** *enhancements*, writes the test case (for *bugs* the procedure to
   reproduce the problem should be already set).
-
-- After the pull request is merged, the developer should:
-
+- After the pull request has been approved and merged, the developer should:
   - remove all assignee from the issue
   - set the **testing** label
-
   It's the developer's responsibility to ensure that someone from the QA team will test the package.
-
-- Writes and updates the [documentation](#documentation) associated with the code:
-
+- Writes and updates the documentation associated with the code:
   - README.md inside the repository
   - Administrator Manual
   - Developer Manual, if needed
+  - User Manual, if needed
 
 If the issue is not valid, it must be closed using ``Closed as not planned``.
 A comment must convey the reason why it is invalid, like *"duplicate of (URL of issue), wontfix because ..."*.
@@ -191,50 +185,32 @@ A comment must convey the reason why it is invalid, like *"duplicate of (URL of 
 ### QA team member (testing)
 
 The *QA team member*.
-
 * Takes an issue with label **testing** and adds themselves to the *Assignee*
   field
-
 * Tests the package, following the test case documentation written by the
   *Developer*.
-
 * Tests the documentation changes, if present
-
 * When test finishes they remove the **testing** label.  If the test is
   *successful*, they set the **verified** label, otherwise they alert the
   *Developer* and the *Packager* to plan a new process iteration.
 
 ### Packager
 
-The *Packager* coordinates the *Developer* and *QA member* work.  After the
-*Developer* opens one or more pull requests:
-
-* Selects issues with open pull requests
-
-* Reviews the pull request code and merges it
-  The CI will build and upload a new container image
-
+The *Packager* coordinates the *Developer* and *QA member* work.  
 After the *QA member* has completed the testing phase:
-
 * Takes an issue with label **verified**
-
 * Commits a *release tag* (see [version numbering rules](../version_numbering)).
-
 * Pushes the *release tag* and commits to GitHub
-
 * Merges the documentation changes in the documentation repo. Also
   publishes the documentation by pushing the `latest` branch, if needed.
   Documentation repositories:
-
   - [NethServer and NethVoice](https://github.com/NethServer/ns8-docs/)
   - [NethSecurity](https://github.com/NethServer/nethsecurity-docs/)
-
   An application should not be released as "stable" until all documentation
 (developer, admin, user) is complete.
-
 * Closes the issue, specifying the list of released modules
 
-When the package is CLOSED, all related [documentation](#documentation) must be in place.
+When the package is CLOSED, all related documentation must be in place.
 
 At any time of the issue life-cycle they ensure that there are no release
 conflict with other issues.

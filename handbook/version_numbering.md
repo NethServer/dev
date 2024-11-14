@@ -38,23 +38,18 @@ Releases can be automated using [gh ns8-release-module - GitHub CLI Extension](h
 ### Update rules
 
 Updates to NS8 core and modules (applications) must follow these rules:
-
 0. New features, enhancements, and bug fixes must not change the behavior
    of existing systems.
-
 0. New behaviors must be enabled through explicit and documented sysadmin
    actions.
-
 0. Modules must support updates from any previous release within the same
    major release.
-
 
 ## NethSecurity
 
 NethSecurity packages follow OpenWrt conventions.
 
 OpenWrt roughly follows the semantic versioning rules, but with some differences:
-
 - do not use pre-release version numbers
 - do not use metadata version numbers
 

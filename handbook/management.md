@@ -15,6 +15,7 @@ nav_order: 2
 ### Product Manager
 
 The Product Manager oversees the overall development process, ensuring that the product meets the needs of users and stakeholders. They prioritize features and bug fixes, coordinate between different teams, and ensure that the project stays on track and aligns with the strategic goals.
+They are responsible for defining the product vision, creating the roadmap, and communicating with the community.
 
 ### User
 
@@ -37,6 +38,7 @@ Anyone can be a QA Team Member, but usually is one of the following:
 ### Packager
 
 The Packager is a developer that coordinates the work between developers and QA Team Members. They review and merge code changes, manage release tags, and ensure that documentation is updated and published. They also handle the final steps of closing issues and releasing modules.
+Usually the packager is the same person as the developer, but in some cases, it can be a different person.
 
 ## Meetings
 
@@ -61,11 +63,11 @@ Project boards are used to track the progress of issues and requests. They are d
 
 All projects have some common views:
 
-- **Current**: it shows the current status of the project, it contains all the issues inside the ongoing milestone; this view uses a kanban board
+- **Current**: it shows the current status of the project, it contains all the issues inside the ongoing [milestone](/milestones); this view uses a kanban board
 
-- **Backlog**: it contains all the issues that are not assigned to a milestone yet, or that are not ready to be worked on; this view uses a list of issues
+- **Backlog**: it contains all the issues that are not assigned to a [milestone](/milestones) yet, or that are not ready to be worked on; this view uses a list of [issues](/issues)
 
-The team working on a project can decide to add more views if needed, for example, a view for the next milestone, or a view for the next release.
+The team working on a project can decide to add more views if needed, for example, a view for the next milestone, or a view to measure the team load.
 
 Each column contains a set of cards, each card represents an issue or a feature request.
 
@@ -79,9 +81,9 @@ The project is divided into columns that represent the status of the card.
 A card can be an issue, a feature request, a bug report, or a task.
 The columns are:
 
-- **ToDo**: new issues are placed here, the team will evaluate them and assign the right labels and milestone.
-- **In Progress**: issues that are being worked on, they are assigned to a developer or a designer. I
-- **Testing**: issues that are ready for testing. The QA Team Member will verify that the code works as expected and meets the required standards.
+- **ToDo**: new issues are placed here, the team will evaluate them and assign the right [labels](/issues/#issue-labels) and [milestone](/milestones).
+- **In Progress**: issues that are being worked on, they are assigned to a developer or a designer.
+- **Testing**: issues that are ready for testing. The QA Team will verify that the code works as expected and meets the required standards.
 - **Verified**: issues that have passed testing and are verified to be working correctly, this issues are ready to be released by the packager.
 - **Done**: issues that have been completed and closed.
 

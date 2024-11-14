@@ -18,57 +18,40 @@ In NethSecurity, most of the work is done on the main repository: changes to the
 
 ## Pull requests
 
-A Pull Request (PR) is the main method of submitting code contributions to Nethesis projects. It is a request to merge a set of changes into the main branch of the project.
+A Pull Request (PR) is the main method of submitting code contributions to NethServer projects. It is a request to merge a set of changes into the main branch of the project.
 
-You can find an overview of the whole workflow [here](https://guides.github.com/introduction/flow/).
+You can find an overview of the whole workflow [here](/index#general-workflow).
 
 ### Submitting a pull request
 
 When submitting a PR, check that:
-
 1. PR is submitted against the main branch (for current stable release)
-
 2. PR title contains a brief explanation of the feature, fix or enhancement
-
 3. PR comment contains a link to the related issue, in the form:
-
    - for NethServer and NethVoice ``NethServer/dev#<number>`` like NethServer/dev#1122
    - for NethtSecurity ``#<number>`` when committing to the main repository, like `#1145` or ``NethServer/nethsecurity#<number>`` like ``NethServer/nethsecurity#1155`` when committing to a module repository
-
 4. PR comment describes the changes and how the feature is supposed to work
-
 5. Multiple dependent PRs in multiple repositories must include the dependencies between them in the description
-
 6. Select at least one PR reviewer (GitHub suggestions are a usually good)
-
 7. Select yourself as the initial PR assignee: this will help to track the PR status and who is in charge of it
-
 
 ### Managing an open pull request
 
 After submitting a PR, before it is merged:
-
 1. If enabled, automated build process must pass
-   
    - If the build fails, check the error and try to narrow down the reason
    - If the failure is due to an infrastructure problem, please contact a developer who will help you
-
 2. Another developer must review the pull request to make sure it:
-
    - Works as expected
    - Doesn't break existing stuff
    - The code is reasonably readable by others developers
    - The commit history is clean and adheres to [commit message rules](#commit-message-rules)
-
 3. The PR must be approved by a developer with commit access to NethServer on GitHub:
-
    - Any comment raised by a developer has been addressed before the pull request is ready to merge
-
 
 ### Merging a pull request
 
 When merging a PR, make sure to copy the issue reference inside the merge commit comment body, this step will be used by automation tools:
-
 - to write notification about published modules inside the referenced issue
 - to automatically create modules changelog
 
