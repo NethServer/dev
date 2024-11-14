@@ -52,7 +52,7 @@ jobs:
           fi
       - name: Set new status
         id: status
-        if: ${{ steps.labeled.outputs.status != 'skip' || steps.unlabeled.outputs.status != 'skip' }}
+        if: ${{ steps.labeled.outputs.status && steps.labeled.outputs.status != 'skip' || steps.unlabeled.outputs.status && steps.unlabeled.outputs.status != 'skip' }}
         run: |
           scripts/update_issue_status.sh --owner "$OWNER" --repo "$REPO" --issue-number "$ISSUE_NUMBER" --new-status "$NEW_STATUS"
         env:
