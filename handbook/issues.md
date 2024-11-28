@@ -142,6 +142,7 @@ Issues can be tagged using a set of well-known labels:
 
 - `testing`: packages are available from testing repositories (see [QA section](#qa-team-member-testing))
 - `verified`: all test cases were verified successfully (see [QA section](#qa-team-member-testing)
+- `milestone goal`: the issue is one of the goals for the milestone, it should be completed before the milestone deadline
 
 Before introducing new labels, please discuss them with the development team
 and make sure to describe carefully the new label inside the [NethServer label page](https://github.com/NethServer/dev/labels) or [NethSecurity label page](https://github.com/NethServer/nethsecurity/labels).
