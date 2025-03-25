@@ -216,29 +216,3 @@ When the package is CLOSED, all related documentation must be in place.
 At any time of the issue life-cycle they ensure that there are no release
 conflict with other issues.
 
-## Security: report vulnerabilities
-
-If you find a security vulnerability, please report it to the security team by writing an email to sviluppo@nethesis.it
-or by using GitHub dedicated security report tools:
-
-- [NethServer and Nethvoice](https://github.com/NethServer/dev/security/advisories/new)
-- [NethSecurity](https://github.com/NethServer/nethsecurity/security/advisories/new)
-
-Please, **do not report security vulnerabilities as GitHub issues**.
-
-### Handling security vulnerabilities
-
-The security team will evaluate the report and will contact the reporter to discuss the issue.
-If the issue is confirmed, the security team will work with the development team to fix the issue.
-The security team will evaluate the severity of the issue and will decide if the issue should be kept private until a fix is available.
-
-This is the process:
-1. open a draft security advisory on GitHub
-2. assign the issue to the development team
-3. the development team will work on the fix
-4. the security team will review the fix
-5. the fix will be released as soon as possible and announced to the users using community channels; the fix usually includes new packages along with a new image
-6. depending on the severity of the issue, the development team will decide how long to wait before a full disclosure, usually between 15 and 30 days, to give
-   users time to update their systems.
-
-The disclosure will be be done by publishing the security advisory on GitHub and eventually by updating the community channels
