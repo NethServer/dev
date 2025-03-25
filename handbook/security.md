@@ -25,8 +25,7 @@ A SBOM (Software Bill of Materials) is a comprehensive inventory of all software
 
 This inventory provides a detailed list of all dependencies, including version numbers, licenses, and known vulnerabilities. By generating an SBOM, developers can track and manage dependencies more effectively, reducing the risk of security breaches and ensuring compliance with licensing requirements.
 
-SBOM help to comply with the CRA requirements, such the one defined inside Annex 1:
-
+SBOM helps to comply with the CRA requirements, such as the one defined in Annex 1:
 Part 1:
 
 > (a) be made available on the market without known exploitable vulnerabilities;
@@ -49,8 +48,7 @@ We have chosen [Trivy](https://trivy.dev/latest/) as our tool for generating SBO
 - **SARIF standard CVE**: This format is integrated into GitHub's code scanning feature, allowing for continuous vulnerability monitoring.
 - **GitHub Dependency Graph format**: This format provides a snapshot of the current dependencies under the Insights tab but does not maintain a historical record.
 - **CycloneDX**: This format should be included in the release with a filename ending in `.cdx.json`, providing a detailed and standardized SBOM.
-  It also creates an historical record of dependencies.
-
+  It also creates a historical record of dependencies.
 When generating a SBOM of package, make sure to target all the software parts:
 
 - the user interface (UI)
@@ -73,8 +71,8 @@ There are also known vulnerabilities that are part of the Linux distribution whe
 
 ### NethServer 8
 
-NethServer 8 is a container-based solution. Each applications is composed by one ore more image containers.
-So an application can be consideret a package and can be easily updated by the user or automatically by the system.
+NethServer 8 is a container-based solution. Each application is composed of one or more image containers.
+So an application can be considered a package and can be easily updated by the user or automatically by the system.
 This approach should ensure compliance with the Cyber Resilience Act, Annex 1 Part 2:
 
 > c) ensure that vulnerabilities can be addressed through security updates, including, where applicable, through
@@ -136,4 +134,4 @@ This is the process:
 6. depending on the severity of the issue, the development team will decide how long to wait before a full disclosure, usually between 15 and 30 days, to give
    users time to update their systems.
 
-The disclosure will be be done by publishing the security advisory on GitHub and eventually by updating the community channels
+The disclosure will be done by publishing the security advisory on GitHub and eventually by updating the community channels
