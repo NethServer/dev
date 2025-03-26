@@ -90,9 +90,6 @@ Security policies and EOL of each release is documented inside [Security](https:
 
 NethSecurity follows the EOL policy of OpenWrt.
 
-Gestione delle segnalazioni CVE:
-Se un CVE viene segnalato su un software rilasciato, deve essere analizzato e il suo impatto valutato.
-
 ## Vulnerability management
 
 Vulnerability management is a critical aspect of maintaining the security and integrity of digital products and services.
