@@ -122,16 +122,31 @@ Please, **do not report security vulnerabilities as GitHub issues**.
 ### Handling security vulnerabilities
 
 The security team will evaluate the report and will contact the reporter to discuss the issue.
-If the issue is confirmed, the security team will work with the development team to fix the issue.
-The security team will evaluate the severity of the issue and will decide if the issue should be kept private until a fix is available.
+If the issue is confirmed, the handling process depends on the type of software:
 
-This is the process:
-1. open a draft security advisory on GitHub
-2. assign the issue to the development team
-3. the development team will work on the fix
-4. the security team will review the fix
-5. the fix will be released as soon as possible and announced to the users using community channels; the fix usually includes new packages along with a new image
-6. depending on the severity of the issue, the development team will decide how long to wait before a full disclosure, usually between 15 and 30 days, to give
-   users time to update their systems.
+- software produced and maintained by Nethesis
+- software not produced by Nethesis (upstream projects)
 
-The disclosure will be done by publishing the security advisory on GitHub and eventually by updating the community channels
+#### Case 1: Software produced and maintained by Nethesis
+
+For software developed and maintained by Nethesis, the following process applies:
+
+1. Open a draft security advisory on GitHub
+2. Assign the issue to the development team
+3. The development team will work on the fix
+4. The security team will review the fix
+5. The fix will be released as soon as possible and announced to the users using community channels. The fix usually includes new packages along with a new image
+6. Depending on the severity of the issue, the development team will decide how long to wait before a full disclosure, usually between 15 and 30 days, to give users time to update their systems
+
+The disclosure will be done by publishing the security advisory on GitHub and, if necessary, updating the community channels.
+
+#### Case 2: Software not produced by Nethesis (upstream projects)
+
+For software that is not developed by Nethesis but is part of an upstream project:
+
+1. The security team will analyze the reported issue and verify if it is exploitable in the context of Nethesis products
+2. If the issue is exploitable, the team will attempt to provide a temporary mitigation to protect users
+3. The team will report the issue to the upstream project and collaborate with their developers to find a solution
+4. Once a fix is available from the upstream project, the team will integrate it into the affected products and release an update
+
+In both cases, the priority is to address vulnerabilities promptly and ensure the security of users.

@@ -201,8 +201,8 @@ The *Packager* coordinates the *Developer* and *QA member* work.
 After the *QA member* has completed the testing phase:
 * Takes an issue with label **verified**
 * Follow the specific steps for releasing depending on the process:
-  - [NethServer release process](), it also applies to NethVoice
-  - [NethSecurity release process]()
+  - [NethServer release process](https://dev.nethsecurity.org/development_process/#release-process), it also applies to NethVoice
+  - [NethSecurity release process](https://dev.nethsecurity.org/development_process/#release-process)
 * Merges the documentation changes in the documentation repo. Also
   publishes the documentation by pushing the `latest` branch, if needed.
   Documentation repositories:
