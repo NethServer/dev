@@ -25,7 +25,8 @@ A SBOM (Software Bill of Materials) is a comprehensive inventory of all software
 
 This inventory provides a detailed list of all dependencies, including version numbers, licenses, and known vulnerabilities. By generating an SBOM, developers can track and manage dependencies more effectively, reducing the risk of security breaches and ensuring compliance with licensing requirements.
 
-SBOM helps to comply with the CRA requirements, such as the one defined in Annex 1:
+SBOM helps to comply with the CRA requirements, such as the one defined in Annex 1.
+
 Part 1:
 
 > (a) be made available on the market without known exploitable vulnerabilities;
@@ -49,6 +50,7 @@ We have chosen [Trivy](https://trivy.dev/latest/) as our tool for generating SBO
 - **GitHub Dependency Graph format**: This format provides a snapshot of the current dependencies under the Insights tab but does not maintain a historical record.
 - **CycloneDX**: This format should be included in the release with a filename ending in `.cdx.json`, providing a detailed and standardized SBOM.
   It also creates a historical record of dependencies.
+
 When generating a SBOM of package, make sure to target all the software parts:
 
 - the user interface (UI)
