@@ -149,3 +149,19 @@ For software that is not developed by Nethesis but is part of an upstream projec
 4. Once a fix is available from the upstream project, the team will integrate it into the affected products and release an update
 
 In both cases, the priority is to address vulnerabilities promptly and ensure the security of users.
+
+## Repository configuration
+
+The repository configuration should follow some best practices to ensure the same level of security across all products.
+Use Renovate for dependency management, while Dependabot only for alerts without automatic pull requests.
+
+Access ``Settings`` -> ``Advanced Security`` then select the following options:
+- ``Dependency graph``: enabled
+  - ``Automatic dependency submission``: disabled
+- ``Dependabot alerts``: enabled
+- ``Dependabot security updates``: disabled
+- ``Grouped security updates``: disabled
+- ``Dependabot version updates``: disabled
+- ``Dependabot on Actions runners``: enabled
+- ``Code scanning``: disabled, feel free to enable it if you want to use it
+- ``Secret protection``: disabled, feel free to enable it if you want to use it
