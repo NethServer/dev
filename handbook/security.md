@@ -106,6 +106,8 @@ And Annex 1, Part 2:
 
 > (5) put in place and enforce a policy on coordinated vulnerability disclosure;
 
+When creating new containers, it's important to minimize the attack surface by following the [container best practices](container_best_practice.md).
+
 The following guidelines are recommended for managing vulnerabilities on all products.
 
 ### Report vulnerabilities
