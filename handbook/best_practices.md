@@ -131,7 +131,7 @@ Use Renovate for dependency management, while Dependabot only for alerts without
 
 Access ``Settings`` -> ``Advanced Security`` then select the following options:
 - ``Dependency graph``: enabled
-  - ``Automatic dependency submission``: disabled
+  - under Dependency graph section, ``Automatic dependency submission``: disabled
 - ``Dependabot alerts``: enabled
 - ``Dependabot security updates``: disabled
 - ``Grouped security updates``: disabled
