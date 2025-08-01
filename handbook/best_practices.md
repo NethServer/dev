@@ -55,6 +55,10 @@ When choosing Open Source software, consider the following golden rules to ensur
 
 Creating secure containers is essential to minimize vulnerabilities and ensure the reliability of your applications. Below are some best practices to follow when building container images:
 
+### Prefer rootless containers
+
+Whenever possible, run containers as a non-root user (rootless containers). Rootless containers improve security by reducing the risk of privilege escalation and limiting the impact of potential vulnerabilities. This practice is especially important when deploying containers on NethServer 8 or similar platforms. Ensure that the software you intend to run supports rootless operation, and configure your container runtime accordingly.
+
 ### Use multi-stage builds
 
 Multi-stage builds help reduce the size of the final container image by separating the build environment from the runtime environment. This approach ensures that only the necessary artifacts are included in the final image, excluding build tools and dependencies.
