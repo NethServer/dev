@@ -164,7 +164,7 @@ The vulnerability management workflow is a structured approach to managing secur
 
 2. **Automated identification**: The identification process is automated. Every night, the [SBOM Uploader](https://github.com/NethServer/nh-sbom/actions/workflows/sbom-uploader.yml) GitHub Action scans a list of configured repositories, retrieve the SBOMs, and uploads them to [Dependency Track](https://dependencytrack.org/). Nethesis maintains its own instance of Dependency Track at [https://dependecytrack.nethesis.it](https://dependecytrack.nethesis.it). Access to this platform is restricted to Nethesis employees; any employee can request an account for access.
 
-3. **Vulnerability analysis**: Each project manager must allocate a minimum amount of time within the development process to analyze discovered vulnerabilities, focusing on critical and high-priority issues. It is recommended to allocate at least 3-4 development days every month for this task, including time for handling [EOL](#handling-end-of-life-eol).
+3. **Vulnerability analysis**: Each project manager must allocate a minimum amount of time within the development process to analyze discovered vulnerabilities, focusing on critical and high-priority issues. It is recommended to allocate enough time every month for this task, including time for handling [EOL](#handling-end-of-life-eol).
 
 4. **Monthly review meetings**: A monthly meeting is held where the project manager, along with developers, reviews the most critical vulnerabilities. Developers are responsible for determining whether these vulnerabilities are exploitable. If exploitable, the following steps are taken:
    - Attempt to update or fix the vulnerability.
