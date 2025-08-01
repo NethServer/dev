@@ -112,6 +112,18 @@ However, strict pinning can delay important security updates. Weigh the benefits
 
 Use tools like [Renovate](https://www.mend.io/renovate/) to automate dependency updates. Renovate can create pull requests for updated dependencies, allowing you to review and merge them as needed. This approach ensures that your images stay up-to-date with minimal manual effort.
 
+### Analyze image layers with Dive
+
+Use [Dive](https://github.com/wagoodman/dive) to inspect your container images layer by layer. Dive helps visualize changes introduced by each command in your Dockerfile, making it easier to identify unnecessary files, optimize image size, and detect if any secrets or sensitive data have leaked during the build process. Regularly analyzing your images with Dive can lead to more secure and efficient containers.
+
+### Scan images for vulnerabilities with Trivy
+
+Use [Trivy](https://github.com/aquasecurity/trivy) to scan your container images for known vulnerabilities, misconfigurations, and secrets. Trivy supports a wide range of languages and package managers, and can be integrated into your CI/CD pipelines to automate security checks. Regular scans with Trivy help ensure that your images remain secure and compliant with best practices.
+
+### Further reading on reproducible builds
+
+For broader guidance on ensuring your builds are consistent and verifiable, refer to [reproducible-builds.org](https://reproducible-builds.org/). This resource provides best practices and tools for achieving reproducible builds across various environments.
+
 ### Implement testing
 
 - **Unit Testing**: At a minimum, create unit tests using the standard testing tools provided by your programming language (e.g., `unittest` for Python, `testing` for Go, etc.). This helps catch issues early and ensures that your code behaves as expected. Automated tests also increase confidence when upgrading dependencies; for example, if Renovate opens a pull request for a minor or patch update and all tests pass, you can safely merge the changes.
