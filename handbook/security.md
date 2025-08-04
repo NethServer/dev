@@ -162,7 +162,7 @@ Managing End-of-Life (EOL) for software, whether containerized or not, is a crit
 
 1. **Understand EOL does not imply vulnerabilities**: Software reaching EOL does not automatically mean it has vulnerabilities. However, it does mean that updates and support from the original developers will cease, increasing the risk over time.
 
-2. **Best effort principle**: During the maintenance phase, developers attempt to update EOL versions when feasible. However, this is not always possible, especially for software relying on outdated libraries that can cause compatibility issues if updated.
+2. **Best effort principle**: During the life of the software, developers attempt to update EOL versions when feasible. However, this is not always possible, especially for software relying on outdated libraries that can cause compatibility issues if updated.
 
 3. **Commitment to critical vulnerabilities**: Developers commit to addressing critical and exploitable vulnerabilities, regardless of EOL status. If updates are not possible, mitigations must be documented (see below).
 
