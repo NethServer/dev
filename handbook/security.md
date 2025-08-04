@@ -5,11 +5,15 @@ nav_order: 6
 ---
 
 # Security
+{: .no_toc }
 
 The [Cyber Resilience Act (CRA)](https://eur-lex.europa.eu/eli/reg/2024/2847/oj) is a regulatory framework established by the European Union to enhance the cybersecurity of digital products and services. 
 It aims to ensure that manufacturers, developers, and distributors of digital products adhere to stringent security requirements throughout the product lifecycle.
 The CRA mandates the implementation of robust security measures, regular updates, and transparent reporting of vulnerabilities to protect consumers and businesses from cyber threats.
 CRA is built on existing regulations, such as the General Data Protection Regulation (GDPR), and complements other cybersecurity initiatives, such as the [NIS2 Directive](https://eur-lex.europa.eu/eli/dir/2022/2555).
+
+* TOC
+{:toc}
 
 ## Essentials cybersecurity requirements
 
@@ -106,6 +110,8 @@ And Annex 1, Part 2:
 
 > (5) put in place and enforce a policy on coordinated vulnerability disclosure;
 
+When creating new containers, it's important to minimize the attack surface by following the [container best practices](best_practices.md#creating-secure-containers).
+
 The following guidelines are recommended for managing vulnerabilities on all products.
 
 ### Report vulnerabilities
@@ -150,18 +156,24 @@ For software that is not developed by Nethesis but is part of an upstream projec
 
 In both cases, the priority is to address vulnerabilities promptly and ensure the security of users.
 
-## Repository configuration
+## Handling End-of-Life (EOL)
 
-The repository configuration should follow some best practices to ensure the same level of security across all products.
-Use Renovate for dependency management, while Dependabot only for alerts without automatic pull requests.
+Managing End-of-Life (EOL) for software, whether containerized or not, is a critical aspect of maintaining security and functionality. Below are some best practices to handle EOL effectively:
 
-Access ``Settings`` -> ``Advanced Security`` then select the following options:
-- ``Dependency graph``: enabled
-  - ``Automatic dependency submission``: disabled
-- ``Dependabot alerts``: enabled
-- ``Dependabot security updates``: disabled
-- ``Grouped security updates``: disabled
-- ``Dependabot version updates``: disabled
-- ``Dependabot on Actions runners``: enabled
-- ``Code scanning``: disabled, feel free to enable it if you want to use it
-- ``Secret protection``: disabled, feel free to enable it if you want to use it
+1. **Understand EOL does not imply vulnerabilities**: Software reaching EOL does not automatically mean it has vulnerabilities. However, it does mean that updates and support from the original developers will cease, increasing the risk over time.
+
+2. **Best effort principle**: During the life of the software, developers attempt to update EOL versions when feasible. However, this is not always possible, especially for software relying on outdated libraries that can cause compatibility issues if updated.
+
+3. **Commitment to critical vulnerabilities**: Developers commit to addressing critical and exploitable vulnerabilities, regardless of EOL status. If updates are not possible, mitigations must be documented (see below).
+
+4. **Document mitigations**: When updates are not feasible, ensure that mitigations are clearly documented. This could include steps to isolate the software in a protected environment or other security measures.
+Mitigation can be documented in the project manual or README file, ensuring users are aware of the risks and how to manage them.
+
+5. **Use tools to track EOL**: Utilize tools like [endoflife.date](https://endoflife.date/) to monitor the EOL status of software and plan migrations or updates accordingly.
+
+6. **Plan for migration**: Proactively plan for migrating to supported versions or alternative solutions before EOL is reached. This minimizes disruption and ensures continued security and functionality.
+
+## Best practices
+
+When creating software, it is essential to follow best practices to ensure security and maintainability.
+Take a look at the [Best practices](best_practices.md) section for more details on how to create secure containers, manage dependencies, and implement testing.
