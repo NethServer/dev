@@ -110,6 +110,7 @@ However, strict pinning can delay important security updates. Weigh the benefits
 ### Automate updates with Renovate
 
 Use tools like [Renovate](https://www.mend.io/renovate/) to automate dependency updates. Renovate can create pull requests for updated dependencies, allowing you to review and merge them as needed. This approach ensures that your images stay up-to-date with minimal manual effort.
+Renovate default configuration is available at [NethServer/.github](https://github.com/NethServer/.github) repository.
 
 ### Analyze image layers with Dive
 
