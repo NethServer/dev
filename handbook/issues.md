@@ -1,10 +1,10 @@
 ---
 layout: default
-title: Issues
+title: Issues and releases
 nav_order: 3
 ---
 
-# Issues
+# Issues and releases
 {: .no_toc }
 
 * TOC
@@ -201,7 +201,7 @@ The *Packager* coordinates the *Developer* and *QA member* work.
 After the *QA member* has completed the testing phase:
 * Takes an issue with label **verified**
 * Follow the specific steps for releasing depending on the process:
-  - [NethServer release process](https://dev.nethsecurity.org/development_process/#release-process), it also applies to NethVoice
+  - [NethServer release process](https://nethserver.github.io/ns8-core/development_process/#release-process), it also applies to NethVoice
   - [NethSecurity release process](https://dev.nethsecurity.org/development_process/#release-process)
 * Merges the documentation changes in the documentation repo. Also
   publishes the documentation by pushing the `latest` branch, if needed.
@@ -217,3 +217,10 @@ When the package is CLOSED, all related documentation must be in place.
 At any time of the issue life-cycle they ensure that there are no release
 conflict with other issues.
 
+## Release process
+
+The release process differs between the various projects (NethServer, NethVoice, NethSecurity) and is detailed in their respective documentation.
+
+- [NethServer release process](https://nethserver.github.io/ns8-core/development_process/#release-process)
+- [NethVoice release process](https://nethserver.github.io/ns8-core/development_process/#release-process)
+- [NethSecurity release process](https://dev.nethsecurity.org/development_process/#release-process)
