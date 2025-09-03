@@ -110,6 +110,7 @@ And Annex 1, Part 2:
 
 > (5) put in place and enforce a policy on coordinated vulnerability disclosure;
 
+
 Vulnerabilities can usually come from different sources, such as:
 - a vulnerability reported by a user or third-party, see [Report vulnerabilities](#report-vulnerabilities)
 - a vulnerability reported by automated tools part of the regular security scans, see [Vulnerability process](#vulnerability-process)
@@ -175,7 +176,6 @@ The vulnerability management workflow is a structured approach to managing secur
    - [partner.nethesis.it](https://partner.nethesis.it)
 
 6. **Critical vulnerabilities during development**: If critical vulnerabilities emerge during development, such as through GitHub advisories, the [Report vulnerabilities](#report-vulnerabilities) process is applied immediately.
-
 
 ## Handling End-of-Life (EOL)
 

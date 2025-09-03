@@ -20,40 +20,43 @@ In Open Source software, this concept is embodied by the very nature of the work
 
 ### Golden rules for selecting Open Source software
 
+When choosing a software, try always to avoid closed source software and prefer Open Source software. Open Source software avoids vendor lock-in, fosters collaboration, and allows for customization to meet specific requirements.
+
 When choosing Open Source software, consider the following golden rules to ensure you make the best decision for your needs:
 
-1. **Prefer Open Source when possible**: Open Source software avoids vendor lock-in, fosters collaboration, and allows for customization to meet specific requirements.
+1. **Check active development**: Verify if the software is actively maintained. Look at the number of contributors, the frequency of commits, and the activity in the issue tracker. An active community is crucial for reporting bugs, receiving help, and contributing pull requests.
 
-2. **Check active development**: Verify if the software is actively maintained. Look at the number of contributors, the frequency of commits, and the activity in the issue tracker. An active community is crucial for reporting bugs, receiving help, and contributing pull requests.
+2. **Look for backing companies**: While not a guarantee of quality, having a company behind the software often indicates a higher likelihood of long-term support and development, especially if the company generates revenue from the project.
 
-3. **Look for backing companies**: While not a guarantee of quality, having a company behind the software often indicates a higher likelihood of long-term support and development, especially if the company generates revenue from the project.
+3. **Seek third-party reviews**: Research reviews and opinions about the software on blogs, social media, and other platforms. Independent evaluations can provide valuable insights into the software's strengths and weaknesses.
 
-4. **Seek third-party reviews**: Research reviews and opinions about the software on blogs, social media, and other platforms. Independent evaluations can provide valuable insights into the software's strengths and weaknesses.
+4. **Evaluate documentation**: Good documentation is essential. It should be comprehensive, up-to-date, and easy to understand, making it easier to adopt and use the software effectively.
 
-5. **Evaluate documentation**: Good documentation is essential. It should be comprehensive, up-to-date, and easy to understand, making it easier to adopt and use the software effectively.
+5. **Read the code**: If possible, review the source code. Clean, well-structured, and understandable code is a significant advantage, as it makes debugging and extending the software easier.
 
-6. **Read the code**: If possible, review the source code. Clean, well-structured, and understandable code is a significant advantage, as it makes debugging and extending the software easier.
+6. **Check usage statistics**: Look at independent metrics such as GitHub stars, the number of forks, or the volume of discussions on forums and social media. These can indicate the software's popularity and community engagement.
 
-7. **Check usage statistics**: Look at independent metrics such as GitHub stars, the number of forks, or the volume of discussions on forums and social media. These can indicate the software's popularity and community engagement.
+7. **Review security policies**: Ensure the software has a clear policy for updates and security disclosures. This is critical for maintaining a secure and reliable system.
 
-8. **Review security policies**: Ensure the software has a clear policy for updates and security disclosures. This is critical for maintaining a secure and reliable system.
+8. **Assess developer engagement**: Developers who participate in conferences and public discussions demonstrate commitment and belief in their project. This is a positive sign of long-term investment.
 
-9. **Assess developer engagement**: Developers who participate in conferences and public discussions demonstrate commitment and belief in their project. This is a positive sign of long-term investment.
+9. **Test the software**: Try installing and configuring the software. Ease of installation and configuration is a significant plus, as it reduces the time and effort required to get started.
 
-10. **Test the software**: Try installing and configuring the software. Ease of installation and configuration is a significant plus, as it reduces the time and effort required to get started.
+10. **Check license compatibility**: Select a project with a license that is compatible with your intended use. Ensure the license aligns with your organization's legal and operational requirements to avoid potential conflicts.
 
-11. **Check license compatibility**: Select a project with a license that is compatible with your intended use. Ensure the license aligns with your organization's legal and operational requirements to avoid potential conflicts.
+11. **Consider the project's lifecycle stage**: Evaluate where the project is in its lifecycle. Avoid projects in the "hype" stage unless you are willing to take risks or contribute actively. Mature projects with a stable community and fewer breaking changes are often more dependable.
 
-12. **Consider the project's lifecycle stage**: Evaluate where the project is in its lifecycle. Avoid projects in the "hype" stage unless you are willing to take risks or contribute actively. Mature projects with a stable community and fewer breaking changes are often more dependable.
+12. **Assess dependency management**: Be cautious of projects with numerous or unstable dependencies. Fewer dependencies often mean less risk of breakage and easier maintenance.
 
-13. **Assess dependency management**: Be cautious of projects with numerous or unstable dependencies. Fewer dependencies often mean less risk of breakage and easier maintenance.
-
-14. **Perform benchmarks**: If you are considering multiple competing solutions, perform internal benchmarks using your specific use cases and data. This ensures the chosen software meets your performance and functionality requirements.
-
+13. **Perform benchmarks**: If you are considering multiple competing solutions, perform internal benchmarks using your specific use cases and data. This ensures the chosen software meets your performance and functionality requirements.
 
 ## Creating secure containers
 
 Creating secure containers is essential to minimize vulnerabilities and ensure the reliability of your applications. Below are some best practices to follow when building container images:
+
+### Prefer rootless containers
+
+Whenever possible, run containers as a non-root user (rootless containers). Rootless containers improve security by reducing the risk of privilege escalation and limiting the impact of potential vulnerabilities. This practice is especially important when deploying containers on NethServer 8 or similar platforms. Ensure that the software you intend to run supports rootless operation, and configure your container runtime accordingly.
 
 ### Use multi-stage builds
 
@@ -107,6 +110,19 @@ However, strict pinning can delay important security updates. Weigh the benefits
 ### Automate updates with Renovate
 
 Use tools like [Renovate](https://www.mend.io/renovate/) to automate dependency updates. Renovate can create pull requests for updated dependencies, allowing you to review and merge them as needed. This approach ensures that your images stay up-to-date with minimal manual effort.
+Renovate default configuration is available at [NethServer/.github](https://github.com/NethServer/.github) repository.
+
+### Analyze image layers with Dive
+
+Use [Dive](https://github.com/wagoodman/dive) to inspect your container images layer by layer. Dive helps visualize changes introduced by each command in your Dockerfile, making it easier to identify unnecessary files, optimize image size, and detect if any secrets or sensitive data have leaked during the build process. Regularly analyzing your images with Dive can lead to more secure and efficient containers.
+
+### Scan images for vulnerabilities with Trivy
+
+Use [Trivy](https://github.com/aquasecurity/trivy) to scan your container images for known vulnerabilities, misconfigurations, and secrets. Trivy supports a wide range of languages and package managers, and can be integrated into your CI/CD pipelines to automate security checks. Regular scans with Trivy help ensure that your images remain secure and compliant with best practices.
+
+### Further reading on reproducible builds
+
+For broader guidance on ensuring your builds are consistent and verifiable, refer to [reproducible-builds.org](https://reproducible-builds.org/). This resource provides best practices and tools for achieving reproducible builds across various environments.
 
 ### Implement testing
 
@@ -127,7 +143,7 @@ Use Renovate for dependency management, while Dependabot only for alerts without
 
 Access ``Settings`` -> ``Advanced Security`` then select the following options:
 - ``Dependency graph``: enabled
-  - ``Automatic dependency submission``: disabled
+  - under Dependency graph section, ``Automatic dependency submission``: disabled
 - ``Dependabot alerts``: enabled
 - ``Dependabot security updates``: disabled
 - ``Grouped security updates``: disabled
