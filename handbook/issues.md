@@ -168,7 +168,7 @@ The *Developer*.
 - Sets *Assignee* to himself.
 - Sets the *Project* to `NethServer`, `NethVoice`, or `NethSecurity`.
 - Bundle his commits as one or more GitHub [pull requests](/pull_request). 
-- For *features** *enhancements*, writes the test case (for *bugs* the procedure to
+- For *features* or *enhancements*, writes the test case (for *bugs* the procedure to
   reproduce the problem should be already set).
 - After the pull request has been approved and merged, the developer should:
   - remove all assignee from the issue
