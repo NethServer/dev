@@ -110,9 +110,10 @@ And Annex 1, Part 2:
 
 > (5) put in place and enforce a policy on coordinated vulnerability disclosure;
 
-When creating new containers, it's important to minimize the attack surface by following the [container best practices](best_practices.md#creating-secure-containers).
 
-The following guidelines are recommended for managing vulnerabilities on all products.
+Vulnerabilities can usually come from different sources, such as:
+- a vulnerability reported by a user or third-party, see [Report vulnerabilities](#report-vulnerabilities)
+- a vulnerability reported by automated tools part of the regular security scans, see [Vulnerability process](#vulnerability-process)
 
 ### Report vulnerabilities
 
@@ -124,7 +125,7 @@ or by using GitHub dedicated security report tools:
 
 Please, **do not report security vulnerabilities as GitHub issues**.
 
-### Handling security vulnerabilities
+#### Handling security vulnerabilities
 
 The security team will evaluate the report and will contact the reporter to discuss the issue.
 If the issue is confirmed, the handling process depends on the type of software:
@@ -132,7 +133,7 @@ If the issue is confirmed, the handling process depends on the type of software:
 - software produced and maintained by Nethesis
 - software not produced by Nethesis (upstream projects)
 
-#### Case 1: Software produced and maintained by Nethesis
+##### Case 1: Software produced and maintained by Nethesis
 
 For software developed and maintained by Nethesis, the following process applies:
 
@@ -145,7 +146,7 @@ For software developed and maintained by Nethesis, the following process applies
 
 The disclosure will be done by publishing the security advisory on GitHub and, if necessary, updating the community channels.
 
-#### Case 2: Software not produced by Nethesis (upstream projects)
+##### Case 2: Software not produced by Nethesis (upstream projects)
 
 For software that is not developed by Nethesis but is part of an upstream project:
 
@@ -156,13 +157,33 @@ For software that is not developed by Nethesis but is part of an upstream projec
 
 In both cases, the priority is to address vulnerabilities promptly and ensure the security of users.
 
+## Vulnerability management workflow
+
+The vulnerability management workflow is a structured approach to managing security vulnerabilities in software. It involves several key steps:
+
+1. **Focus on released products**: Since builds occur in a protected environment, the primary focus is on vulnerabilities in released products.
+
+2. **Automated identification**: The identification process is automated. Every night, the [SBOM Uploader](https://github.com/NethServer/nh-sbom/actions/workflows/sbom-uploader.yml) GitHub Action scans a list of configured repositories, retrieve the SBOMs, and uploads them to [Dependency Track](https://dependencytrack.org/). Nethesis maintains its own instance of Dependency Track at [https://dependecytrack.nethesis.it](https://dependecytrack.nethesis.it). Access to this platform is restricted to Nethesis employees; any employee can request an account for access.
+
+3. **Vulnerability analysis**: Each project manager must allocate a minimum amount of time within the development process to analyze discovered vulnerabilities, focusing on critical and high-priority issues. It is recommended to allocate enough time every month for this task, including time for handling [EOL](#handling-end-of-life-eol).
+
+4. **Monthly review meetings**: A monthly meeting is held where the project manager, along with developers, reviews the most critical vulnerabilities. Developers are responsible for determining whether these vulnerabilities are exploitable. If exploitable, the following steps are taken:
+   - Attempt to update or fix the vulnerability.
+   - If updating is not possible, document mitigation procedures thoroughly.
+
+5. **Public disclosure**: It is the responsibility of the project manager to make this information public to inform users. Preferred channels for disclosure include:
+   - [community.nethserver.org](https://community.nethserver.org)
+   - [partner.nethesis.it](https://partner.nethesis.it)
+
+6. **Critical vulnerabilities during development**: If critical vulnerabilities emerge during development, such as through GitHub advisories, the [Report vulnerabilities](#report-vulnerabilities) process is applied immediately.
+
 ## Handling End-of-Life (EOL)
 
 Managing End-of-Life (EOL) for software, whether containerized or not, is a critical aspect of maintaining security and functionality. Below are some best practices to handle EOL effectively:
 
 1. **Understand EOL does not imply vulnerabilities**: Software reaching EOL does not automatically mean it has vulnerabilities. However, it does mean that updates and support from the original developers will cease, increasing the risk over time.
 
-2. **Best effort principle**: During the life of the software, developers attempt to update EOL versions when feasible. However, this is not always possible, especially for software relying on outdated libraries that can cause compatibility issues if updated.
+2. **Best effort principle**: During the maintenance phase, developers attempt to update EOL versions when feasible. However, this is not always possible, especially for software relying on outdated libraries that can cause compatibility issues if updated.
 
 3. **Commitment to critical vulnerabilities**: Developers commit to addressing critical and exploitable vulnerabilities, regardless of EOL status. If updates are not possible, mitigations must be documented (see below).
 
