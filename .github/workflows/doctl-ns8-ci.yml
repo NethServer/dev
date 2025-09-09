@@ -1,0 +1,25 @@
+name: Cleanup NS8 CI
+
+on:
+  schedule:
+    # Runs every night at 04:00 UTC
+    - cron: '0 4 * * *'
+  workflow_dispatch:
+
+jobs:
+  run-doctl:
+    name: Execute doctl-ns8-ci.sh --delete
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      - name: Install doctl and authenticate
+        uses: digitalocean/action-doctl@v2
+        with:
+          token: ${{ secrets.NS8_CI_DIGITALOCEAN_TOKEN }}
+
+      - name: Remove unused NS8 CI resources
+        run: ./scripts/doctl-ns8-ci.sh
+        env:
+          DIGITALOCEAN_ACCESS_TOKEN: ${{ secrets.NS8_CI_DIGITALOCEAN_TOKEN }}
