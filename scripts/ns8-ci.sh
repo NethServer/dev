@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # DigitalOcean NS8-CI cleanup candidate lister (and optional deleter)
-# Requirements: doctl, jq
+# Requirements: curl, jq
 #
 # Usage:
 #   ./doctl-ns8-ci.sh           # just list
@@ -10,19 +10,50 @@
 DO_DOMAIN="ci.nethserver.net"
 TAG_PREFIX="NS8-CI-"
 DELETE=0
+DO_API_BASE="https://api.digitalocean.com/v2"
+
+
+# Function to make authenticated API calls to DigitalOcean
+do_api() {
+  local method="${1:-GET}"
+  local endpoint="$2"
+  local data="$3"
+  
+  local curl_args=(
+    -s
+    -H "Authorization: Bearer $DIGITALOCEAN_ACCESS_TOKEN"
+    -H "Content-Type: application/json"
+    -X "$method"
+  )
+  
+  if [[ -n "$data" ]]; then
+    curl_args+=(-d "$data")
+  fi
+  
+  # Check if the endpoint already contains a '?'
+  if [[ "$endpoint" == *\?* ]]; then
+    curl "${curl_args[@]}" "$DO_API_BASE$endpoint&page=1&per_page=200"
+  else
+    curl "${curl_args[@]}" "$DO_API_BASE$endpoint?page=1&per_page=200"
+  fi
+}
 
 if [[ "$1" == "--delete" ]]; then
   DELETE=1
 fi
 
 set -e
-# Default $doctl_cmd context (can be overridden by exporting DOCTL_CONTEXT)
-DOCTL_CONTEXT="${DOCTL_CONTEXT:-sviluppo}"
-doctl_cmd="doctl --context $DOCTL_CONTEXT"
 
-# Check if doctl is installed
-if ! command -v doctl &> /dev/null; then
-  echo "doctl could not be found. Please install doctl and configure it with access token."
+# Get the DigitalOcean access token from environment
+if [[ -z "$DIGITALOCEAN_ACCESS_TOKEN" ]]; then
+  echo "DigitalOcean access token not found. Please set one of:"
+  echo "  DIGITALOCEAN_TOKEN, DIGITALOCEAN_ACCESS_TOKEN, or DOCTL_ACCESS_TOKEN"
+  exit 1
+fi
+
+# Check if curl is installed
+if ! command -v curl &> /dev/null; then
+  echo "curl could not be found. Please install curl."
   exit 1
 fi
 
@@ -32,54 +63,44 @@ if ! command -v jq &> /dev/null; then
   exit 1
 fi
 
-
-# Check if doctl can access DigitalOcean
-if ! $doctl_cmd account get &> /dev/null; then
-# If running in CI, try to use DIGITALOCEAN_ACCESS_TOKEN
-  if [[ -n "$CI" ]]; then
-    if [[ -z "$DIGITALOCEAN_ACCESS_TOKEN" ]]; then
-      echo "CI environment detected but DIGITALOCEAN_ACCESS_TOKEN is not set."
-      exit 1
-    fi
-    echo -ne "$DIGITALOCEAN_ACCESS_TOKEN\n\n" | $doctl_cmd -v auth init --interactive false
-  fi
-  $doctl_cmd auth init
-  if ! $doctl_cmd account get &> /dev/null; then
-    echo "Auth failed."
-    exit 1
-  fi
+# Test API access by getting account info
+if ! do_api GET "/account" | jq -e '.account' &> /dev/null; then
+  echo "Failed to authenticate with DigitalOcean API. Please check your token."
+  exit 1
 fi
 
 echo "== 1. Unused tags starting with $TAG_PREFIX =="
-mapfile -t ns8_tags < <($doctl_cmd compute tag list --format Name --no-header | grep "^$TAG_PREFIX" || true)
+# Get all tags and filter for NS8-CI prefix
+mapfile -t ns8_tags < <(do_api GET "/tags" | jq -r '.tags[] | select(.name | startswith("'$TAG_PREFIX'")) | .name')
+
 # Remove unused tags (no droplets attached) as a first step
 for tag in "${ns8_tags[@]}"; do
-  mapfile -t tag_droplets_check < <($doctl_cmd compute droplet list --tag-name "$tag" --format ID --no-header || true)
+  # Get droplets with this tag
+  mapfile -t tag_droplets_check < <(do_api GET "/droplets?tag_name=$tag" | jq -r '.droplets[] | .id')
   if [[ ${#tag_droplets_check[@]} -eq 0 ]]; then
     echo "Unused tag: $tag"
     if [[ $DELETE -eq 1 ]]; then
       echo "-> Deleting tag $tag"
-      $doctl_cmd compute tag delete "$tag" -f || true
+      do_api DELETE "/tags/$tag" || true
     fi
   fi
 done
 
 echo "== 2. Droplets with tags starting with $TAG_PREFIX (only 'active' and running > 3h) =="
-mapfile -t ns8_tags < <($doctl_cmd compute tag list --format Name --no-header | grep "^$TAG_PREFIX" || true)
+# Get all tags with NS8-CI prefix again (in case some were deleted)
+mapfile -t ns8_tags < <(do_api GET "/tags" | jq -r '.tags[] | select(.name | startswith("'$TAG_PREFIX'")) | .name')
 droplet_ids=()
 droplet_names=()
 # threshold in seconds (3 hours)
 THRESHOLD_SECONDS=10800
 for tag in "${ns8_tags[@]}"; do
-  # Request fields via JSON so we reliably get created_at; parse with jq to: ID Status CreatedAt Name
-  mapfile -t tag_droplets < <($doctl_cmd compute droplet list --tag-name "$tag" -o json | jq -r '.[] | "\(.id) \(.status) \(.created_at) \(.name)"')
+  # Get droplets with this tag
+  mapfile -t tag_droplets < <(do_api GET "/droplets?tag_name=$tag" | jq -r '.droplets[] | "\(.id) \(.status) \(.created_at) \(.name)"')
   for entry in "${tag_droplets[@]}"; do
     id=$(echo "$entry" | awk '{print $1}')
     status=$(echo "$entry" | awk '{print $2}')
     created_at=$(echo "$entry" | awk '{print $3}')
     name=$(echo "$entry" | cut -d' ' -f4-)
-    echo "$entry"
-    echo "id=$id status=$status created_at=$created_at name=$name"
 
     # Skip if we couldn't parse fields
     if [[ -z "$id" || -z "$created_at" ]]; then
@@ -108,7 +129,7 @@ for tag in "${ns8_tags[@]}"; do
       echo "Droplet: $name ($id) [tag: $tag] status=$status age=${age_hours}h"
       if [[ $DELETE -eq 1 ]]; then
         echo "-> Deleting droplet $name ($id)"
-        $doctl_cmd compute droplet delete "$id" -f
+        do_api DELETE "/droplets/$id"
       fi
     fi
   done
@@ -116,7 +137,8 @@ done
 
 echo ""
 echo "== 3. DNS records in $DO_DOMAIN without a running droplet =="
-mapfile -t records < <($doctl_cmd compute domain records list "$DO_DOMAIN" --format ID,Type,Name --no-header)
+# Get all DNS records for the domain
+mapfile -t records < <(do_api GET "/domains/$DO_DOMAIN/records" | jq -r '.domain_records[] | "\(.id) \(.type) \(.name)"')
 for record in "${records[@]}"; do
   id=$(echo "$record" | awk '{print $1}')
   type=$(echo "$record" | awk '{print $2}')
@@ -133,24 +155,26 @@ for record in "${records[@]}"; do
       echo "Orphan DNS $type record: $name.$DO_DOMAIN (record id: $id)"
       if [[ $DELETE -eq 1 ]]; then
         echo "-> Deleting DNS record $id ($name.$DO_DOMAIN)"
-        $doctl_cmd compute domain records delete "$DO_DOMAIN" "$id" -f
+        do_api DELETE "/domains/$DO_DOMAIN/records/$id"
       fi
     fi
   fi
 done
 
 echo ""
-echo "== 3. SSH keys with names matching '^*ci.nethserver.net-deploy' not used by any droplet =="
-# Collect SSH keys matching '.ci.nethserver.net' using the same template you provided
-mapfile -t ssh_keys_raw < <($doctl_cmd compute ssh-key list --format ID,Name --no-header | grep '\.ci\.nethserver\.net' || true)
-mapfile -t all_droplet_ids < <($doctl_cmd compute droplet list --format ID --no-header)
+echo "== 4. SSH keys with names matching '*.ci.nethserver.net' not used by any droplet =="
+# Get SSH keys matching '.ci.nethserver.net'
+mapfile -t ssh_keys_raw < <(do_api GET "/account/keys" | jq -r '.ssh_keys[] | select(.name | contains(".ci.nethserver.net")) | "\(.id) \(.name)"')
+# Get all droplet IDs for checking SSH key usage
+mapfile -t all_droplet_ids < <(do_api GET "/droplets" | jq -r '.droplets[] | .id')
 
 for ssh_entry in "${ssh_keys_raw[@]}"; do
   ssh_id=$(echo "$ssh_entry" | awk '{print $1}')
   ssh_name=$(echo "$ssh_entry" | cut -d' ' -f2-)
   ssh_used=0
   for droplet_id in "${all_droplet_ids[@]}"; do
-    mapfile -t droplet_keys < <($doctl_cmd compute droplet get "$droplet_id" --format SSHKeys --no-header | tr ',' '\n' | awk '{print $1}')
+    # Get droplet details to check SSH keys
+    mapfile -t droplet_keys < <(do_api GET "/droplets/$droplet_id" | jq -r '.droplet.ssh_keys[]? | .id')
     for dkey in "${droplet_keys[@]}"; do
       if [[ "$dkey" == "$ssh_id" ]]; then
         ssh_used=1
@@ -162,7 +186,7 @@ for ssh_entry in "${ssh_keys_raw[@]}"; do
     echo "Unused SSH key: $ssh_name ($ssh_id)"
     if [[ $DELETE -eq 1 ]]; then
       echo "-> Deleting SSH key $ssh_name ($ssh_id)"
-      $doctl_cmd compute ssh-key delete "$ssh_id" -f
+      do_api DELETE "/account/keys/$ssh_id"
     fi
   fi
 done

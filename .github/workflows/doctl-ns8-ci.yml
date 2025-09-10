@@ -8,18 +8,16 @@ on:
 
 jobs:
   run-doctl:
-    name: Execute doctl-ns8-ci.sh --delete
+    name: Execute ns8-ci.sh --delete
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v5
 
-      - name: Install doctl and authenticate
-        uses: digitalocean/action-doctl@v2
-        with:
-          no_auth: true
+      - name: Make script executable
+        run: chmod +x ./scripts/doctl-ns8-ci.sh
 
       - name: Remove unused NS8 CI resources
-        run:  cd scripts && ./fake_tty.py ./doctl-ns8-ci.sh
+        run: ./scripts/ns8-ci.sh
         env:
-          DIGITALOCEAN_ACCESS_TOKEN: ${{ secrets.NS8_CI_DIGITALOCEAN_TOKEN }}
+          DIGITALOCEAN_TOKEN: ${{ secrets.NS8_CI_DIGITALOCEAN_TOKEN }}
