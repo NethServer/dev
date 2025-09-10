@@ -18,18 +18,7 @@ fi
 set -e
 # Default $doctl_cmd context (can be overridden by exporting DOCTL_CONTEXT)
 DOCTL_CONTEXT="${DOCTL_CONTEXT:-sviluppo}"
-
-# If running in CI environment, require DIGITALOCEAN_ACCESS_TOKEN to be set
-if [[ -n "$CI" ]]; then
-    if [[ -z "$DIGITALOCEAN_ACCESS_TOKEN" ]]; then
-      echo "CI environment detected but DIGITALOCEAN_ACCESS_TOKEN is not set."
-      exit 1
-    fi
-    echo "CI environment detected. Using DIGITALOCEAN_ACCESS_TOKEN for authentication."
-    doctl_cmd="doctl --context $DOCTL_CONTEXT --access-token $DIGITALOCEAN_ACCESS_TOKEN"
-else
-  doctl_cmd="doctl --context $DOCTL_CONTEXT"
-fi
+doctl_cmd="doctl --context $DOCTL_CONTEXT"
 
 # Check if doctl is installed
 if ! command -v doctl &> /dev/null; then
@@ -46,9 +35,15 @@ fi
 
 # Check if doctl can access DigitalOcean
 if ! $doctl_cmd account get &> /dev/null; then
-  echo "doctl cannot access DigitalOcean. Attempting to authenticate..."
+# If running in CI, try to use DIGITALOCEAN_ACCESS_TOKEN
+  if [[ -n "$CI" ]]; then
+    if [[ -z "$DIGITALOCEAN_ACCESS_TOKEN" ]]; then
+      echo "CI environment detected but DIGITALOCEAN_ACCESS_TOKEN is not set."
+      exit 1
+    fi
+    echo $DIGITALOCEAN_ACCESS_TOKEN | $doctl_cmd auth init --interactive false
+  fi
   $doctl_cmd auth init
-  echo "Re-checking doctl access..."
   if ! $doctl_cmd account get &> /dev/null; then
     echo "Auth failed."
     exit 1
