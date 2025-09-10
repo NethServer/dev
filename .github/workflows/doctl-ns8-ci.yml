@@ -20,6 +20,6 @@ jobs:
           no_auth: true
 
       - name: Remove unused NS8 CI resources
-        run: ./scripts/doctl-ns8-ci.sh
+        run:  python -c "import os,pty,sys; os.environ['TERM'] = 'xterm'; pty.spawn(sys.argv[1:])" ./scripts/doctl-ns8-ci.sh
         env:
           DIGITALOCEAN_ACCESS_TOKEN: ${{ secrets.NS8_CI_DIGITALOCEAN_TOKEN }}
