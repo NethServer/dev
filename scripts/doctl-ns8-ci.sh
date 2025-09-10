@@ -35,9 +35,13 @@ fi
 
 # Check if doctl can access DigitalOcean
 if ! $doctl_cmd account get &> /dev/null; then
-  if [[ -z "$DIGITALOCEAN_ACCESS_TOKEN" ]]; then
-    echo "doctl could not access DigitalOcean. Please use 'doctl auth init' to configure it or set the DIGITALOCEAN_ACCESS_TOKEN environment variable."
-    exit 1
+# If running in CI, try to use DIGITALOCEAN_ACCESS_TOKEN
+  if [[ -n "$CI" ]]; then
+    if [[ -z "$DIGITALOCEAN_ACCESS_TOKEN" ]]; then
+      echo "CI environment detected but DIGITALOCEAN_ACCESS_TOKEN is not set."
+      exit 1
+    fi
+    echo $DIGITALOCEAN_ACCESS_TOKEN | $doctl_cmd auth init --interactive true
   fi
   echo $DIGITALOCEAN_ACCESS_TOKEN | $doctl_cmd auth init --interactive false
   if ! $doctl_cmd account get &> /dev/null; then
