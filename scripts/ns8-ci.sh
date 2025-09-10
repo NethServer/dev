@@ -2,10 +2,12 @@
 
 # DigitalOcean NS8-CI cleanup candidate lister (and optional deleter)
 # Requirements: curl, jq
+# This script does not use doctl because it does not run well inside GitHub Actions due
+# to lack of a TTY. Instead, it uses direct API calls with curl.
 #
 # Usage:
-#   ./doctl-ns8-ci.sh           # just list
-#   ./doctl-ns8-ci.sh --delete  # list and delete
+#   ./ns8-ci.sh           # just list
+#   ./ns8-ci.sh --delete  # list and delete
 
 DO_DOMAIN="ci.nethserver.net"
 TAG_PREFIX="NS8-CI-"
