@@ -25,6 +25,7 @@ if [[ -n "$CI" ]]; then
       echo "CI environment detected but DIGITALOCEAN_ACCESS_TOKEN is not set."
       exit 1
     fi
+    echo "CI environment detected. Using DIGITALOCEAN_ACCESS_TOKEN for authentication."
     doctl_cmd="doctl --context $DOCTL_CONTEXT --access-token $DIGITALOCEAN_ACCESS_TOKEN"
 else
   doctl_cmd="doctl --context $DOCTL_CONTEXT"
@@ -45,7 +46,9 @@ fi
 
 # Check if doctl can access DigitalOcean
 if ! $doctl_cmd account get &> /dev/null; then
+  echo "doctl cannot access DigitalOcean. Attempting to authenticate..."
   $doctl_cmd auth init
+  echo "Re-checking doctl access..."
   if ! $doctl_cmd account get &> /dev/null; then
     echo "Auth failed."
     exit 1
