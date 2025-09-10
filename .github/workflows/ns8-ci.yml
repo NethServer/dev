@@ -1,0 +1,20 @@
+name: Cleanup NS8 CI
+
+on:
+  schedule:
+    # Runs every night at 04:00 UTC
+    - cron: '0 4 * * *'
+  workflow_dispatch:
+
+jobs:
+  run-cleanup:
+    name: Remove unused NS8 CI resources
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      - name: Execute ns8-ci.sh
+        run: ./scripts/ns8-ci.sh
+        env:
+          DIGITALOCEAN_TOKEN: ${{ secrets.NS8_CI_DIGITALOCEAN_TOKEN }}
