@@ -48,8 +48,7 @@ set -e
 
 # Get the DigitalOcean access token from environment
 if [[ -z "$DIGITALOCEAN_ACCESS_TOKEN" ]]; then
-  echo "DigitalOcean access token not found. Please set one of:"
-  echo "  DIGITALOCEAN_TOKEN, DIGITALOCEAN_ACCESS_TOKEN, or DOCTL_ACCESS_TOKEN"
+  echo "DigitalOcean access token not found. Please set DIGITALOCEAN_ACCESS_TOKEN environment variable."
   exit 1
 fi
 
