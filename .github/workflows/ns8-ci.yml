@@ -7,17 +7,14 @@ on:
   workflow_dispatch:
 
 jobs:
-  run-doctl:
-    name: Execute ns8-ci.sh --delete
+  run-cleanup:
+    name: Remove unused NS8 CI resources
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v5
 
-      - name: Make script executable
-        run: chmod +x ./scripts/doctl-ns8-ci.sh
-
-      - name: Remove unused NS8 CI resources
+      - name: Execute ns8-ci.sh
         run: ./scripts/ns8-ci.sh
         env:
           DIGITALOCEAN_TOKEN: ${{ secrets.NS8_CI_DIGITALOCEAN_TOKEN }}
