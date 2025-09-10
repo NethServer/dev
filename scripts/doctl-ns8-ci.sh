@@ -41,7 +41,7 @@ if ! $doctl_cmd account get &> /dev/null; then
       echo "CI environment detected but DIGITALOCEAN_ACCESS_TOKEN is not set."
       exit 1
     fi
-    echo $DIGITALOCEAN_ACCESS_TOKEN | $doctl_cmd auth init --interactive false
+    echo -ne "$DIGITALOCEAN_ACCESS_TOKEN\n\n" | $doctl_cmd auth init --interactive false
   fi
   $doctl_cmd auth init
   if ! $doctl_cmd account get &> /dev/null; then
