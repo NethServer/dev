@@ -17,7 +17,7 @@ jobs:
       - name: Install doctl and authenticate
         uses: digitalocean/action-doctl@v2
         with:
-          token: ${{ secrets.NS8_CI_DIGITALOCEAN_TOKEN }}
+          no_auth: true
 
       - name: Remove unused NS8 CI resources
         run: ./scripts/doctl-ns8-ci.sh
