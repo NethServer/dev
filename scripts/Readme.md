@@ -1,5 +1,82 @@
 # Scripts Documentation
 
+## ns8-ci.sh
+
+### Description
+
+`ns8-ci.sh` is a Bash script that cleans up unused DigitalOcean resources created by the NS8 CI system. It identifies and optionally deletes orphaned tags, droplets, DNS records, and SSH keys to keep the CI environment clean and reduce costs. The script uses direct DigitalOcean API calls via `curl` instead of the `doctl` CLI tool for better compatibility with CI/CD environments.
+
+### Prerequisites
+
+- **curl**: Standard HTTP client tool (typically pre-installed on most systems).
+- **jq**: Command-line JSON processor. Install with `apt install jq` or `brew install jq`.
+- **DigitalOcean API Token**: A valid DigitalOcean API token with read/write permissions.
+
+### Usage
+
+```bash
+./ns8-ci.sh                # List mode - only show what would be cleaned up
+./ns8-ci.sh --delete       # Delete mode - actually remove the identified resources
+```
+
+#### Environment Variables
+
+The script requires a DigitalOcean API token to be set in one of these environment variables:
+- `DIGITALOCEAN_ACCESS_TOKEN`
+
+#### Example
+
+```bash
+# List orphaned resources without deleting
+export DIGITALOCEAN_ACCESS_TOKEN="your_token_here"
+./ns8-ci.sh
+
+# Actually delete the orphaned resources
+./ns8-ci.sh --delete
+```
+
+### How It Works
+
+The script performs cleanup in four phases:
+
+1. **Unused Tags**: Identifies tags starting with `NS8-CI-` that have no droplets attached and optionally removes them.
+
+2. **Old Droplets**: Finds active droplets with NS8-CI tags that are older than 3 hours and optionally deletes them.
+
+3. **Orphaned DNS Records**: Locates A and AAAA DNS records in `ci.nethserver.net` that don't correspond to any running droplets and optionally removes them.
+
+4. **Unused SSH Keys**: Identifies SSH keys with names containing `.ci.nethserver.net` that aren't used by any droplets and optionally deletes them.
+
+### Technical Details
+
+- **API Pagination**: Handles DigitalOcean API pagination by setting `per_page=200` and `page=1` parameters.
+- **Age Threshold**: Only considers droplets older than 3 hours (10,800 seconds) for deletion.
+- **Safe Deletion**: Uses API calls with proper error handling to avoid accidental data loss.
+- **Domain Filtering**: Only processes resources in the `ci.nethserver.net` domain.
+
+### Output
+
+The script provides detailed output for each phase:
+
+- Lists all resources that match the cleanup criteria
+- Shows droplet ages in human-readable format (hours)
+- Confirms each deletion operation when `--delete` mode is used
+- Provides summary statistics at completion
+
+### Error Handling
+
+- **Missing Dependencies**: Checks for required tools (`curl`, `jq`) before execution.
+- **Authentication**: Validates API token by testing account access.
+- **API Failures**: Continues processing other resources if individual API calls fail.
+- **Resource Protection**: Only targets resources with specific naming patterns to avoid accidental deletion.
+
+### Notes
+
+- The script is designed for automated execution in CI/CD pipelines.
+- Uses the DigitalOcean API v2 with Bearer token authentication.
+- Implements pagination to handle accounts with many resources.
+- Safe to run multiple times - only processes resources matching specific criteria.
+
 ## update_issue_status.sh
 
 ### Description
