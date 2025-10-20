@@ -174,6 +174,8 @@ The *Developer*.
   - remove all assignee from the issue
   - set the **testing** label
   It's the developer's responsibility to ensure that someone from the QA team will test the package.
+  If the issue is an implementation of a UI feature derived from a mockup, the developer should
+  also involve the designer in the testing phase.
 - Writes and updates the documentation associated with the code:
   - README.md inside the repository
   - Administrator Manual
