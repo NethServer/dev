@@ -63,7 +63,7 @@ Key principles of environment segregation:
 Access to the organization's environments and resources is separated into three main categories:
 
 - **Customer Cloud Resources:**  
-  Cloud resources used in customer-facing production environments. Access is restricted to a select group of authorized users only.
+  Cloud resources used in customer-facing production environments. Access is restricted to a selected group of authorized users only.
 
 - **Development Resources:**  
   Non-production resources and environments that emulate production for the purposes of development, integration, and testing. Developers are granted access as appropriate.
