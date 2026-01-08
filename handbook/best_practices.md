@@ -46,7 +46,7 @@ When choosing Open Source software, consider the following golden rules to ensur
 
 11. **Consider the project's lifecycle stage**: Evaluate where the project is in its lifecycle. Avoid projects in the "hype" stage unless you are willing to take risks or contribute actively. Mature projects with a stable community and fewer breaking changes are often more dependable.
 
-12. **Assess dependency management**: Be cautious of projects with numerous or unstable dependencies. Fewer dependencies often mean less risk of breakage and easier maintenance.
+12. **Assess dependency management**: Be cautious of projects with numerous or unstable dependencies. Fewer dependencies often mean less risk of breakage and easier maintenance, check SBOMs to understand dependencies and their real impact (eg Alpine 3.18 that's an EOL version).
 
 13. **Perform benchmarks**: If you are considering multiple competing solutions, perform internal benchmarks using your specific use cases and data. This ensures the chosen software meets your performance and functionality requirements.
 
@@ -156,7 +156,7 @@ Access ``Settings`` -> ``Advanced Security`` then select the following options:
 
 Managing cryptographic keys securely ensures the safety of systems and data. General best practices for key management include:
 
-- generat keys using secure tools and strong algorithms
+- generate keys using secure tools and strong algorithms
 - store keys securely, avoiding public places or code repositories
 - protect keys with passwords or passphrases when possible
 - rotate and revoke keys after any compromise
