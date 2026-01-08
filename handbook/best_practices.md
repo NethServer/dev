@@ -46,7 +46,7 @@ When choosing Open Source software, consider the following golden rules to ensur
 
 11. **Consider the project's lifecycle stage**: Evaluate where the project is in its lifecycle. Avoid projects in the "hype" stage unless you are willing to take risks or contribute actively. Mature projects with a stable community and fewer breaking changes are often more dependable.
 
-12. **Assess dependency management**: Be cautious of projects with numerous or unstable dependencies. Fewer dependencies often mean less risk of breakage and easier maintenance.
+12. **Assess dependency management**: Be cautious of projects with numerous or unstable dependencies. Fewer dependencies often mean less risk of breakage and easier maintenance, check SBOMs to understand dependencies and their real impact (eg Alpine 3.18 that's an EOL version).
 
 13. **Perform benchmarks**: If you are considering multiple competing solutions, perform internal benchmarks using your specific use cases and data. This ensures the chosen software meets your performance and functionality requirements.
 
@@ -151,3 +151,30 @@ Access ``Settings`` -> ``Advanced Security`` then select the following options:
 - ``Dependabot on Actions runners``: enabled
 - ``Code scanning``: disabled, feel free to enable it if you want to use it
 - ``Secret protection``: disabled, feel free to enable it if you want to use it
+
+## Cryptographic keys
+
+Managing cryptographic keys securely ensures the safety of systems and data. General best practices for key management include:
+
+- generate keys using secure tools and strong algorithms
+- store keys securely, avoiding public places or code repositories
+- protect keys with passwords or passphrases when possible
+- rotate and revoke keys after any compromise
+- limit access: Only authorized users/systems should access keys
+- when possible, use secret managers for application secrets and passwords
+
+### Key management recommendations
+
+| Use Case                  | Key Type        | Recommended Algorithm                 | Key Length         | Expiry          |
+|---------------------------|------------------|---------------------------------------|--------------------|-----------------|
+| Web Certificates          | RSA/ECC + SHA256 | RSA (2048 bits+) / ECC (256 bits+)    | 2048+ / 256+ bits  | Up to 3 months |
+| Web Encryption (TLS)      | Asymmetric       | Modern ciphers (SSL Labs grade A)     | Variable           | N/A             |
+| Passwords                 | One-way hash     | Bcrypt, Scrypt, Argon2                | Salt + pepper      | N/A             |
+| Endpoint Storage (SSD/HDD)| Symmetric        | AES                                   | 256+ bits          | N/A             |
+
+#### Web server certificates & TLS
+
+- **Use free, automated, and open Certificate Authorities whenever possible** for publicly accessible web servers; they provide free, trusted certificates. For example, Let's Encrypt or ZeroSSL.
+- **Keep the default automatic Certificate Authority renewal policy**: Let’s Encrypt certificates automatically renew every 60 days (recommended).
+- **Prefer TLS 1.3**: do not include TLS 1.0 or TLS 1.1 wich are deprecated and insecure.
+- **Test the site with [SSL Labs](https://www.ssllabs.com/ssltest/)** to verify security rating and configuration.
