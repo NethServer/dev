@@ -174,7 +174,7 @@ Managing cryptographic keys securely ensures the safety of systems and data. Gen
 
 #### Web server certificates & TLS
 
-- **Use Let’s Encrypt whenever possible** for publicly accessible web servers; it provides free, trusted certificates.
-- **Keep the default automatic Let's Encrypt renewal policy**: Let’s Encrypt certificates automatically renew every 60 days (recommended).
+- **Use free, automated, and open Certificate Authorities whenever possible** for publicly accessible web servers; they provide free, trusted certificates. For example, Let's Encrypt or ZeroSSL.
+- **Keep the default automatic Certificate Authority renewal policy**: Let’s Encrypt certificates automatically renew every 60 days (recommended).
 - **Prefer TLS 1.3**: do not include TLS 1.0 or TLS 1.1 wich are deprecated and insecure.
 - **Test the site with [SSL Labs](https://www.ssllabs.com/ssltest/)** to verify security rating and configuration.
