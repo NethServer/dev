@@ -69,6 +69,7 @@ The development workflow for NethServer projects involves several steps to ensur
 8. **Release or Rework**:
   - If the QA process is successful, the [packager](management#packager) can release the module or package, and the issue is closed.
   - If the QA process fails, the issue is returned to the developer for correction, and the process restarts from step 3.
+9. **Announcement**: Once the milestone is completed, an announcement is made to inform the community about the new features and bug fixes included in the release.
 
 ## Handbook structure
 

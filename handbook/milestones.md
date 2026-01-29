@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Milestones
+title: Milestones and announcements
 nav_order: 2
 ---
 
@@ -26,3 +26,33 @@ To overcome this limitation, an issue with [type "Draft"](/issues/#issue-types) 
 Product managers typically use draft issues to plan work for upcoming milestones.
 A draft issue contains a brief description of the feature, it could not contain a detailed description or acceptance criteria.
 The issue type will be changed once the analysis is complete, and it may also be split into multiple sub-issues if the work requires task separation.
+
+## Announcement & Communication
+
+When a milestone is completed, an announcement is made to inform the community about the new features and bug fixes included in the release.
+
+**Planning**:
+
+- Prepare a communication draft at least one week before the release.
+- Mark calendar dates for major releases in project planning.
+- Prepare release notes at least one week in advance so Marketing team has time to review.
+- Involve Marketing team in release-related meetings and retrospectives.
+
+**Distribution**:
+
+- Every announcement must be published in both Italian and English across the communities:
+    - partner.nethesis.it: Italian
+    - community.nethserver.org: English
+
+**Content to highlight**:
+
+- keep it brief and focused on key points.
+- 2–3 main new features or changes.
+- The motivation / user value for each main item.
+- Any enterprise-specific elements (especially for NethVoice).
+
+**Quality**:
+
+- Maintain a high editorial standard for both languages.
+- Provide clear, non-technical summaries for users and detailed notes for administrators.
+
