@@ -22,14 +22,13 @@ Since the component version number is for end-users, the choice between
 a major, minor, and patch number increment does not strictly follow the
 semver rules.
 
-- Increment major for non-backward compatible releases. Also acceptable
-  for notable product changes. If the release introduces a behavioral
+- Increment major for non-backward compatible releases. If the release introduces a behavioral
   breaking change, or it requires a manual upgrade procedure, it is likely
   to be a major increment.
 - Increment minor for changes like new product features, especially those
   visible to the end-user. If the feature also requires a documentation
   change or a release note, it is likely to be a minor increment.
-- Increment patch in other cases, like bug fixes and internal features.
+- Increment patch in other cases, like bug fixes.
 
 The distinction between stable and pre-release versions is important in
 the development process.
