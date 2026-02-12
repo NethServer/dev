@@ -23,7 +23,9 @@ a major, minor, and patch number increment does not strictly follow the
 semver rules.
 
 - Increment major for non-backward compatible releases. Also acceptable
-  for notable product changes.
+  for notable product changes. If the release introduces a behavioral
+  breaking change, or it requires a manual upgrade procedure, it is likely
+  to be a major increment.
 - Increment minor for changes like new product features, especially those
   visible to the end-user. If the feature also requires a documentation
   change or a release note, it is likely to be a minor increment.
@@ -50,11 +52,12 @@ Releases can be automated using [gh ns8-release-module - GitHub CLI Extension](h
 ### Update rules
 
 Updates to NS8 core and modules (applications) must follow these rules:
-0. New features, enhancements, and bug fixes must not change the behavior
+
+1. New features, enhancements, and bug fixes must not change the behavior
    of existing systems.
-0. New behaviors must be enabled through explicit and documented sysadmin
+1. New behaviors must be enabled through explicit and documented sysadmin
    actions.
-0. Modules must support updates from any previous release within the same
+1. Modules must support updates from any previous release within the same
    major release.
 
 ## NethSecurity
