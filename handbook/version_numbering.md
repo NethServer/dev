@@ -8,7 +8,7 @@ nav_order: 5
 
 The version numbering scheme is a set of rules that define how the version number is assigned to a release. The version number is a sequence of numbers separated by dots, for example, `1.2.3`.
 
-All projects tries to follow the [Semantic Versioning](https://semver.org/) (semver) rules, but there are some differences between the projects.
+All projects try to follow the [Semantic Versioning](https://semver.org/) (semver) rules, with some differences between the projects.
 
 ## NethServer and NethVoice
 
