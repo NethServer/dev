@@ -18,6 +18,17 @@ syntax is not permitted because the `+` character conflicts with the
 container image tag specification, as stated in [OCI
 distribution-spec](https://github.com/opencontainers/distribution-spec/blob/main/spec.md#pulling-manifests).
 
+Since the component version number is for end-users, the choice between
+a major, minor, and patch number increment does not strictly follow the
+semver rules.
+
+- Increment major for non-backward compatible releases. Also acceptable
+  for notable product changes.
+- Increment minor for changes like new product features, especially those
+  visible to the end-user. If the feature also requires a documentation
+  change or a release note, it is likely to be a minor increment.
+- Increment patch in other cases, like bug fixes and internal features.
+
 The distinction between stable and pre-release versions is important in
 the development process.
 
@@ -32,6 +43,7 @@ the development process.
   `1.3.0-testing.3`. Testing releases are meant for development. In rare
   cases, they can be used in production, but only if they address specific
   bugs requiring immediate resolution.
+
 
 Releases can be automated using [gh ns8-release-module - GitHub CLI Extension](https://github.com/NethServer/gh-ns8-release-module).
 
