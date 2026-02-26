@@ -8,7 +8,7 @@ nav_order: 5
 
 The version numbering scheme is a set of rules that define how the version number is assigned to a release. The version number is a sequence of numbers separated by dots, for example, `1.2.3`.
 
-All projects tries to follow the [Semantic Versioning](https://semver.org/) (semver) rules, but there are some differences between the projects.
+All projects try to follow the [Semantic Versioning](https://semver.org/) (semver) rules, with some differences between the projects.
 
 ## NethServer and NethVoice
 
@@ -17,6 +17,18 @@ Versioning. Specifically, "build metadata"
 syntax is not permitted because the `+` character conflicts with the
 container image tag specification, as stated in [OCI
 distribution-spec](https://github.com/opencontainers/distribution-spec/blob/main/spec.md#pulling-manifests).
+
+Since the component version number is for end-users, the choice between
+a major, minor, and patch number increment does not strictly follow the
+semver rules.
+
+- Increment major for non-backward compatible releases. If the release introduces a behavioral
+  breaking change, or it requires a manual upgrade procedure, it is likely
+  to be a major increment.
+- Increment minor for changes like new product features, especially those
+  visible to the end-user. If the feature also requires a documentation
+  change or a release note, it is likely to be a minor increment.
+- Increment patch in other cases, like bug fixes.
 
 The distinction between stable and pre-release versions is important in
 the development process.
@@ -33,16 +45,18 @@ the development process.
   cases, they can be used in production, but only if they address specific
   bugs requiring immediate resolution.
 
+
 Releases can be automated using [gh ns8-release-module - GitHub CLI Extension](https://github.com/NethServer/gh-ns8-release-module).
 
 ### Update rules
 
 Updates to NS8 core and modules (applications) must follow these rules:
-0. New features, enhancements, and bug fixes must not change the behavior
+
+1. New features, enhancements, and bug fixes must not change the behavior
    of existing systems.
-0. New behaviors must be enabled through explicit and documented sysadmin
+1. New behaviors must be enabled through explicit and documented sysadmin
    actions.
-0. Modules must support updates from any previous release within the same
+1. Modules must support updates from any previous release within the same
    major release.
 
 ## NethSecurity
