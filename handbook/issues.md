@@ -202,19 +202,19 @@ The *QA team member*.
 The *Packager* coordinates the *Developer* and *QA member* work.  
 After the *QA member* has completed the testing phase:
 * Takes an issue with label **verified**
-* Follow the specific steps for releasing depending on the process:
-  - [NethServer release process](https://nethserver.github.io/ns8-core/development_process/#release-process), it also applies to NethVoice
-  - [NethSecurity release process](https://dev.nethsecurity.org/development_process/#release-process)
-* Merges the documentation changes in the documentation repo. Also
-  publishes the documentation by pushing the `latest` branch, if needed.
-  Documentation repositories:
-  - [NethServer and NethVoice](https://github.com/NethServer/ns8-docs/)
+* Checks the i18n status is consistent with the issue:
+   - strings were pushed to [Weblate](https://hosted.weblate.org/projects/ns8), are present and ready for localization (l10n)
+   - component translation must be 100% complete for the following languages: English, Italian
+* Follows the project-specific release process:
+  - [NethServer/NethVoice](https://nethserver.github.io/ns8-core/development_process/#release-process)
+  - [NethSecurity](https://dev.nethsecurity.org/development_process/#release-process)
+* Publishes the relevant issue documentation (an application cannot be
+  released as "stable" until documentation for developer, admin, and user
+  is complete):
+  - [NethServer](https://github.com/NethServer/ns8-docs/)
+  - [NethVoice](https://github.com/NethServer/nethvoice-docs)
   - [NethSecurity](https://github.com/NethServer/nethsecurity-docs/)
-  An application should not be released as "stable" until all documentation
-(developer, admin, user) is complete.
-* Closes the issue, specifying the list of released modules
-
-When the package is CLOSED, all related documentation must be in place.
+* Closes the issue, with a list of released artifacts and their version number.
 
 At any time of the issue life-cycle they ensure that there are no release
 conflict with other issues.

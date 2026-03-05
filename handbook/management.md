@@ -37,7 +37,7 @@ Anyone can be a QA Team Member, but usually is one of the following:
 
 ### Packager
 
-The Packager is a developer that coordinates the work between developers and QA Team Members. They review and merge code changes, manage release tags, and ensure that documentation is updated and published. They also handle the final steps of closing issues and releasing modules.
+The Packager is a developer that coordinates the work between developers and QA Team Members. They review and merge code changes, manage release tags, and ensure that documentation and translations are updated and published. They also handle the final steps of closing issues and releasing modules.
 Usually the packager is the same person as the developer, but in some cases, it can be a different person.
 
 ## Meetings
