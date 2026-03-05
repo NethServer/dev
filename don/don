@@ -1,0 +1,142 @@
+#!/usr/bin/env python3
+
+# Copyright (C) 2024 Nethesis S.r.l.
+# http://www.nethesis.it
+# SPDX-License-Identifier: GPL-3.0-or-later
+
+"""
+don - CLI wrapper for NS8 support session management.
+
+Harmonizes the NS8 support session CLI with the traditional NS7 don command
+interface, lowering operator friction during support tasks.
+
+Installation: copy this file to /usr/local/sbin/don and make it executable.
+
+Usage:
+  don start [--node NODE_ID]
+  don stop  [--node NODE_ID]
+  don status [--node NODE_ID]
+  don extend
+
+When --node is given, the command is forwarded to the specified worker node via
+api-cli (must be run from the leader node). The 'extend' subcommand does not
+support --node; you must reach the target node directly and run 'don extend'
+there.
+"""
+
+import argparse
+import subprocess
+import sys
+
+
+def run_systemctl(action, unit):
+    """Run a systemctl command and return its exit code."""
+    result = subprocess.run(["systemctl", action, unit])
+    return result.returncode
+
+
+def run_api_cli(action, node):
+    """Forward a support-session action to a worker node via api-cli."""
+    result = subprocess.run(
+        ["api-cli", "run", f"node/{node}/{action}"],
+        input="{}",
+        text=True,
+    )
+    return result.returncode
+
+
+def cmd_start(args):
+    if args.node:
+        return run_api_cli("start-support-session", args.node)
+    return run_systemctl("start", "support")
+
+
+def cmd_stop(args):
+    if args.node:
+        return run_api_cli("stop-support-session", args.node)
+    return run_systemctl("stop", "support")
+
+
+def cmd_status(args):
+    if args.node:
+        return run_api_cli("get-support-session", args.node)
+    return run_systemctl("status", "support")
+
+
+def cmd_extend(args):
+    if args.node:
+        print(
+            "error: 'extend' is not supported with --node. "
+            "You must reach that node first, then run 'don extend' there.",
+            file=sys.stderr,
+        )
+        return 1
+    return run_systemctl("stop", "support-expire.timer")
+
+
+def main():
+    parser = argparse.ArgumentParser(
+        prog="don",
+        description="CLI wrapper for NS8 support session management",
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        epilog=(
+            "When --node is given, commands are forwarded to the specified\n"
+            "worker node via api-cli (must be run from the leader node).\n"
+            "\n"
+            "Examples:\n"
+            "  don start                  # start support on the local node\n"
+            "  don start --node 2         # start support on node 2\n"
+            "  don stop                   # stop support on the local node\n"
+            "  don stop --node 2          # stop support on node 2\n"
+            "  don status                 # show support status on the local node\n"
+            "  don status --node 2        # show support status on node 2\n"
+            "  don extend                 # extend support session expiry\n"
+        ),
+    )
+
+    # Shared --node argument available to all subcommands
+    node_parent = argparse.ArgumentParser(add_help=False)
+    node_parent.add_argument(
+        "--node",
+        type=int,
+        metavar="NODE_ID",
+        help="operate on a worker node (must be run from the leader node)",
+    )
+
+    subparsers = parser.add_subparsers(dest="command", required=True, metavar="COMMAND")
+
+    subparsers.add_parser(
+        "start",
+        parents=[node_parent],
+        help="start support session",
+    )
+    subparsers.add_parser(
+        "stop",
+        parents=[node_parent],
+        help="stop support session",
+    )
+    subparsers.add_parser(
+        "status",
+        parents=[node_parent],
+        help="show support session status",
+    )
+    subparsers.add_parser(
+        "extend",
+        parents=[node_parent],
+        help="extend support session expiry (local node only, --node not supported)",
+    )
+
+    args = parser.parse_args()
+
+    handlers = {
+        "start": cmd_start,
+        "stop": cmd_stop,
+        "status": cmd_status,
+        "extend": cmd_extend,
+    }
+
+    return handlers[args.command](args)
+
+
+if __name__ == "__main__":
+    sys.exit(main())
