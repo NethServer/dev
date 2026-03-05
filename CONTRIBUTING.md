@@ -1,4 +1,4 @@
-# NethServer issue tracker
+# NethServer development
 
 Thank you for contributing to the NethServer project!
 
@@ -10,8 +10,8 @@ issue-tracker.  Before opening a [new issue here](https://github.com/NethServer/
 
 Further references:
 
-* [Development process](http://docs.nethserver.org/projects/nethserver-devel/en/latest/development_process.html)
-* [Administrator manual](http://docs.nethserver.org/en/latest/)
+* [Developer handbook](https://handbook.nethserver.org/)
+* [Administrator manual](http://docs.nethserver.org/)
 
 ## NethServer 7 (EOL)
 
