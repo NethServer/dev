@@ -178,3 +178,21 @@ Managing cryptographic keys securely ensures the safety of systems and data. Gen
 - **Keep the default automatic Certificate Authority renewal policy**: Let’s Encrypt certificates automatically renew every 60 days (recommended).
 - **Prefer TLS 1.3**: do not include TLS 1.0 or TLS 1.1 wich are deprecated and insecure.
 - **Test the site with [SSL Labs](https://www.ssllabs.com/ssltest/)** to verify security rating and configuration.
+
+## AI coding agents
+
+AI coding assistants are valuable tools for developers.
+However, when using AI tools to assist with coding, it's essential to follow best practices to ensure the quality and security of the code.
+
+AI agents MUST NOT add Signed-off-by tags. Only humans should be
+set as author of the commits. The human submitter
+is responsible for:
+
+* Reviewing all AI-generated code
+* Ensuring compliance with licensing requirements
+* Adding their own Signed-off-by
+* Taking full responsibility for the contribution
+
+See the [AI generated commit messages section in the commit messages style guide](commit_messages.md#ai-generated-commit-messages) for more details on how to properly attribute AI contributions in commit messages.
+
+These notes are derived from [Kernel guidelines for AI contributions](https://docs.kernel.org/process/coding-assistants.html).

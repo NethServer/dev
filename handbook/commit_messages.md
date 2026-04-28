@@ -28,3 +28,22 @@ Individual commits should contain a cohesive set of changes to the code. These
 
 For merge commits, and commits pushed directly to the main branch (*avoid whenever possible!*),
 also add the issue reference inside the commit body.
+
+### AI generated commit messages
+
+When AI tools write or assist with code, proper attribution
+helps track the evolving role of AI in the development process.
+Contributions should include a `Co-authored-by` tag in the following format:
+```
+Co-authored-by: AGENT_NAME:MODEL_VERSION
+```
+
+Where:
+
+* `AGENT_NAME` is the name of the AI tool or framework
+* `MODEL_VERSION` is the specific model version used
+
+Example:
+```
+Co-authored-by: Copilot:claude-haiku-4.5
+```
