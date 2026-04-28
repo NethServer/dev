@@ -33,9 +33,9 @@ also add the issue reference inside the commit body.
 
 When AI tools write or assist with code, proper attribution
 helps track the evolving role of AI in the development process.
-Contributions should include a `Co-authored-by` tag in the following format:
+Contributions should include a `Assisted-by` tag in the following format:
 ```
-Co-authored-by: AGENT_NAME:MODEL_VERSION
+Assisted-by: AGENT_NAME:MODEL_VERSION
 ```
 
 Where:
@@ -45,5 +45,5 @@ Where:
 
 Example:
 ```
-Co-authored-by: Copilot:claude-haiku-4.5
+Assisted-by: Copilot:claude-haiku-4.5
 ```
