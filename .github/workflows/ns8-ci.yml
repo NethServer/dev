@@ -17,4 +17,4 @@ jobs:
       - name: Execute ns8-ci.sh
         run: ./scripts/ns8-ci.sh --delete
         env:
-          DIGITALOCEAN_ACCESS_TOKEN: ${{ secrets.NS8_CI_DIGITALOCEAN_TOKEN }}
+          DIGITALOCEAN_ACCESS_TOKEN: ${{ secrets.DO_TOKEN }}
