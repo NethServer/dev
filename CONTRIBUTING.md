@@ -11,12 +11,12 @@ issue-tracker.  Before opening a [new issue here](https://github.com/NethServer/
 Further references:
 
 * [Developer handbook](https://handbook.nethserver.org/)
-* [Administrator manual](http://docs.nethserver.org/)
+* [NethServer Documentation](http://docs.nethserver.org/)
 
 ## NethServer 7 (EOL)
 
 * [issues](https://github.com/NethServer/dev/issues)
-* [ISO releases](http://docs.nethserver.org/en/latest/nscom_releases.html)
+* [ISO releases](https://docs.nethserver.org/en/v7/nscom_releases.html)
 
 ## NethServer 6 (EOL)
 
