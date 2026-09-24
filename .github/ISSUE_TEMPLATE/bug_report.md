@@ -1,7 +1,7 @@
 ---
 name: Bug report
 about: Create a report to help us improve
-labels: bug
+type: Bug
 
 ---
 
@@ -23,10 +23,9 @@ labels: bug
 
 **Components**
 
-// Fill with NethServer version number and relevant RPM versions. 
-// You can find the RPM version in Software Center page, 
-// under Installed > Packages, or by typing in a shell prompt
-// rpm -qa | grep -F .ns7. | sort
+// Fill with the name and version of the affected NethServer 8
+// application or core module, e.g. "Nextcloud 1.7.5".
+// You can find them in the Applications page.
 
 **See also**
 
