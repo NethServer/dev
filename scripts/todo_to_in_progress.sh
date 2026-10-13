@@ -2,7 +2,8 @@
 
 # Move project items from "ToDo" to "In Progress" when the issue is
 # open, has at least one assignee and is referenced by an open pull
-# request (either linked from the Development sidebar or mentioning it).
+# request (either linked from the Development sidebar or mentioning it)
+# in a repository of the same organization that owns the project.
 
 # Exit immediately if a command exits with a non-zero status
 set -e
@@ -113,6 +114,11 @@ PRS_QUERY='
           nodes {
             url
             state
+            repository {
+              owner {
+                login
+              }
+            }
           }
         }
         timelineItems(itemTypes: [CROSS_REFERENCED_EVENT, CONNECTED_EVENT], last: 100) {
@@ -122,6 +128,11 @@ PRS_QUERY='
                 ... on PullRequest {
                   url
                   state
+                  repository {
+                    owner {
+                      login
+                    }
+                  }
                 }
               }
             }
@@ -130,6 +141,11 @@ PRS_QUERY='
                 ... on PullRequest {
                   url
                   state
+                  repository {
+                    owner {
+                      login
+                    }
+                  }
                 }
               }
             }
@@ -142,9 +158,9 @@ PRS_QUERY='
 MOVED=0
 while IFS=$'\t' read -r ITEM_ID ISSUE_ID ISSUE_URL; do
   OPEN_PRS=$(gh api graphql -F issueId="$ISSUE_ID" -f query="$PRS_QUERY" |
-    jq -r '.data.node |
+    jq -r --arg OWNER "$OWNER" '.data.node |
       [.closedByPullRequestsReferences.nodes[], (.timelineItems.nodes[] | .source // .subject)] |
-      map(select(.state=="OPEN") | .url) | unique | join(" ")')
+      map(select(.state=="OPEN" and .repository.owner.login==$OWNER) | .url) | unique | join(" ")')
 
   if [ -z "$OPEN_PRS" ]; then
     continue
