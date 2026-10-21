@@ -94,6 +94,19 @@ The default configuration must be the most privacy-friendly one that still makes
 6. **Clear choices**: when the administrator enables a feature that processes personal data, the UI should explain in plain words
    which data is processed and why.
 
+### Exceptions for the first configuration
+
+In very rare cases, a default can be less strict to make the first configuration easier.
+For example, a service may need to be reachable before the administrator has set up certificates or access rules.
+
+When this happens:
+
+- the choice must be justified and explained in the issue and in the pull request, and approved during the review
+- the less strict default must be documented, together with the reason
+- the administrator must be guided to a stricter configuration, inside the application (for example with a warning or a suggested action)
+  or with specific documentation
+- the less strict setting should be limited to what the first configuration really needs
+
 ## Development process
 
 Privacy is part of the normal [development process](../):
@@ -117,4 +130,5 @@ Use this checklist when designing a feature and when reviewing a pull request th
 - [ ] Removing the user or the module removes the related data
 - [ ] No external service is contacted without need, and any connection is documented
 - [ ] New processing or data sharing is disabled by default
+- [ ] Any less strict default is justified, documented, and the administrator is guided to a stricter configuration
 - [ ] The module documentation lists the personal data processed
