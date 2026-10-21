@@ -20,7 +20,7 @@ In NethSecurity, most of the work is done on the main repository: changes to the
 
 A Pull Request (PR) is the main method of submitting code contributions to NethServer projects. It is a request to merge a set of changes into the main branch of the project.
 
-You can find an overview of the whole workflow [here](/index#general-workflow).
+You can find an overview of the whole workflow [here](../#general-workflow).
 
 ### Submitting a pull request
 
@@ -45,7 +45,8 @@ After submitting a PR, before it is merged:
    - Works as expected
    - Doesn't break existing stuff
    - The code is reasonably readable by others developers
-   - The commit history is clean and adheres to [commit message rules](#commit-message-rules)
+   - It follows the [privacy by design and by default](../privacy/#checklist) rules when personal data is involved
+   - The commit history is clean and adheres to [commit message rules](../commit_messages/)
 3. The PR must be approved by a developer with commit access to NethServer on GitHub:
    - Any comment raised by a developer has been addressed before the pull request is ready to merge
 
