@@ -74,6 +74,7 @@ When designing and implementing a feature, follow these rules.
 7. **Avoid unnecessary third parties**: the software must not contact external services unless required by the feature.
    - the web UI must not load fonts, scripts, or images from external CDNs at runtime: bundle them
    - any connection to an external service (including Nethesis services) must be documented
+   - aggregated statistics sent to upstream Open Source projects are allowed, see [Usage statistics of upstream projects](#usage-statistics-of-upstream-projects)
    - prefer self-hosted and Open Source solutions, see [Selecting Open Source software](../best_practices/#selecting-open-source-software)
 8. **Document it**: the developer documentation of each module must list which personal data is processed, where it is stored,
    how long it is kept, and whether it is sent to third parties.
@@ -107,6 +108,19 @@ When this happens:
   or with specific documentation
 - the less strict setting should be limited to what the first configuration really needs
 
+### Usage statistics of upstream projects
+
+Some Open Source projects included in our products send aggregated usage statistics to the servers of their producers.
+These statistics help the upstream developers understand how their software is used, and sharing them is a way to give back to the Open Source projects we build upon.
+
+We usually keep this option enabled, as long as it does not violate any law.
+For example, the statistics must not contain personal data and must not be used to identify users.
+
+If the software allows disabling the statistics:
+
+- the documentation must explain how to disable them
+- when possible, the application should provide an option to disable them
+
 ## Development process
 
 Privacy is part of the normal [development process](../):
@@ -131,4 +145,5 @@ Use this checklist when designing a feature and when reviewing a pull request th
 - [ ] No external service is contacted without need, and any connection is documented
 - [ ] New processing or data sharing is disabled by default
 - [ ] Any less strict default is justified, documented, and the administrator is guided to a stricter configuration
+- [ ] Upstream usage statistics contain no personal data, and how to disable them is documented
 - [ ] The module documentation lists the personal data processed
