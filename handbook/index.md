@@ -81,6 +81,7 @@ This guide is divided into the following sections:
 - [Pull Requests](./pull_requests): submitting, managing, merging, draft pull requests
 - [Version Numbering Rules](./version_numbering): stable releases, pre-releases or testing releases
 - [Commit Message Style Guide](./commit_messages): rules for composing a good commit message
+- [Privacy by Design and by Default](./privacy): rules for handling personal data in our products
 
 
 ## Specific developer manuals

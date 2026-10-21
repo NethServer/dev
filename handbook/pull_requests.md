@@ -45,6 +45,7 @@ After submitting a PR, before it is merged:
    - Works as expected
    - Doesn't break existing stuff
    - The code is reasonably readable by others developers
+   - It follows the [privacy by design and by default](../privacy/#checklist) rules when personal data is involved
    - The commit history is clean and adheres to [commit message rules](#commit-message-rules)
 3. The PR must be approved by a developer with commit access to NethServer on GitHub:
    - Any comment raised by a developer has been addressed before the pull request is ready to merge
