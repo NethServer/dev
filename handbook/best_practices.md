@@ -194,3 +194,20 @@ is responsible for:
 See the [AI generated commit messages section in the commit messages style guide](commit_messages.md#ai-generated-commit-messages) for more details on how to properly attribute AI contributions in commit messages.
 
 These notes are derived from [Kernel guidelines for AI contributions](https://docs.kernel.org/process/coding-assistants.html).
+
+### Agent skills
+
+The [NethServer/agents](https://github.com/NethServer/agents) repository publishes agent skills
+that make a coding agent follow this handbook. Among them:
+
+* `nethserver-issue` writes issues as described in [Issues](issues.md)
+* `nethserver-pr` opens and describes pull requests as described in [Pull Requests](pull_requests.md)
+* `conventional-commit` writes commit messages as described in [Commit Messages](commit_messages.md)
+* `nethserver-release` releases modules following [Version Numbering](version_numbering.md)
+* `nethserver-containerfile` writes Containerfiles following [Creating secure containers](#creating-secure-containers)
+* `nebula-frontend`, in the separate `frontend-skills` plugin, writes and reviews frontends that follow the
+  [Nebula Design System](user_interfaces.md)
+
+See the repository README for the full list and for how to install them in Claude Code, Codex and Pi
+(the frontend skills have been tested in Claude Code and Codex). The skills use the open
+[Agent Skills](https://agentskills.io/) format, so other agents that support it may run them too.

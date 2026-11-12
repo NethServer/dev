@@ -61,7 +61,7 @@ The development workflow for NethServer projects involves several steps to ensur
 1. **Bug or Feature Collection**: Issues are collected from public channels such as community forums or internal channels (private chats, helpdesk).
    The [Product Manager (PM)](management/#product-manager) is responsible for collecting and organizing the issues.
 2. **Issue Formalization**: The collected issues are formalized into GitHub [issues](issues). This task is usually delegated to the PM or to a [developer](management/#developer) but can also be performed by other roles such as a support team member. The issue must be added to a project board and can be added to a milestone if it must be planned for a specific release.
-3. **Issue Assignment**: The issue is assigned to a developer who implements the solution in a separate branch and opens a [Pull Request (PR)](pull_requests). If the issue requires changes to the user interface, the issue is assigned to a UI/UX designer before starting the development process.
+3. **Issue Assignment**: The issue is assigned to a developer who implements the solution in a separate branch and opens a [Pull Request (PR)](pull_requests). If the issue requires changes to the user interface, the issue is assigned to a UI/UX designer before starting the development process, and the implementation follows the product's [design system](user_interfaces).
 4. **Code Review**: The code is subjected to a code review by one or more developers to ensure quality and adherence to coding standards.
 5. **Pull Request Approval and Merge**: Once the pull request is approved, it is merged into the main branch.
 6. **Automated Build and Test Process**: The build and test processes are automatically executed to verify the changes.
@@ -79,6 +79,7 @@ This guide is divided into the following sections:
 - [Milestones](./milestones): definition, management, and release process
 - [Issues](./issues): definition, issue tracker, how and when to open a new issue, processing the issue
 - [Pull Requests](./pull_requests): submitting, managing, merging, draft pull requests
+- [User Interfaces](./user_interfaces): design systems, design in the workflow, text, accessibility
 - [Version Numbering Rules](./version_numbering): stable releases, pre-releases or testing releases
 - [Commit Message Style Guide](./commit_messages): rules for composing a good commit message
 - [Privacy by Design and by Default](./privacy): rules for handling personal data in our products
