@@ -1,0 +1,23 @@
+name: Remove Assignees from Closed Issues
+
+on:
+  issues:
+    types:
+      - closed
+
+permissions:
+  issues: write
+
+jobs:
+  unassign-closed-issue:
+    if: ${{ github.event.issue.assignees[0] != null }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Remove all assignees
+        run: |
+          jq -c '{assignees: [.issue.assignees[].login]}' "$GITHUB_EVENT_PATH" |
+            gh api --method DELETE "repos/$GITHUB_REPOSITORY/issues/$ISSUE_NUMBER/assignees" \
+              --input - --jq '"Assignees left on #\(.number): \(.assignees | length)"'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
