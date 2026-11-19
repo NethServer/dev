@@ -22,7 +22,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
       - name: Move ToDo issues with open PRs to In Progress
         run: |
           scripts/todo_to_in_progress.sh --owner "$OWNER" --project-number "$PROJECT_NUMBER" \
