@@ -188,11 +188,13 @@ The communication is published on:
 - the [partner forum](https://partner.nethesis.it)
 - the technical newsletter, when needed
 
+The support team is involved at this step, so it can answer customers and partners who ask about the update.
+
 **Phase 5: full disclosure**
 
 The full disclosure happens at least 15 days after the pre-disclosure communication, to give users time to update their systems.
 It is done by publishing the security advisory on GitHub with all the details and, if necessary, updating the forum posts.
-The other teams of the company, like marketing, sales and support, are informed only at this step.
+The other teams of the company, like marketing and sales, are informed only at this step.
 
 **External reporters**
 
