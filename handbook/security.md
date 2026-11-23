@@ -162,6 +162,10 @@ The fix follows the normal development process, with a few changes:
 3. Review and test the fix.
 4. Release the fix as soon as possible. The fix usually includes new packages, modules or images.
 
+Request a [CVE](https://www.cve.org/) identifier from the draft advisory when the vulnerable code is a library we release,
+or software that is integrated inside other software, like [phone-island](https://github.com/nethesis/phone-island).
+The CVE lets the people who use that code in their own software find out that they are affected.
+
 **Phase 3 (optional): internal disclosure**
 
 This phase is optional: it is needed only to organize the rollout of the update.
