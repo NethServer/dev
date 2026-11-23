@@ -196,7 +196,7 @@ The other teams of the company, like marketing, sales and support, are informed 
 
 **External reporters**
 
-If the vulnerability is reported by someone outside Nethesis, the reporter is told that the disclosure will happen after 30 days.
+If the vulnerability is reported by someone outside Nethesis, the reporter is told that the disclosure will happen 30 days after we acknowledge that a fix is needed.
 The reporter is kept informed during the process and credited in the security advisory, unless they ask otherwise.
 
 **Customer data**
