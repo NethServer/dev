@@ -7,7 +7,7 @@ on:
 jobs:
   trigger:
     name: Trigger webhook
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-26.04
     env:
       readthedocs_token: ${{ secrets.readthedocs_token }}
     steps:
