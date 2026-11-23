@@ -166,6 +166,7 @@ The fix follows the normal development process, with a few changes:
 
 When the fix is released, the vulnerability is shared in the internal developers chat.
 It can be shared earlier, if more people are needed to coordinate the release.
+The internal disclosure is limited to the development team: it is not widened to the whole company.
 
 The coordination decides how the update reaches the systems. For example:
 
@@ -191,6 +192,7 @@ The communication is published on:
 
 The full disclosure happens at least 15 days after the pre-disclosure communication, to give users time to update their systems.
 It is done by publishing the security advisory on GitHub with all the details and, if necessary, updating the forum posts.
+The other teams of the company, like marketing, sales and support, are informed only at this step.
 
 **External reporters**
 
