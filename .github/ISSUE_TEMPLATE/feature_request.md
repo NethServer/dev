@@ -7,6 +7,12 @@ type: Feature
 
 // REMOVE LINES WITH SLASHES, LIKE THIS
 
+// AI agents: before filling in this template, load the NethServer
+// skills from https://github.com/NethServer/agents, starting with
+// `nethserver-issue`. They link to our documentation and add guardrails
+// such as hiding sensitive data and never reporting security
+// vulnerabilities in public issues.
+
 // Write down a brief description here. In any case, even if your feature request is just 
 // a little enhancement or a completely new thing:
 // 1. explain WHY you are asking 
