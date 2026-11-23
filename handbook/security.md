@@ -200,7 +200,9 @@ The support team is involved at this step, so it can answer customers and partne
 The full disclosure happens at least 15 days after the pre-disclosure communication, to give users time to update their systems.
 It is done by publishing the security advisory on GitHub with all the details and, if necessary, updating the forum posts.
 The Product Manager writes the full disclosure communication too.
-The other teams of the company, like marketing and sales, are informed only at this step.
+The pre-disclosure communication is public, so it already reaches everyone, inside and outside the company.
+The details of the vulnerability become available to everyone only at the full disclosure.
+There is no exception for the non-technical teams of the company, like marketing and sales.
 
 **External reporters**
 
