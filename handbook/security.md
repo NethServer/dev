@@ -180,7 +180,8 @@ The rollout is decided case by case. For example:
 
 **Phase 4: pre-disclosure communication**
 
-After the release, a short communication invites everyone to update. It contains:
+After the release, a short communication invites everyone to update.
+The [Product Manager](../management/#product-manager) writes it. It contains:
 
 - few details: the affected product, the fixed version and the severity
 - the link to the security advisory, which at this stage holds only generic information
@@ -198,6 +199,7 @@ The support team is involved at this step, so it can answer customers and partne
 
 The full disclosure happens at least 15 days after the pre-disclosure communication, to give users time to update their systems.
 It is done by publishing the security advisory on GitHub with all the details and, if necessary, updating the forum posts.
+The Product Manager writes the full disclosure communication too.
 The other teams of the company, like marketing and sales, are informed only at this step.
 
 **External reporters**
