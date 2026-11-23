@@ -209,7 +209,9 @@ The reporter is kept informed during the process and credited in the security ad
 
 **Customer data**
 
-If the vulnerability may have exposed customer data, for example on managed services, the internal privacy team must be involved during the disclosure.
+If there is evidence that our managed services are affected, like our infrastructure or NethVoice SaaS,
+the internal privacy team is informed before the full disclosure.
+Otherwise, the privacy team is informed at the full disclosure, together with the other teams.
 The privacy team evaluates the legal obligations, like the notification of a personal data breach.
 See also [Privacy by Design and by Default](../privacy/).
 
