@@ -162,17 +162,17 @@ The fix follows the normal development process, with a few changes:
 3. Review and test the fix.
 4. Release the fix as soon as possible. The fix usually includes new packages, modules or images.
 
-**Phase 3: internal disclosure**
+**Phase 3 (optional): internal disclosure**
 
-When the fix is released, the vulnerability is shared in the internal developers chat.
-It can be shared earlier, if more people are needed to coordinate the release.
-The internal disclosure is limited to the development team: it is not widened to the whole company.
+This phase is optional: it is needed only to organize the rollout of the update.
+It happens in the existing internal chat channels, after the release, or earlier if more people are needed to coordinate it.
+Share only what is needed to organize the rollout, not the details of the vulnerability.
 
-The coordination decides how the update reaches the systems. For example:
+The rollout is decided case by case. For example:
 
 - available as a normal update, applied manually by administrators
-- pushed to all systems at once
-- rolled out in tiers, a group of systems at a time
+- pushed to all systems at once, when the update is unlikely to break existing systems
+- rolled out in tiers, a group of systems at a time, when the update might break existing systems
 
 **Phase 4: pre-disclosure communication**
 
