@@ -139,16 +139,17 @@ For software developed and maintained by Nethesis, the vulnerability is handled 
 Each phase widens the group of people who know about it.
 Until the full disclosure, the vulnerability details must not appear in public issues, public pull requests, forum posts or commit messages.
 
-**Phase 1: restricted disclosure**
+**Phase 1: restricted disclosure and discussion**
 
-The vulnerability is explained only to a very small group of people:
+The vulnerability is explained and discussed only with a very small group of people:
 
 - the three people responsible for the project: the [Product Manager](../management/#product-manager),
   the support team lead and the development lead
 - the [developers](../management/#developer) needed to write and test the fix
 
 The discussion happens in a private channel of the internal chat, open only to these people.
-The explanation should cover the affected products and versions, the impact, how the vulnerability can be exploited and a first severity estimate.
+The explanation should cover the affected products and versions, the impact and how the vulnerability can be exploited.
+If the severity score is not set yet, the group decides it in this phase, for example using the [CVSS](https://www.first.org/cvss/) calculator of the GitHub security advisory.
 
 **Phase 2: fix and release**
 
