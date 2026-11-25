@@ -135,16 +135,87 @@ If the issue is confirmed, the handling process depends on the type of software:
 
 ##### Case 1: Software produced and maintained by Nethesis
 
-For software developed and maintained by Nethesis, the following process applies:
+For software developed and maintained by Nethesis, the vulnerability is handled in phases.
+Each phase widens the group of people who know about it.
+Until the full disclosure, the vulnerability details must not appear in public issues, public pull requests, forum posts or commit messages.
 
-1. Open a draft security advisory on GitHub
-2. Assign the issue to the development team
-3. The development team will work on the fix
-4. The security team will review the fix
-5. The fix will be released as soon as possible and announced to the users using community channels. The fix usually includes new packages along with a new image
-6. Depending on the severity of the issue, the development team will decide how long to wait before a full disclosure, usually between 15 and 30 days, to give users time to update their systems
+**Phase 1: restricted disclosure and discussion**
 
-The disclosure will be done by publishing the security advisory on GitHub and, if necessary, updating the community channels.
+The vulnerability is explained and discussed only with a very small group of people:
+
+- the three people responsible for the project: the [Product Manager](../management/#product-manager),
+  the support team lead and the development lead
+- the [developers](../management/#developer) needed to write and test the fix
+
+The discussion happens in a private channel of the internal chat, open only to these people.
+The explanation should cover the affected products and versions, the impact and how the vulnerability can be exploited.
+If the severity score is not set yet, the group decides it in this phase, for example using the [CVSS](https://www.first.org/cvss/) calculator of the GitHub security advisory.
+
+**Phase 2: fix and release**
+
+The fix follows the normal development process, with a few changes:
+
+1. Open a draft [GitHub security advisory](https://docs.github.com/en/code-security/security-advisories/working-with-repository-security-advisories/creating-a-repository-security-advisory)
+   in the affected repository. Write the details there, not in a public issue.
+2. Write the fix inside the temporary private fork created from the draft advisory.
+   If the fix has a low impact and does not reveal how to exploit the vulnerability, a public branch and pull request can be used instead.
+3. Review and test the fix.
+4. Release the fix as soon as possible. The fix usually includes new packages, modules or images.
+
+Request a [CVE](https://www.cve.org/) identifier from the draft advisory when the vulnerable code is a library we release,
+or software that is integrated inside other software, like [phone-island](https://github.com/nethesis/phone-island).
+The CVE lets the people who use that code in their own software find out that they are affected.
+
+**Phase 3 (optional): internal disclosure**
+
+This phase is optional: it is needed only to organize the rollout of the update.
+It happens in the existing internal chat channels, after the release, or earlier if more people are needed to coordinate it.
+Share only what is needed to organize the rollout, not the details of the vulnerability.
+
+The rollout is decided case by case. For example:
+
+- available as a normal update, applied manually by administrators
+- pushed to all systems at once, when the update is unlikely to break existing systems
+- rolled out in tiers, a group of systems at a time, when the update might break existing systems
+
+**Phase 4: pre-disclosure communication**
+
+After the release, a short communication invites everyone to update.
+The [Product Manager](../management/#product-manager) writes it. It contains:
+
+- few details: the affected product, the fixed version and the severity
+- the link to the security advisory, which at this stage holds only generic information
+- an invitation to update all machines as soon as possible
+
+The communication is published on:
+
+- the [community forum](https://community.nethserver.org)
+- the [partner forum](https://partner.nethesis.it)
+- the technical newsletter, when needed
+
+The support team is involved at this step, so it can answer customers and partners who ask about the update.
+
+**Phase 5: full disclosure**
+
+The full disclosure happens at least 15 days after the pre-disclosure communication, to give users time to update their systems.
+It is done by publishing the security advisory on GitHub with all the details and, if necessary, updating the forum posts.
+The Product Manager writes the full disclosure communication too.
+The pre-disclosure communication is public, so it already reaches everyone, inside and outside the company.
+The details of the vulnerability become available to everyone only at the full disclosure.
+There is no exception for the non-technical teams of the company, like marketing and sales.
+
+**External reporters**
+
+If the vulnerability is reported by someone outside Nethesis, the reporter is told that the disclosure will happen 30 days after we acknowledge that a fix is needed.
+The reporter is kept informed during the process and credited in the security advisory, unless they ask otherwise.
+
+**Customer data**
+
+If there is evidence that the managed services we run for customers are affected,
+the internal privacy team is informed before the full disclosure.
+Otherwise, the privacy team learns the details at the full disclosure, like everyone else.
+The privacy team evaluates the legal obligations, like the notification of a personal data breach.
+See also [Privacy by Design and by Default](../privacy/).
 
 ##### Case 2: Software not produced by Nethesis (upstream projects)
 
