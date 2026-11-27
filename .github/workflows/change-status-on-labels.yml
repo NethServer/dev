@@ -12,6 +12,11 @@ permissions:
 jobs:
   update-project-status:
     if: ${{ github.event.issue.state == 'open' }}
+    # Run one label change at a time per issue, in event order, so
+    # that quick label changes cannot race on the project status
+    concurrency:
+      group: project-status-${{ github.event.issue.number }}
+      cancel-in-progress: false
     runs-on: ubuntu-latest
     env:
       GH_TOKEN: ${{ github.token }}
