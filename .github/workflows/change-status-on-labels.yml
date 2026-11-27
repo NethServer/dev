@@ -12,6 +12,11 @@ permissions:
 jobs:
   update-project-status:
     if: ${{ github.event.issue.state == 'open' }}
+    # Run one label change at a time per issue, in event order, so
+    # that quick label changes cannot race on the project status
+    concurrency:
+      group: project-status-${{ github.event.issue.number }}
+      cancel-in-progress: false
     runs-on: ubuntu-latest
     env:
       GH_TOKEN: ${{ github.token }}
@@ -43,10 +48,16 @@ jobs:
       - name: Determine new status on removed Label
         if: ${{ github.event.action == 'unlabeled' }}
         id: unlabeled
+        env:
+          # Labels of the issue after the change: if the other status label
+          # is still there, its own run sets the status, so skip this one
+          HAS_STATUS_LABEL: ${{ contains(github.event.issue.labels.*.name, 'testing') || contains(github.event.issue.labels.*.name, 'verified') }}
         run: |
           # Check if the label removed is 'testing' or 'verified'
           # If yes, set the status to 'In Progress'
-          if [ "$LABEL_CHANGED" == "testing" ] || [ "$LABEL_CHANGED" == "verified" ]; then
+          if [ "$HAS_STATUS_LABEL" == "true" ]; then
+            echo "status=skip" >> $GITHUB_OUTPUT
+          elif [ "$LABEL_CHANGED" == "testing" ] || [ "$LABEL_CHANGED" == "verified" ]; then
             echo "status=In Progress" >> $GITHUB_OUTPUT
           else
             echo "status=skip" >> $GITHUB_OUTPUT
